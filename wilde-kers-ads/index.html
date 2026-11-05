@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<title>Wilde Kers Ads v2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:light;--room:#F6F1E7;--bos:#526344;--salie:#A7BD82;--antraciet:#505050;--kers:#A3263A;--inkt:#2F3A27;--line:#e4dccd}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--room);color:var(--antraciet);-webkit-font-smoothing:antialiased}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+header{padding-block:36px 10px}
+header img{height:38px}
+h1{font-size:clamp(26px,4vw,40px);font-weight:700;color:var(--inkt);margin:20px 0 8px;line-height:1.15;text-wrap:balance}
+header p{max-width:760px;line-height:1.6;margin:0}
+.wat{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.wat span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--inkt)}
+.schakel{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--room);border-bottom:1px solid var(--line);padding-block:12px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--room)}
+.schakel .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.schakel button{font:inherit;font-weight:600;border:1.5px solid var(--bos);background:transparent;color:var(--bos);padding:8px 18px;border-radius:999px;cursor:pointer;min-height:42px}
+.schakel button[aria-pressed=true]{background:var(--bos);color:#fff}
+.schakel nav{margin-left:auto;display:flex;gap:14px;font-size:14px}
+.schakel nav a{color:var(--kers);font-weight:600;text-decoration:none}
+section{padding-block:34px 8px}
+h2{font-size:24px;font-weight:700;color:var(--inkt);margin:0}
+.uitleg{margin:6px 0 20px;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:26px}
+.post{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1c1e21}
+.kp{display:flex;gap:10px;align-items:center;padding:12px}
+.av{width:36px;height:36px;border-radius:50%;background:var(--salie);color:#fff;display:grid;place-items:center;font:600 13px Poppins,sans-serif}
+.kp b{display:block;font-size:14px}.kp span{font-size:12px;color:#65676b}
+.prim{font-size:14px;line-height:1.45;padding:0 12px 12px;margin:0}
+.media{position:relative}
+.media img,.media video{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:#eee}
+body.story .media img,body.story .media video{aspect-ratio:9/16}
+html{overflow-anchor:none}
+.media .s{display:none}
+body.story .media .f{display:none}body.story .media .s{display:block}
+body.story .prim,body.story .cta{display:none}
+.vtag{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;background:#f0f2f5}
+.cta small{font-size:11px;color:#65676b;display:block}.cta b{font-size:15px;display:block}.cta span{font-size:13px;color:#65676b}
+.cta a{flex:none;background:#e4e6eb;border-radius:6px;padding:8px 14px;font-weight:600;font-size:14px}
+.meta{font-size:13px;margin:8px 0 0}.meta b{color:var(--kers)}
+footer{padding-block:40px 60px;font-size:13px}
+</style>
+<header class="gutter"><div class="wrap">
+<img src="logo.png" alt="Losse-T">
+<h1>Meta-advertenties Wilde Kers Superieur · v2</h1>
+<p>Nieuwe set, gebouwd vanuit de salespagina. Negen video-ads met tekst die in beeld verschijnt, en achttien statische ads: de vergelijking met de supermarkt, ingrediënten, smaak, reviews, de Fruitbundel, de cadeauladder, vaak samen gekocht en (nieuw) de verpakking met het proefzakje van € 1,29. Elke ad heeft een feedversie (4:5) en een versie voor Stories en Reels (9:16).</p>
+<div class="wat"><span>9 video-ads (8-10 s)</span><span>18 statische ads</span><span>Feed 1080×1350</span><span>Stories 1080×1920</span><span>Landt op de salespagina</span></div>
+</div></header>
+<div class="schakel gutter"><div class="wrap">
+<button id="b-feed" aria-pressed="true">Feed (4:5)</button><button id="b-story" aria-pressed="false">Stories en Reels (9:16)</button>
+<nav><a href="#stoppers">Scroll-stoppers</a><a href="#video">Video</a><a href="#product">Product</a><a href="#vs">Vs. zakje</a><a href="#prijs">Prijs</a><a href="#orderwaarde">Orderwaarde</a><a href="#blackfriday">Black Friday</a></nav>
+</div></div>
+<section class="gutter" id="stoppers"><div class="wrap"><h2>1. Video: scroll-stoppers</h2><p class="uitleg">Koude doelgroepen in Reels en Stories. Hook vanaf het eerste beeld, knop "Probeer vanaf € 1,29". Sterkste eerst.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Zin in iets zoets? Wilde Kers Superieur is zoet van echte stukjes kers. Begin met een proefzakje voor € 1,29. Lekker? Dan drink je hem daarna vanaf 5 cent per kop.</p>
+ <div class="media"><video class="f" src="ads/sv2-kers-f.mp4" poster="ads/sv2-kers-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv2-kers-s.mp4" poster="ads/sv2-kers-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Kers in je thee, vanaf € 1,29</b><span>Proefzakje Wilde Kers</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 1 · sv2-kers</b> · Koud · S2 Zoete-Trek-Vervanger · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">1 theelepel Wilde Kers Superieur in een thee-ei, water van 100 °C erop en 8 tot 10 minuten laten trekken. Vol, fruitig en friszoet. Probeer hem eerst met een proefzakje van € 1,29.</p>
+ <div class="media"><video class="f" src="ads/sv4-thee-ei-f.mp4" poster="ads/sv4-thee-ei-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv4-thee-ei-s.mp4" poster="ads/sv4-thee-ei-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Zo wordt water Wilde Kers</b><span>Proefzakje € 1,29</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 2 · sv4-thee-ei</b> · Koud · S3 / S6 · landt op salespage #zetten</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Nog nooit losse thee geprobeerd? Begin met Wilde Kers Superieur: hele stukjes fruit die je gewoon ziet. Een proefzakje kost € 1,29.</p>
+ <div class="media"><video class="f" src="ads/sv3-schep-f.mp4" poster="ads/sv3-schep-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv3-schep-s.mp4" poster="ads/sv3-schep-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Begin met een proefzakje</b><span>Wilde Kers Superieur · € 1,29</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 3 · sv3-schep</b> · Koud · S3 Supermarkt-Upgrader · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Zo ziet Wilde Kers Superieur eruit als het heet water erop gaat: dieprood van hibiscus, met echte stukjes kers en appel. Nieuwsgierig? Proef eerst, met een proefzakje voor € 1,29.</p>
+ <div class="media"><video class="f" src="ads/sv1-kleur-f.mp4" poster="ads/sv1-kleur-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv1-kleur-s.mp4" poster="ads/sv1-kleur-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Proef Wilde Kers vanaf € 1,29</b><span>Onze best verkochte thee</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 4 · sv1-kleur</b> · Koud · S6 Smaakontdekker · landt op salespage #top</p></article></div></div></section><section class="gutter" id="video"><div class="wrap"><h2>2. Video: sfeer met tekst</h2><p class="uitleg">Eigen beelden met tekst die stap voor stap verschijnt: toetje, ijsthee, zetten, ingrediënten en de verpakking.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Na het eten zin in iets zoets? Zet een kop Wilde Kers Superieur. Vol, fruitig en zoet van echte stukjes kers, met appel, rozenbottel en hibiscus. Een beetje thee, een beetje toetje.</p>
+ <div class="media"><video class="f" src="ads/v01-toetje-f.mp4" poster="ads/v01-toetje-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v01-toetje-s.mp4" poster="ads/v01-toetje-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Een beetje thee. Een beetje toetje.</b><span>Proefzakjes cadeau vanaf € 25</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 5 · v01-toetje</b> · S2 · Zoete-Trek-Vervanger · landt op salespage #toetje</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wilde Kers Superieur drink je warm, maar ook als ijsthee. Iets sterker zetten, laten afkoelen en over ijs schenken. Fruitig, friszoet en dieprood in je glas.</p>
+ <div class="media"><video class="f" src="ads/v02-ijsthee-f.mp4" poster="ads/v02-ijsthee-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v02-ijsthee-s.mp4" poster="ads/v02-ijsthee-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Wilde Kers als ijsthee</b><span>Gratis verzending vanaf € 35</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 6 · v02-ijsthee</b> · S2 · Zoete-Trek-Vervanger / S6 · landt op salespage #toetje</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Denk je dat losse thee gedoe is? 1 theelepel in een thee-ei, water van 100 °C erop, 8 tot 10 minuten laten trekken. Klaar. Nog geen thee-ei? Die doe je er voor € 3,99 bij.</p>
+ <div class="media"><video class="f" src="ads/v03-thee-ei-f.mp4" poster="ads/v03-thee-ei-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v03-thee-ei-s.mp4" poster="ads/v03-thee-ei-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Losse thee is gedoe? Valt mee.</b><span>Wilde Kers Superieur</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 7 · v03-thee-ei</b> · S3 · Supermarkt-Upgrader · landt op salespage #zetten</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Van alle thee bij Losse-T verkopen we deze het meest: Wilde Kers Superieur. Echte stukjes kers, appel en rozenbottel, dieprood door hibiscus. Proef zelf waarom.</p>
+ <div class="media"><video class="f" src="ads/v04-ingredienten-f.mp4" poster="ads/v04-ingredienten-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v04-ingredienten-s.mp4" poster="ads/v04-ingredienten-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Onze best verkochte thee</b><span>Ruim 400 smaken bij Losse-T</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 8 · v04-ingredienten</b> · S6 · Smaakontdekker · landt op salespage #erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Nog nooit Wilde Kers Superieur geproefd? Echte stukjes kers, appel, rozenbottel en hibiscus. 100 gram is goed voor 50 koppen thee, voor € 6,75.</p>
+ <div class="media"><video class="f" src="ads/v05-zak-f.mp4" poster="ads/v05-zak-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v05-zak-s.mp4" poster="ads/v05-zak-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>50 koppen thee voor € 6,75</b><span>Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 9 · v05-zak</b> · S6 · Smaakontdekker (nieuwe klanten) · landt op salespage #top</p></article></div></div></section><section class="gutter" id="product"><div class="wrap"><h2>3. Ingrediënten en smaak</h2><p class="uitleg">Voor de Smaakontdekker: wat erin zit en hoe hij smaakt. Eerst de rustige varianten met één beeld, dan de collages.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wat zit er in Wilde Kers Superieur? Hibiscus, appel, rozijnen, rozenbottel en stukjes kers. 5 ingrediënten, samen onze best verkochte thee.</p>
+ <div class="media"><img class="f" src="ads/st13-kommetjes-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st13-kommetjes-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>5 ingrediënten, 1 thee</b><span>Wilde Kers Superieur</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 10 · st13-kommetjes</b> · S6 · Smaakontdekker · landt op salespage #erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Echt fruit dat je ziet: hibiscus, appel en echte stukjes kers. Dat is Wilde Kers Superieur, vol, fruitig en friszoet.</p>
+ <div class="media"><img class="f" src="ads/st14-bord-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st14-bord-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Echt fruit dat je ziet</b><span>Proef Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 11 · st14-bord</b> · S6 / S3 · landt op salespage #erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Dit zit er in je glas: hibiscus, appel, rozijnen, rozenbottel en stukjes kers. Echt gedroogd fruit dat je ziet. Samen is dat Wilde Kers Superieur, onze best verkochte thee.</p>
+ <div class="media"><img class="f" src="ads/st03-ingredienten-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st03-ingredienten-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Echt fruit dat je ziet</b><span>Bekijk de ingrediënten</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 12 · st03-ingredienten</b> · S6 · Smaakontdekker · landt op salespage #erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">"Veel smaken geprobeerd maar de meeste vind ik veel te zoet. Deze is friszoet." Zo omschrijft klant Iris Wilde Kers Superieur. Vol, fruitig en met een frisse rand van hibiscus.</p>
+ <div class="media"><img class="f" src="ads/st04-smaak-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st04-smaak-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Als toetje, als ijsthee of op de bank</b><span>Proef Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 13 · st04-smaak</b> · S6 · Smaakontdekker / S2 · landt op salespage #smaak</p></article></div></div></section><section class="gutter" id="vs"><div class="wrap"><h2>4. Wilde Kers vs. supermarktzakje</h2><p class="uitleg">Voor de Supermarkt-Upgrader: het verschil in beeld en in een tabel.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Supermarktzakje of Wilde Kers Superieur? In het zakje zit fijngemalen thee. In Wilde Kers zie je echte stukjes gedroogd fruit en hibiscusbloem. Een klant zei het zo: "Niet te vergelijken met thee uit de supermarkt."</p>
+ <div class="media"><img class="f" src="ads/st01-vs-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st01-vs-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Supermarktzakje vs. Wilde Kers</b><span>Proef het verschil</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 14 · st01-vs</b> · S3 · Supermarkt-Upgrader · landt op salespage #zakjes</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Zakje of los? Het verschil in één oogopslag. Smaak: vol, fruitig en friszoet. De thee: hele stukjes die je ziet. Keuze: ruim 400 smaken. "Hier komen geen theezakjes meer in huis," schreef een klant.</p>
+ <div class="media"><img class="f" src="ads/st02-tabel-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st02-tabel-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Proef het verschil</b><span>Wilde Kers Superieur</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 15 · st02-tabel</b> · S3 · Supermarkt-Upgrader · landt op salespage #zakjes</p></article></div></div></section><section class="gutter" id="prijs"><div class="wrap"><h2>5. Prijs en eerst proberen</h2><p class="uitleg">Drempel weg voor nieuwe klanten: proefzakje van € 1,29, 50 koppen voor € 6,75 en vanaf 5 cent per kop.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Losse thee proberen zonder meteen een grote zak te kopen? Dat kan. Een proefzakje Wilde Kers Superieur kost € 1,29. Proef zelf het verschil met het zakje uit de supermarkt.</p>
+ <div class="media"><img class="f" src="ads/st10-proefzakje-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st10-proefzakje-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Proef eerst. Voor € 1,29.</b><span>Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 16 · st10-proefzakje</b> · S3 · Supermarkt-Upgrader (nieuwe klanten) · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">100 gram Wilde Kers Superieur is goed voor 50 koppen thee, voor € 6,75. Neem je de kilo, dan drink je hem vanaf 5 cent per kop.</p>
+ <div class="media"><img class="f" src="ads/st11-per-kopje-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st11-per-kopje-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>50 koppen thee voor € 6,75</b><span>Vanaf 5 cent per kop</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 17 · st11-per-kopje</b> · S3 · Supermarkt-Upgrader · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Hoeveel koppen wil je? 100 gram voor € 6,75 (50 koppen), 250 gram voor € 16,90 (125 koppen) of de kilo voor € 50,65 (vanaf 5 cent per kop).</p>
+ <div class="media"><img class="f" src="ads/st12-prijzen-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st12-prijzen-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Wilde Kers: 50 koppen voor € 6,75</b><span>100 g, 250 g of 1 kilo</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 18 · st12-prijzen</b> · S6 / S3 (nieuwe klanten) · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Onze best verkochte thee: Wilde Kers Superieur. Vol, fruitig en friszoet, met echte stukjes kers. Per kilo drink je hem vanaf 5 cent per kop.</p>
+ <div class="media"><img class="f" src="ads/st09-zak-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st09-zak-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Wilde Kers vanaf 5 cent per kop</b><span>Onze best verkochte thee</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 19 · st09-zak</b> · S6 · Smaakontdekker (nieuwe klanten) · landt op salespage #top</p></article></div></div></section><section class="gutter" id="reviews"><div class="wrap"><h2>6. Reviews</h2><p class="uitleg">Vertrouwen, vooral voor retargeting.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Klanten geven Losse-T een 9,6 uit 3.536 reviews bij WebwinkelKeur. Ruim 400 soorten losse thee, en Wilde Kers Superieur is onze best verkochte.</p>
+ <div class="media"><img class="f" src="ads/st05-reviews-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st05-reviews-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>9,6 uit 3.536 reviews</b><span>Losse thee bij Losse-T</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 20 · st05-reviews</b> · Alle / retargeting · landt op salespage #reviews</p></article></div></div></section><section class="gutter" id="orderwaarde"><div class="wrap"><h2>7. Meer smaken per bestelling</h2><p class="uitleg">Fruitbundel, cadeauladder en vaak samen gekocht. Voor retargeting en bestaande bezoekers.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wilde Kers Superieur plus de 3 fruitige smaken die er het vaakst bij worden gekocht: Bosvruchten, Lovely Raspberry en Granaatappel. Elk 100 g, samen € 24,99 in plaats van € 26,90, met 2 proefzakjes cadeau.</p>
+ <div class="media"><img class="f" src="ads/st06-bundel-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st06-bundel-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Fruitbundel: 4 × 100 g voor € 24,99</b><span>+ 2 proefzakjes cadeau</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 21 · st06-bundel</b> · Orderwaarde · alle · landt op salespage #mix</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Hoe meer smaken, hoe meer cadeau. Vanaf € 25 krijg je 2 proefzakjes, vanaf € 35 5 proefzakjes en gratis verzending, vanaf € 50 een theeblik en vanaf € 75 een mok met zeefje.</p>
+ <div class="media"><img class="f" src="ads/st07-ladder-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st07-ladder-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Hoe meer smaken, hoe meer cadeau</b><span>Stel je mix samen</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 22 · st07-ladder</b> · Orderwaarde · retargeting · landt op salespage #mix</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Ruim de helft van de klanten die Wilde Kers Superieur bestelt, neemt er een andere smaak bij. Favorieten: Winter Sfeer, Bosvruchten en Droomvlucht. Vanaf € 25 krijg je 2 proefzakjes cadeau.</p>
+ <div class="media"><img class="f" src="ads/st08-samen-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st08-samen-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Vaak samen gekocht</b><span>Maak je mix</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 23 · st08-samen</b> · Orderwaarde · S6 · landt op salespage #mix</p></article></div></div></section><section class="gutter" id="blackfriday"><div class="wrap"><h2>8. Black Friday (27 november)</h2><p class="uitleg">25% korting, één ad per doelgroep. Zwarte banden, het product groot in beeld.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Black Friday bij Losse-T: 25% korting op Wilde Kers Superieur, onze best verkochte thee. Vol, fruitig en friszoet, met echte stukjes kers. Alleen tijdens Black Friday.</p>
+ <div class="media"><img class="f" src="ads/bf1-s6-f.jpg" alt="" loading="lazy"><img class="s" src="ads/bf1-s6-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Black Friday: 25% korting</b><span>Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 24 · bf1-s6</b> · S6 · Smaakontdekker · Black Friday · landt op salespage #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Al jaren kersenthee uit een zakje? Dit is het moment om over te stappen. Wilde Kers Superieur, met echte stukjes kers die je in je glas ziet, nu met 25% Black Friday-korting.</p>
+ <div class="media"><img class="f" src="ads/bf2-s3-f.jpg" alt="" loading="lazy"><img class="s" src="ads/bf2-s3-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Stap over: nu 25% korting</b><span>Wilde Kers Superieur</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 25 · bf2-s3</b> · S3 · Supermarkt-Upgrader · Black Friday · landt op salespage #zakjes</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Na het eten zin in iets zoets? Wilde Kers Superieur is zoet van echte stukjes kers. Een beetje thee, een beetje toetje, en tijdens Black Friday 25% goedkoper.</p>
+ <div class="media"><img class="f" src="ads/bf3-s2-f.jpg" alt="" loading="lazy"><img class="s" src="ads/bf3-s2-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Je toetje in een mok, -25%</b><span>Black Friday bij Losse-T</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 26 · bf3-s2</b> · S2 · Zoete-Trek-Vervanger · Black Friday · landt op salespage #toetje</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Nog aan het twijfelen? Tijdens Black Friday krijg je 25% korting op Wilde Kers Superieur. Maak er een mix van met andere smaken: vanaf € 25 krijg je proefzakjes cadeau, vanaf € 35 gratis verzending.</p>
+ <div class="media"><img class="f" src="ads/bf4-retarget-f.jpg" alt="" loading="lazy"><img class="s" src="ads/bf4-retarget-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>25% korting + cadeaus</b><span>Black Friday bij Losse-T</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 27 · bf4-retarget</b> · Alle drie · retargeting · Black Friday · landt op salespage #mix</p></article></div></div></section><footer class="gutter"><div class="wrap">Preview van Create &amp; Convert, ronde v2. De cadeauladder en de Fruitbundel-prijs zijn voorstellen die Losse-T nog moet goedkeuren. Alle beelden zijn eigen AI-beelden van de echte Wilde Kers-melange en de Losse-T-verpakking. Prijs per kop volgens opgave: 50 koppen per 100 gram en vanaf 5 cent per kop bij de kilo.</div></footer>
+<script>
+var bf=document.getElementById('b-feed'),bs=document.getElementById('b-story');
+function zet(st){document.body.classList.toggle('story',st);bf.setAttribute('aria-pressed',!st);bs.setAttribute('aria-pressed',st);document.querySelectorAll('video').forEach(function(v){v.pause();io.unobserve(v);io.observe(v);});}
+bf.onclick=function(){zet(false)};bs.onclick=function(){zet(true)};
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+if(!location.hash)window.scrollTo(0,0);
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting&&v.offsetParent){v.play().catch(function(){});}else{v.pause();}});},{rootMargin:'100px'});
+document.querySelectorAll('video').forEach(function(v){io.observe(v);});
+</script>

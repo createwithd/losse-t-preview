@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Losse-T Groeiplan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Lange scrollpagina met vaste navigatie: fase 1 = analyse van nu, fase 2 = onze aanpak (2 t/m 6). Huisstijl Losse-T. */
+:root{
+  color-scheme:light;
+  --papier:#F7F8F3; --kaart:#FFFFFF; --inkt:#24301E; --zacht:#5A6452; --lijn:#DFE4D6;
+  --bos:#526344; --salie:#A7BD82; --saliezacht:#E8EFDC; --kers:#A3263A; --kerszacht:#F6E3E6; --goud:#B7791F;
+  --balk:#FFFFFF; --balktekst:#24301E;
+  --display:Poppins,"Segoe UI",system-ui,sans-serif; --body:Figtree,"Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--inkt);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--balk)}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,3.6vw,40px);font-weight:700}
+h3{font-size:21px;font-weight:600}
+h4{font-size:16px;font-weight:600}
+p{margin:0}
+.label{font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bos)}
+.num{font-variant-numeric:tabular-nums}
+/* navigatie */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--balk);color:var(--balktekst);border-bottom:1px solid var(--lijn)}
+.top .wrap{display:flex;align-items:center;gap:22px;min-height:56px;flex-wrap:wrap;padding-block:6px}
+.top b{color:var(--bos);font-family:var(--display);font-weight:600;letter-spacing:.04em}
+.top nav{display:flex;gap:16px;flex-wrap:wrap;font-size:14.5px}
+.top nav a{text-decoration:none;opacity:.8;padding:6px 0}
+.top nav a:hover,.top nav a:focus-visible{opacity:1}
+.top .fase{margin-left:auto;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bos)}
+/* opening */
+header.held{padding-block:60px 34px}
+header.held h1{font-size:clamp(34px,5.4vw,60px);font-weight:700;margin:12px 0 16px;max-width:17ch}
+header.held h1 em{font-style:normal;color:var(--kers)}
+header.held p{max-width:62ch;color:var(--zacht);font-size:18.5px}
+.fases{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.fasekaart{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.fasekaart .label{color:var(--kers)}
+.fasekaart.twee .label{color:var(--bos)}
+.fasekaart ol{margin:4px 0 0;padding-left:20px;color:var(--zacht)}
+/* secties */
+section{padding-block:60px;border-top:1px solid var(--lijn);scroll-margin-top:60px}
+.kop{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.kop .intro{color:var(--zacht);max-width:66ch;font-size:17.5px}
+.fasetag{align-self:flex-start;font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--kerszacht);color:var(--kers)}
+.fasetag.f2{background:var(--saliezacht);color:var(--bos)}
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:34px}
+.kpi{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;padding:16px 18px}
+.kpi b{display:block;font-family:var(--display);font-weight:700;font-size:32px;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--zacht);font-size:14.5px}
+.kpi.slecht b{color:var(--kers)}
+/* bevindingen */
+.bev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.b{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.b.breed{grid-column:1/-1}
+.b .nr{font-family:var(--display);font-weight:700;color:var(--kers);font-size:14px}
+.b p{color:var(--zacht)}
+.b .dus{border-top:1px dashed var(--lijn);padding-top:12px;color:var(--inkt)}
+.b .dus b{color:var(--bos)}
+.tabel{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+th{font-weight:600;font-size:12.5px;color:var(--zacht);text-align:left;padding:7px 8px 7px 0;border-bottom:1px solid var(--lijn);white-space:nowrap}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--lijn);vertical-align:top}
+td.r,th.r{text-align:right}
+td.rood{color:var(--kers);font-weight:600}
+td.groen{color:var(--bos);font-weight:600}
+.merk{font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--saliezacht);color:var(--bos);white-space:nowrap}
+.bar{display:grid;grid-template-columns:150px 1fr 48px;gap:10px;align-items:center;font-size:14.5px}
+.bar i{display:block;height:12px;border-radius:99px;background:var(--saliezacht);position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--kers);border-radius:99px}
+.bars{display:grid;gap:9px}
+/* doelgroepen */
+.groepen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.groep{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.groep .gk{display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--lijn)}
+.groep .gk img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex:none}
+.groep .gk small{display:block;color:var(--zacht);font-size:13.5px}
+.avs{display:grid;gap:0}
+.av{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:12px 18px;border-bottom:1px solid var(--lijn)}
+.av:last-child{border-bottom:0}
+.av code{font-family:var(--display);font-weight:600;font-size:13px;color:var(--bos);background:var(--saliezacht);border-radius:6px;height:26px;display:grid;place-items:center}
+.av b{display:block}
+.av span{color:var(--zacht);font-size:14.5px}
+.feiten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:26px}
+/* salespages */
+.lp{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;align-items:start}
+.shots{display:grid;grid-template-columns:3.4fr 1fr;gap:12px;background:var(--saliezacht);padding:14px;border-radius:10px}
+.shots img{width:100%;border-radius:6px;box-shadow:0 3px 14px rgba(0,0,0,.14);aspect-ratio:16/10;object-fit:cover;object-position:top}
+.shots img.mob{aspect-ratio:390/844}
+.lijst{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.lijst li{display:grid;grid-template-columns:22px 1fr;gap:8px;color:var(--zacht)}
+.lijst li::before{content:"✓";color:var(--bos);font-weight:700}
+.lijst li b{color:var(--inkt)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;background:var(--bos);color:#fff;text-decoration:none;font-weight:600;font-family:var(--display);font-size:15px;align-self:flex-start}
+.btn:focus-visible,.top nav a:focus-visible{outline:2px solid var(--salie);outline-offset:3px}
+.volgt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
+.volgt .b{flex-direction:row;align-items:center}
+.volgt img{width:84px;height:84px;object-fit:cover;border-radius:8px;flex:none}
+.status{font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--saliezacht);color:var(--bos);align-self:flex-start}
+.lps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.lpk{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.lpk .shots{border-radius:0}
+.lpk .tx{padding:18px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.lpk .btn{margin-top:auto}
+.thema{margin-bottom:34px}
+.thema h3{margin-bottom:6px}
+.thema .sub{color:var(--zacht);margin-bottom:14px}
+.knoppen{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn.licht{background:transparent;color:var(--bos);border:1.5px solid var(--bos)}
+/* PMax-voorbeelden: telefoons met YouTube Shorts, YouTube-app, Discover en Gmail */
+.pmthema{margin-bottom:40px}
+.pmthema>h4{font-size:19px;margin-bottom:4px}
+.pmthema>.sub{color:var(--zacht);margin-bottom:16px}
+.pm2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start;margin-bottom:18px}
+.pmv{display:flex;flex-direction:column;gap:8px;min-width:0}
+.pmv .wat{font-family:var(--display);font-size:11.5px;font-weight:600;color:var(--bos);text-transform:uppercase;letter-spacing:.08em}
+.phone{width:100%;max-width:260px;margin:0 auto;border:8px solid #111;border-radius:30px;background:#fff;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#202124;font-size:12.5px;box-shadow:0 10px 28px rgba(0,0,0,.14)}
+.phone.zwart{background:#000;color:#fff}
+.short{position:relative}
+.short video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.short .info{position:absolute;left:0;right:0;bottom:0;padding:40px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.75));display:flex;flex-direction:column;gap:6px}
+.kanaal{display:flex;align-items:center;gap:8px;font-weight:700;font-size:12.5px}
+.kanaal em{font-style:normal;font-weight:400;font-size:11px;opacity:.85}
+.fav{width:26px;height:26px;border-radius:50%;background:#E8EFDC;color:#526344;display:grid;place-items:center;font-weight:700;font-size:10px;flex:none}
+.short .titel{font-size:13px;line-height:1.35}
+.cta{align-self:flex-start;background:#fff;color:#111;border-radius:999px;padding:6px 14px;font-weight:700;font-size:12px}
+.cta.blauw{background:#065FD4;color:#fff}
+.ytbar{display:flex;align-items:center;gap:6px;padding:10px 12px;font-weight:700;font-size:15px;letter-spacing:-.4px}
+.ytbar i{width:22px;height:15px;border-radius:4px;background:#FF0000;position:relative;display:block}
+.ytbar i::after{content:"";position:absolute;left:8px;top:4px;border-left:7px solid #fff;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+.ytk img,.dck img,.gmo img{width:100%;aspect-ratio:1.91/1;object-fit:cover;display:block}
+.ytk .yt{position:relative}
+.ytk .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.8);color:#fff;font-size:11px;padding:1px 5px;border-radius:4px}
+.ytm{display:flex;gap:8px;padding:10px 12px 12px;line-height:1.4}
+.ytm b{display:block;font-size:13px}
+.gs{font-size:11px;color:#5F6368}.gs strong{color:#202124}
+.leeg .vlak{aspect-ratio:1.91/1;background:#EDEDED}
+.leeg .lijnen{padding:10px 12px;display:grid;gap:6px}
+.lijnen i{display:block;height:8px;border-radius:4px;background:#E6E6E6}
+.zoek{display:flex;align-items:center;gap:8px;background:#EEF2F8;border-radius:999px;padding:7px 12px;color:#5F6368;margin:10px 12px 6px}
+.dcg{font-size:20px;font-weight:700;text-align:center;padding-top:10px;color:#4285F4}
+.dck{margin:6px 12px 12px;border:1px solid #E3E3E3;border-radius:12px;overflow:hidden}
+.dck .tx,.gmo .tx{padding:10px 12px 12px;line-height:1.45}
+.dck .tx b,.gmo .tx b{display:block;font-size:13.5px;margin-bottom:3px}
+.gmtab{padding:6px 14px;font-size:11.5px;color:#5F6368;font-weight:700}
+.gmr{display:flex;gap:10px;padding:8px 14px;align-items:flex-start}
+.gmr>div{min-width:0}
+.gmv{font-weight:700}.gmv .bd{font-size:10px;font-weight:700;border:1px solid #202124;border-radius:3px;padding:0 3px;margin-right:6px}
+.gmon{font-weight:700;margin-top:2px}.gmsn{color:#5F6368;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gmo{margin:4px 14px 12px;border:1px solid #E3E3E3;border-radius:10px;overflow:hidden}
+.gmr.leeg{opacity:.55}
+.assetgroep{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;padding:18px 20px}
+.assetgroep h5{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bos);margin:0 0 6px}
+.assetgroep ul{margin:0;padding:0;list-style:none;font-size:14px}
+.assetgroep li{padding:5px 0;border-bottom:1px solid var(--lijn)}
+.assetgroep li:last-child{border-bottom:0}
+@media(max-width:1000px){.pm2,.assetgroep{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.pm2,.assetgroep{grid-template-columns:minmax(0,1fr)}}
+/* structuur */
+.struct{overflow-x:auto;margin-bottom:30px}
+.struct table td{padding:10px 10px 10px 0}
+.struct td:first-child{font-weight:600;font-family:var(--display);white-space:nowrap}
+.type{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:6px;margin:0 4px 4px 0;background:var(--saliezacht);color:var(--bos);white-space:nowrap}
+.kw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:34px}
+.kw .b{gap:6px}
+/* serp */
+.serp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:30px}
+.g{background:#fff;color:#202124;border:1px solid #dadce0;border-radius:10px;padding:16px 18px;font-family:Arial,Helvetica,sans-serif;min-width:0}
+.g .q{font-size:12px;color:#5f6368;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.g .q b{background:#f1f3f4;border-radius:99px;padding:3px 10px;font-weight:400;color:#202124}
+.g .sp{font-size:12px;font-weight:700;color:#202124}
+.g .url{font-size:12.5px;color:#4d5156;margin:2px 0 4px;display:flex;gap:8px;align-items:center}
+.g .url i{width:22px;height:22px;border-radius:50%;background:#E8EFDC;display:grid;place-items:center;font-style:normal;font-size:10px;font-weight:700;color:#526344}
+.g .h{font-size:19px;color:#1a0dab;line-height:1.3}
+.g .d{font-size:14px;color:#4d5156;margin-top:4px;line-height:1.45}
+.g .sl{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13.5px;color:#1a0dab}
+.shopping{background:#fff;color:#202124;border:1px solid #dadce0;border-radius:10px;padding:16px 18px;font-family:Arial,Helvetica,sans-serif;margin-bottom:30px}
+.shoprij{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-top:10px}
+.pr{display:flex;flex-direction:column;gap:3px;font-size:13.5px;min-width:0}
+.pr img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#f1f3f4}
+.pr b{font-size:15px}
+.pr small{color:#5f6368}
+.pr .st{color:#188038;font-size:12.5px}
+.pmax{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:30px}
+.pmax .b{gap:8px}
+.pmax .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pmax .thumbs img{aspect-ratio:1;object-fit:cover;border-radius:6px;width:100%}
+.pmax ul{margin:0;padding-left:18px;color:var(--zacht);font-size:14.5px}
+/* meta */
+.ads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.ad{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.ad img,.ad video{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--saliezacht)}
+.ad video.story{aspect-ratio:9/16}
+.ad .t{padding:12px 14px;display:flex;flex-direction:column;gap:3px;font-size:14px}
+.ad .t small{color:var(--bos);font-weight:600;font-size:12.5px}
+.ad .t span{color:var(--zacht)}
+/* voorstel */
+.voorstel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:26px}
+.prijs{background:var(--kaart);border:1px solid var(--lijn);border-radius:10px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.prijs.fee{background:var(--bos);color:#fff;border-color:var(--bos)}
+.prijs.fee .label{color:#E8EFDC}
+.prijs.fee p,.prijs.fee li{color:#EEF3E6}
+.prijs b.groot{font-family:var(--display);font-weight:700;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.prijs ul{margin:0;padding-left:18px;color:var(--zacht);font-size:15px}
+.schaal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--lijn);border-radius:10px;overflow:hidden;background:var(--kaart)}
+.schaal div{padding:18px 20px;border-right:1px solid var(--lijn);display:flex;flex-direction:column;gap:6px}
+.schaal div:last-child{border-right:0}
+.schaal b{font-family:var(--display)}
+.schaal span{color:var(--zacht);font-size:15px}
+footer{padding-block:40px 70px;color:var(--zacht);font-size:14px;border-top:1px solid var(--lijn)}
+@media(max-width:980px){
+  .lps{grid-template-columns:minmax(0,1fr)}
+  .kpis,.feiten{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bev,.groepen,.lp,.serp,.volgt,.fases{grid-template-columns:minmax(0,1fr)}
+  .kw,.pmax,.voorstel,.schaal{grid-template-columns:minmax(0,1fr)}
+  .schaal div{border-right:0;border-bottom:1px solid var(--lijn)}
+  .ads{grid-template-columns:repeat(2,minmax(0,1fr))}.shoprij{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:520px){.bar{grid-template-columns:110px 1fr 40px}.top .fase{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.avd{border-bottom:1px solid var(--lijn)}
+.avd>summary{list-style:none;cursor:pointer;grid-template-columns:44px 1fr auto;border-bottom:0}
+.avd>summary::-webkit-details-marker{display:none}
+.avd>summary:hover{background:var(--papier)}
+.avscore{font-family:var(--display);font-weight:600;font-size:13px;color:var(--bos);white-space:nowrap;align-self:start;padding-top:3px}
+.avscore.nieuw{color:var(--goud)}
+.avscore::after{content:" \25B8";color:var(--zacht)}
+.avd[open] .avscore::after{content:" \25BE"}
+.avbody{padding:2px 18px 16px 72px}
+.avbase{font-size:13px;color:var(--goud);margin:0 0 8px}
+.avhook{margin:0 0 12px;padding:12px 14px;background:var(--saliezacht);border-left:3px solid var(--bos);border-radius:6px;font-family:var(--display);font-weight:500;font-size:15px;line-height:1.45}
+.avrows{margin:0;display:grid;gap:6px}
+.avrows div{display:grid;grid-template-columns:100px 1fr;gap:10px;font-size:14px}
+.avrows dt{font-weight:600;color:var(--bos)}
+.avrows dd{margin:0;color:var(--inkt)}
+.avtools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 12px}
+.avtools p{margin:0;color:var(--zacht);font-size:14px}
+.avtoggle{font:600 14px var(--body);border:1px solid var(--bos);color:var(--bos);background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer}
+.avtoggle:hover{background:var(--saliezacht)}
+.groepen{align-items:start}
+.avscorecard{margin:8px 0 28px}
+.avscorecard td.ww{font-size:13.5px;color:var(--zacht);min-width:180px}
+.avscorecard td:first-child{white-space:nowrap}
+.avscorecard td code{font-family:var(--display);font-weight:600;font-size:12px;color:var(--bos);background:var(--saliezacht);border-radius:5px;padding:2px 6px;margin-right:4px}
+.avscorecard tr.nieuw td{color:var(--zacht)}
+@media (max-width:700px){.avbody{padding-left:18px}.avrows div{grid-template-columns:1fr;gap:0}}
+</style>
+
+<div class="top"><div class="wrap">
+  <b>Losse-T</b>
+  <nav aria-label="Inhoud">
+    <a href="#nu">1. Google Ads nu</a><a href="#wie">2. Wie koopt</a><a href="#pages">3. Salespages</a><a href="#google">4. Google Ads nieuw</a><a href="#meta">5. Meta Ads</a><a href="#voorstel">6. Voorstel</a>
+  </nav>
+  <span class="fase">Create &amp; Convert · okt 2026</span>
+</div></div>
+
+<header class="held"><div class="wrap">
+  <span class="label">Groeiplan Google + Meta</span>
+  <h1>Meer losse thee verkopen, <em>per thema</em></h1>
+  <p>We hebben het Google Ads-account van Losse-T doorgelicht en laten zien hoe wij het zouden aanpakken. Als voorbeeld hebben we drie thema's helemaal uitgewerkt, met vier salespagina's en 93 Meta-advertenties: Wilde Kers Superieur, avondthee en cadeau.</p>
+  <div class="fases">
+    <div class="fasekaart"><span class="label">Fase 1</span><h3>Analyse van het huidige account</h3><p style="color:var(--zacht)">Wat gaat er nu goed, wat kost geld en wat blijft liggen. Op basis van de echte cijfers uit Google Ads (laatste 30 en 90 dagen, en 2025).</p><ol><li>Huidige Google Ads</li></ol></div>
+    <div class="fasekaart twee"><span class="label">Fase 2</span><h3>Hoe wij het zouden doen</h3><p style="color:var(--zacht)">Eerst de doelgroepen, dan per doelgroep een salespagina, Google Ads en Meta Ads.</p><ol start="2"><li>Wie koopt het en waarom</li><li>Nieuwe salespages</li><li>Google Ads: nieuwe structuur en voorbeelden</li><li>Meta Ads: voorbeelden</li><li>Voorstel en budget</li></ol></div>
+  </div>
+</div></header>
+
+<!-- 1 ============================================================ -->
+<section id="nu"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag">Fase 1</span>
+    <span class="label">1. Huidige Google Ads</span>
+    <h2>Het account draait, maar verdient weinig aan nieuwe klanten</h2>
+    <p class="intro">Laatste 90 dagen, alle campagnes. Bron: Google Ads-account 824-451-1556, opgehaald op 28 oktober 2026.</p>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><b>€ 21.063</b><span>advertentiekosten (90 dagen)</span></div>
+    <div class="kpi"><b>€ 51.568</b><span>omzet volgens Google Ads</span></div>
+    <div class="kpi"><b>2,45</b><span>ROAS totaal</span></div>
+    <div class="kpi slecht"><b>1,80</b><span>ROAS zonder merkzoekers</span></div>
+  </div>
+
+  <div class="bev">
+    <div class="b">
+      <span class="nr">Bevinding 1</span>
+      <h3>Lage ROAS, en een groot deel komt van mensen die Losse-T al kennen</h3>
+      <p>De merkcampagne kost 3,7% van het budget en levert 29% van de omzet. Dat zijn mensen die al op "Losse-T" zoeken en ook zonder advertentie waren gekomen. Haal je die eruit, dan is de ROAS 1,80. Performance Max haalt in de laatste 30 dagen maar 1,47, en vangt waarschijnlijk ook merkzoekers.</p>
+      <div class="tabel"><table>
+        <thead><tr><th>Campagne (30 dagen)</th><th class="r">Kosten</th><th class="r">Omzet</th><th class="r">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td>NL/BE - PMax | Assets</td><td class="r">€ 6.050</td><td class="r">€ 8.865</td><td class="r rood">1,47</td></tr>
+          <tr><td>NL - Generiek</td><td class="r">€ 1.252</td><td class="r">€ 1.937</td><td class="r rood">1,55</td></tr>
+          <tr><td>NL - Losse Thee</td><td class="r">€ 1.211</td><td class="r">€ 2.497</td><td class="r">2,06</td></tr>
+          <tr><td>NL/BE - Branding <span class="merk">merk</span></td><td class="r">€ 336</td><td class="r">€ 7.379</td><td class="r groen">22,0</td></tr>
+        </tbody></table></div>
+      <p class="dus"><b>Dus:</b> merkverkeer apart houden en uitsluiten in Performance Max. Dan zie je wat er echt aan nieuwe klanten verdiend wordt.</p>
+    </div>
+
+    <div class="b">
+      <span class="nr">Bevinding 2</span>
+      <h3>Alles draait op het zoekwoord "losse thee"; op smaak, cadeau en kerst gebeurt niets</h3>
+      <p>Top zoektermen naar conversies (90 dagen). Buiten de merknaam en "losse thee" is er geen enkele zoekterm met meer dan 10 verkopen.</p>
+      <div class="tabel"><table>
+        <thead><tr><th>Zoekterm</th><th class="r">Verkopen</th><th class="r">Kosten</th><th class="r">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td>losse t <span class="merk">merk</span></td><td class="r">268</td><td class="r">€ 224</td><td class="r">54,6</td></tr>
+          <tr><td>losse thee</td><td class="r">102</td><td class="r">€ 1.079</td><td class="r">4,1</td></tr>
+          <tr><td>losse thee kopen</td><td class="r">28</td><td class="r">€ 378</td><td class="r">3,0</td></tr>
+          <tr><td>losse thee nl <span class="merk">merk</span></td><td class="r">22</td><td class="r">€ 57</td><td class="r">15,5</td></tr>
+          <tr><td>losset <span class="merk">merk</span></td><td class="r">18</td><td class="r">€ 34</td><td class="r">26,0</td></tr>
+          <tr><td>verse thee</td><td class="r">10</td><td class="r">€ 46</td><td class="r">7,2</td></tr>
+        </tbody></table></div>
+      <p>Wat ontbreekt, met het zoekvolume per maand (Ahrefs, NL):</p>
+      <div class="tabel"><table>
+        <thead><tr><th>Thema</th><th>Zoekterm</th><th class="r">Volume</th></tr></thead>
+        <tbody>
+          <tr><td>Cadeau</td><td>thee cadeau</td><td class="r">1.200 <small>(dec 2.030)</small></td></tr>
+          <tr><td>Kerst</td><td>thee adventskalender · kerst thee · kerstthee</td><td class="r">1.650</td></tr>
+          <tr><td>Avond</td><td>slaapthee · slaap thee · rustgevende thee</td><td class="r">1.900</td></tr>
+          <tr><td>Smaak</td><td>kersenthee · kersen thee · kaneel thee</td><td class="r">700</td></tr>
+          <tr><td>Pakketten</td><td>theepakket · thee pakket cadeau · thee giftset</td><td class="r">1.050</td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="b">
+      <span class="nr">Bevinding 3</span>
+      <h3>Een eigen Shopping-campagne ontbreekt</h3>
+      <p>De Standard Shopping-campagne staat uit. In 2025 was die ingesteld op handmatige biedingen en haalde ROAS 0,8. Producten worden nu alleen nog via Performance Max getoond, en daar bepaalt Google waar het geld heen gaat.</p>
+      <div class="tabel"><table>
+        <thead><tr><th>Shopping binnen PMax (30 dagen)</th><th class="r">Kosten</th><th class="r">Omzet</th></tr></thead>
+        <tbody>
+          <tr><td>Alle productadvertenties (334 producten)</td><td class="r">€ 2.330</td><td class="r">€ 3.069</td></tr>
+          <tr><td>Hibiscus thee 50 gram</td><td class="r">€ 251</td><td class="r rood">€ 217</td></tr>
+          <tr><td>Orange Sunset Burst 50 gram</td><td class="r">€ 55</td><td class="r rood">€ 0</td></tr>
+          <tr><td>Vensterzakjes, bonbons</td><td class="r">€ 98</td><td class="r">€ 117</td></tr>
+        </tbody></table></div>
+      <p class="dus"><b>Dus:</b> eigen Shopping-campagnes per thema, met bestsellers en grote maten (1 kg, bundels, cadeaupakketten) bovenaan. Het budget gaat nu vooral naar 50-gramzakjes en producten die geen thee zijn.</p>
+    </div>
+
+    <div class="b">
+      <span class="nr">Bevinding 4</span>
+      <h3>Bijna alle klikken landen op de homepage</h3>
+      <p>Wie op "losse thee" klikt, komt op de homepage en moet zelf zoeken tussen 400 smaken. Deel van de kosten dat naar de homepage gaat (90 dagen):</p>
+      <div class="bars">
+        <div class="bar"><span>NL - Losse Thee</span><i style="--w:97%"></i><span class="num">97%</span></div>
+        <div class="bar"><span>NL/BE - Branding</span><i style="--w:97%"></i><span class="num">97%</span></div>
+        <div class="bar"><span>NL - Generiek</span><i style="--w:80%"></i><span class="num">80%</span></div>
+        <div class="bar"><span>Performance Max</span><i style="--w:57%"></i><span class="num">57%</span></div>
+      </div>
+      <p class="dus"><b>Dus:</b> elke advertentie krijgt een eigen landingspagina die aansluit op wat iemand zocht: een salespagina per thema (zie 3).</p>
+    </div>
+
+    <div class="b breed">
+      <span class="nr">Bevinding 5 t/m 10</span>
+      <h3>Andere zaken uit het account</h3>
+      <div class="tabel"><table>
+        <thead><tr><th>Wat</th><th>Wat we zien</th><th>Wat het betekent</th></tr></thead>
+        <tbody>
+          <tr><td><b>Budget op, zonder ROAS-doel</b></td><td>Generiek en Losse Thee halen 10-14% van de mogelijke vertoningen, 72-78% gaat verloren door budget. Alle campagnes bieden op "maximale conversiewaarde", zonder doel-ROAS.</td><td>Google geeft elke dag het hele budget uit, ook als dat niets oplevert. Er is geen ondergrens voor rendement.</td></tr>
+          <tr><td><b>YouTube, Gmail en Display staan leeg</b></td><td>98% van Performance Max gaat naar zoeken en Shopping. YouTube € 9, Gmail € 0, Discover € 92 in 30 dagen.</td><td>Er zijn geen video's en weinig beelden. Daardoor bereik je alleen mensen die al zoeken.</td></tr>
+          <tr><td><b>NL en BE door elkaar</b></td><td>Eén PMax voor beide landen: België € 3.497 (ROAS 2,02), Nederland € 11.219 (ROAS 1,66) in 90 dagen.</td><td>Budget, prijzen en verzendkosten (€ 45 drempel in BE) kun je per land niet sturen.</td></tr>
+          <tr><td><b>Mobiel kost het meeste</b></td><td>66% van de kosten komt van mobiel, met ROAS 2,25. Desktop haalt 2,88.</td><td>De landingspagina moet op mobiel sneller tot de koop leiden: één knop, de maat en de prijs direct zichtbaar.</td></tr>
+          <tr><td><b>57 campagnes, 53 uit</b></td><td>Veel oude tests ("Zombie SKU's", "Index", "MT", "fout") van eerdere bureaus en experimenten.</td><td>Onoverzichtelijk, en historische instellingen lopen soms nog door. Opschonen en één heldere structuur.</td></tr>
+          <tr><td><b>Meting nalopen</b></td><td>Google Ads telt 1.285 aankopen, GA4 992 (30% verschil). Er gaat € 152 naar een onbekend trackingdomein (trck-001.clckptrl.com).</td><td>Eerst controleren of aankopen dubbel tellen en waar dat domein vandaan komt, voordat we gaan opschalen.</td></tr>
+        </tbody></table></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 ============================================================ -->
+<section id="wie"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag f2">Fase 2</span>
+    <span class="label">2. Wie koopt het en waarom</span>
+    <h2>Mensen kopen losse thee om een smaak, een avond of een cadeau</h2>
+    <p class="intro">Uit het merkonderzoek (reviews, fora, Google Analytics en de advertenties van concurrenten) halen we per product de mensen die het kopen. Alleen nieuwe klanten; vaste klanten kopen toch al.</p>
+  </div>
+  <div class="feiten">
+    <div class="kpi"><b>65%</b><span>van de kopers is vrouw (GA4)</span></div>
+    <div class="kpi"><b>€ 42</b><span>gemiddelde bestelling</span></div>
+    <div class="kpi"><b>November</b><span>maand met de meeste omzet</span></div>
+    <div class="kpi"><b>9,6</b><span>uit 3.536 reviews (WebwinkelKeur)</span></div>
+  </div>
+  <div class="avscorecard"><h3>Scorecard</h3><p class="sub">Elke doelgroep scoort 1-5 op urgentie, koopbereidheid, schaal en lage drempel. Maximaal 20.</p><div class="tabel"><table><thead><tr><th>Doelgroep</th><th>Wie</th><th>Wil eigenlijk</th><th>Urgentie</th><th>Koopbereid</th><th>Schaal</th><th>Drempel</th><th>Totaal</th></tr></thead><tbody><tr><td><code>C3</code> De Kerstshopper</td><td class="ww">25-65, koopt voor Sinterklaas en kerst en heeft weinig tijd.</td><td class="ww">Snel een mooi cadeau, zonder zelf te hoeven inpakken.</td><td>5</td><td>4</td><td>5</td><td>4</td><td><b>18</b></td></tr><tr><td><code>R1</code> De Avond-Ontspanner</td><td class="ww">Vrouw 35-64 met een drukke dag, 's avonds op de bank.</td><td class="ww">Elke avond een moment voor zichzelf.</td><td>4</td><td>4</td><td>5</td><td>4</td><td><b>17</b></td></tr><tr><td><code>W1</code> De Gezelligheidsmaker</td><td class="ww">Vrouw 45-65+ die van herfst en winter een sfeerseizoen maakt.</td><td class="ww">Warmte en gezelligheid in huis.</td><td>4</td><td>4</td><td>4</td><td>5</td><td><b>17</b></td></tr><tr><td><code>W9</code> De Kerstliefhebber</td><td class="ww">Vrouw 30-65 die van de kerstdagen houdt: boom, kerstfilms, samen gezellig.</td><td class="ww">Kerstgevoel in huis tijdens de feestdagen.</td><td>4</td><td>4</td><td>4</td><td>4</td><td><b>16</b></td></tr><tr><td><code>S6</code> De Smaakontdekker</td><td class="ww">Vrouw 25-55 die graag nieuwe smaken probeert.</td><td class="ww">Iets nieuws proberen dat al bewezen lekker is.</td><td>3</td><td>4</td><td>4</td><td>4</td><td><b>15</b></td></tr><tr><td><code>R3</code> De Cafeïnevrije Avonddrinker</td><td class="ww">40-plusser die overdag gewone thee drinkt en 's avonds niet meer.</td><td class="ww">Een warm drankje zonder cafeïne dat wel smaakt.</td><td>3</td><td>3</td><td>4</td><td>4</td><td><b>14</b></td></tr><tr><td><code>R2</code> De Slaapzoeker</td><td class="ww">Vrouw 30-60 die zoekt op "slaapthee".</td><td class="ww">Een avondthee die echt smaakt, als vast ritueel voor het slapengaan.</td><td>4</td><td>3</td><td>4</td><td>3</td><td><b>14</b></td></tr><tr><td><code>R7</code> De Ontstresser</td><td class="ww">Werkende 30-55 bij wie het hoofd vol zit na het werk.</td><td class="ww">Een duidelijk moment waarop de werkdag stopt.</td><td>4</td><td>3</td><td>4</td><td>3</td><td><b>14</b></td></tr><tr><td><code>S2</code> De Zoete-Trek-Vervanger</td><td class="ww">Vrouw 25-55 die 's middags of na het eten zin heeft in iets zoets.</td><td class="ww">Zichzelf verwennen zonder koek.</td><td>3</td><td>3</td><td>4</td><td>3</td><td><b>13</b></td></tr><tr><td><code>S3</code> De Supermarkt-Upgrader</td><td class="ww">Vrouw 25-44 die nu kersenthee uit de supermarkt drinkt.</td><td class="ww">Echte thee met een volle smaak.</td><td>2</td><td>3</td><td>5</td><td>2</td><td><b>12</b></td></tr><tr class="nieuw"><td><code>C1</code> De Bedankjesgever</td><td class="ww">30-50, regelt cadeautjes voor de juf, een collega, de buren of de mantelzorger.</td><td class="ww">In één keer klaar, met iets dat niet standaard is.</td><td colspan="5">Afgesplitst van de Cadeaugever (18). Eigen score volgt na de eerste resultaten.</td></tr><tr class="nieuw"><td><code>C2</code> De Verwenner</td><td class="ww">Vrouw 25-55 die iets zoekt voor haar moeder, een vriendin of zus.</td><td class="ww">Iets dat echt gebruikt wordt en niet in de kast belandt.</td><td colspan="5">Afgesplitst van de Cadeaugever (18). Eigen score volgt na de eerste resultaten.</td></tr></tbody></table></div></div><div class="avtools"><p>Klik op een doelgroep voor de uitwerking.</p><button type="button" class="avtoggle">Alles openklappen</button></div><div class="groepen">
+    <div class="groep">
+      <div class="gk"><img src="img/p-zak.jpg" alt="Wilde Kers Superieur in de Losse-T-zak"><div><h3>Wilde Kers Superieur</h3><small>Speciale smaak · bestseller · het hele jaar</small></div></div>
+      <div class="avs">
+        <details class="avd"><summary class="av"><code>S6</code><div><b>De Smaakontdekker</b><span>Probeert graag iets nieuws, maar wil geen miskoop. Begint met de best verkochte thee.</span></div><span class="avscore">15/20</span></summary><div class="avbody"><blockquote class="avhook">Zin in een nieuwe thee? Begin met onze best verkochte: Wilde Kers. Vol en fruitig, met echte stukjes kers. Proefzakje € 1,29.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 25-55 die graag nieuwe smaken probeert.</dd></div><div><dt>Waarom nu</dt><dd>Ze wil iets nieuws, maar weet bij 400 soorten niet waar ze moet beginnen.</dd></div><div><dt>Bang voor</dt><dd>"Wat als ik hem niet lekker vind?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Iets nieuws proberen dat al bewezen lekker is.</dd></div><div><dt>Belofte</dt><dd>Begin met onze best verkochte thee, met een proefzakje van € 1,29 als eerste stap.</dd></div><div><dt>Kanaal</dt><dd>Meta, e-mail</dd></div><div><dt>Bewijs</dt><dd>Wilde Kers is nummer 1 in omzet (GA4). Reviews: "elke keer weer een feestje".</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>S3</code><div><b>De Supermarkt-Upgrader</b><span>Drinkt kersenthee uit een zakje en vindt die vlak. Ziet bij ons echte stukjes kers.</span></div><span class="avscore">12/20</span></summary><div class="avbody"><blockquote class="avhook">Drink je kersenthee uit een zakje? Dit is Wilde Kers: hibiscus, appel, rozenbottel en echte stukjes kers. Dat zie je gewoon in je glas.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 25-44 die nu kersenthee uit de supermarkt drinkt.</dd></div><div><dt>Waarom nu</dt><dd>De smaak uit het zakje is vlak en ze is erop uitgekeken.</dd></div><div><dt>Bang voor</dt><dd>Losse thee lijkt gedoe, en duurder.</dd></div><div><dt>Wil eigenlijk</dt><dd>Echte thee met een volle smaak.</dd></div><div><dt>Belofte</dt><dd>Hele blaadjes en echte stukjes kers, in plaats van fijngemalen thee in een zakje.</dd></div><div><dt>Kanaal</dt><dd>Meta, Google Shopping</dd></div><div><dt>Bewijs</dt><dd>"kersen thee pickwick": 150 zoekopdrachten per maand (Ahrefs). Forum: "zakjes van afvalthee".</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>S2</code><div><b>De Zoete-Trek-Vervanger</b><span>Wil na het eten iets zoets. Wilde Kers is het toetje in de mok.</span></div><span class="avscore">13/20</span></summary><div class="avbody"><blockquote class="avhook">Na het eten zin in iets zoets? Neem een kop Wilde Kers: vol, fruitig en zoet van echte stukjes kers.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 25-55 die 's middags of na het eten zin heeft in iets zoets.</dd></div><div><dt>Waarom nu</dt><dd>De zoete trek komt elke dag terug, en dan pakt ze een koekje.</dd></div><div><dt>Bang voor</dt><dd>"Is het echt zoet, of toch flauw?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Zichzelf verwennen zonder koek.</dd></div><div><dt>Belofte</dt><dd>Het toetje in je mok.</dd></div><div><dt>Kanaal</dt><dd>Meta, Pinterest</dd></div><div><dt>Bewijs</dt><dd>Review: "neemt de zoete trek in koekjes weg".</dd></div></dl></div></details>
+      </div>
+    </div>
+    <div class="groep">
+      <div class="gk"><img src="img/n-avond-gnk.jpg" alt="Goede Nacht Kruiden in de Losse-T-zak"><div><h3>Avondthee</h3><small>Goede Nacht Kruiden en Mooie dromen · cafeïnevrij</small></div></div>
+      <div class="avs">
+        <details class="avd"><summary class="av"><code>R1</code><div><b>De Avond-Ontspanner</b><span>Drukke dag, 's avonds op de bank. Wil een vast moment voor zichzelf.</span></div><span class="avscore">17/20</span></summary><div class="avbody"><blockquote class="avhook">De dag zit erop. Tijd voor je avondthee: Goede Nacht Kruiden, zacht en bloemig met kamille en oranjebloesem.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 35-64 met een drukke dag, 's avonds op de bank.</dd></div><div><dt>Waarom nu</dt><dd>Ze heeft geen vast moment waarop de dag echt stopt.</dd></div><div><dt>Bang voor</dt><dd>"Is het niet gewoon thee?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Elke avond een moment voor zichzelf.</dd></div><div><dt>Belofte</dt><dd>Jouw vaste avondritueel.</dd></div><div><dt>Kanaal</dt><dd>Meta en Instagram, SEO</dd></div><div><dt>Bewijs</dt><dd>De avond is het theemoment voor 50% van de vrouwen (theeonderzoek 2024).</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>R3</code><div><b>De Cafeïnevrije Avonddrinker</b><span>Drinkt overdag gewone thee, 's avonds niet meer. Zoekt een lekkere cafeïnevrije thee.</span></div><span class="avscore">14/20</span></summary><div class="avbody"><blockquote class="avhook">'s Avonds zin in thee, maar geen cafeïne? Goede Nacht Kruiden is van nature cafeïnevrij.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>40-plusser die overdag gewone thee drinkt en 's avonds niet meer.</dd></div><div><dt>Waarom nu</dt><dd>Ze weet niet welke thee ze 's avonds kan drinken.</dd></div><div><dt>Bang voor</dt><dd>"Kruidenthee is flauw."</dd></div><div><dt>Wil eigenlijk</dt><dd>Een warm drankje zonder cafeïne dat wel smaakt.</dd></div><div><dt>Belofte</dt><dd>Cafeïnevrij, dus ook 's avonds lekker.</dd></div><div><dt>Kanaal</dt><dd>SEO, Meta</dd></div><div><dt>Bewijs</dt><dd>Forum: "geen cafeïne na 18:00". Zoekvraag "welke thee voor het slapengaan".</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>R2</code><div><b>De Slaapzoeker</b><span>Zoekt "slaapthee" en vond die uit de supermarkt niet lekker.</span></div><span class="avscore">14/20</span></summary><div class="avbody"><blockquote class="avhook">Op zoek naar een lekkere thee voor het slapengaan? Proef Goede Nacht Kruiden of Mooie dromen eerst, voor € 1,29 per proefzakje.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 30-60 die zoekt op "slaapthee".</dd></div><div><dt>Waarom nu</dt><dd>De slaapthee uit de supermarkt vond ze slap en eentonig.</dd></div><div><dt>Bang voor</dt><dd>"Werkt het echt?" en de smaak.</dd></div><div><dt>Wil eigenlijk</dt><dd>Een avondthee die echt smaakt, als vast ritueel voor het slapengaan.</dd></div><div><dt>Belofte</dt><dd>Jouw vaste kopje voor het slapengaan. Eerst proeven, dan kiezen.</dd></div><div><dt>Kanaal</dt><dd>Google "slaapthee" (800 per maand), Meta</dd></div><div><dt>Bewijs</dt><dd>Review: "van de meeste slaapthee niet heel blij". Zoekvolume uit Ahrefs.</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>R7</code><div><b>De Ontstresser</b><span>Hoofd zit vol na het werk. Zoekt het moment waarop de werkdag stopt.</span></div><span class="avscore">14/20</span></summary><div class="avbody"><blockquote class="avhook">Werkdag erop, hoofd nog vol? Sluit je dag af met een pot Mooie dromen: zacht, bloemig en licht kruidig.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Werkende 30-55 bij wie het hoofd vol zit na het werk.</dd></div><div><dt>Waarom nu</dt><dd>Het werk loopt door in de avond.</dd></div><div><dt>Bang voor</dt><dd>"Thee lost mijn stress niet op."</dd></div><div><dt>Wil eigenlijk</dt><dd>Een duidelijk moment waarop de werkdag stopt.</dd></div><div><dt>Belofte</dt><dd>Het moment waarop je werkdag stopt.</dd></div><div><dt>Kanaal</dt><dd>Meta, LinkedIn</dd></div><div><dt>Bewijs</dt><dd>Stress Weg scoort 4,75 uit 19 reviews ("Stress = weg!").</dd></div></dl></div></details>
+      </div>
+    </div>
+    <div class="groep">
+      <div class="gk"><img src="img/n-cadeau.jpg" alt="Koude Dagen thee pakket in kraft cadeaudoos"><div><h3>Cadeau</h3><small>Koude Dagen thee pakket · evergreen + Sinterklaas en kerst</small></div></div>
+      <div class="avs">
+        <details class="avd"><summary class="av"><code>C1</code><div><b>De Bedankjesgever</b><span>Regelt cadeautjes voor de juf, een collega of de buren. Koopt er meerdere tegelijk.</span></div><span class="avscore nieuw">nieuw</span></summary><div class="avbody"><p class="avbase">Afgesplitst van de Cadeaugever (18/20)</p><blockquote class="avhook">Nog een bedankje voor de juf? Het Koude Dagen thee kerstpakket: 3 warme theeën in een cadeaudoos. Iets dat echt wordt opgedronken.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>30-50, regelt cadeautjes voor de juf, een collega, de buren of de mantelzorger.</dd></div><div><dt>Waarom nu</dt><dd>Einde schooljaar, Sinterklaas of kerst: er moeten meerdere bedankjes tegelijk komen.</dd></div><div><dt>Bang voor</dt><dd>"Welk budget?" en verzendkosten op kleine cadeautjes.</dd></div><div><dt>Wil eigenlijk</dt><dd>In één keer klaar, met iets dat niet standaard is.</dd></div><div><dt>Belofte</dt><dd>Alles in één bestelling, mooi ingepakt, vanaf € 35 gratis verzonden.</dd></div><div><dt>Kanaal</dt><dd>Meta, Google "thee cadeau juf" en "collega"</dd></div><div><dt>Bewijs</dt><dd>Google-suggesties "thee cadeau juf / collega / bedankt". GA4: grote bestellingen van 8, 11 en 29 pakketten.</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>C2</code><div><b>De Verwenner</b><span>Zoekt iets voor moeder of een vriendin dat echt gebruikt wordt.</span></div><span class="avscore nieuw">nieuw</span></summary><div class="avbody"><p class="avbase">Afgesplitst van de Cadeaugever (18/20)</p><blockquote class="avhook">Cadeau voor je moeder dat ze echt gebruikt? Het Koude Dagen thee pakket: 3 warme theeën en een rol theefilters in een cadeaudoos.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 25-55 die iets zoekt voor haar moeder, een vriendin of zus.</dd></div><div><dt>Waarom nu</dt><dd>Een verjaardag, beterschap of gewoon zomaar.</dd></div><div><dt>Bang voor</dt><dd>"Lust ze dit?" en "is thee niet te klein als cadeau?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Iets dat echt gebruikt wordt en niet in de kast belandt.</dd></div><div><dt>Belofte</dt><dd>3 smaken in een geschenkdoos: altijd raak, en het wordt echt opgedronken.</dd></div><div><dt>Kanaal</dt><dd>Meta, Google "thee cadeau moeder"</dd></div><div><dt>Bewijs</dt><dd>Google-suggestie "thee cadeau moeder". Koude Dagen is het best verkochte cadeaupakket (76 stuks sinds september 2025, GA4).</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>C3</code><div><b>De Kerstshopper</b><span>Weinig tijd, wil het op tijd in huis hebben en mooi ingepakt.</span></div><span class="avscore">18/20</span></summary><div class="avbody"><p class="avbase">De Cadeaugever in het seizoen</p><blockquote class="avhook">Nog 3 weken tot Sinterklaas. Regel je cadeaus vandaag: het Koude Dagen thee kerstpakket, kant-en-klaar ingepakt.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>25-65, koopt voor Sinterklaas en kerst en heeft weinig tijd.</dd></div><div><dt>Waarom nu</dt><dd>De feestdagen komen eraan en de cadeaus zijn nog niet geregeld.</dd></div><div><dt>Bang voor</dt><dd>"Komt het op tijd?" en "ziet het er feestelijk uit?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Snel een mooi cadeau, zonder zelf te hoeven inpakken.</dd></div><div><dt>Belofte</dt><dd>Een cadeau dat naar kerst ruikt, op tijd in huis.</dd></div><div><dt>Kanaal</dt><dd>Google "thee cadeau", Meta (half oktober tot 20 december)</dd></div><div><dt>Bewijs</dt><dd>"thee cadeau": 1.200 zoekopdrachten per maand, piek 2.030 in december (Ahrefs).</dd></div></dl></div></details>
+      </div>
+    </div>
+    <div class="groep">
+      <div class="gk"><img src="img/n-winter.jpg" alt="Warme winterthee bij de haard"><div><h3>Winter en kerst</h3><small>Openhaard Romance, Winter Sfeer, Kerst thee · sep-feb</small></div></div>
+      <div class="avs">
+        <details class="avd"><summary class="av"><code>W1</code><div><b>De Gezelligheidsmaker</b><span>Maakt van herfst en winter een sfeerseizoen. Buiten regen, binnen gezellig.</span></div><span class="avscore">17/20</span></summary><div class="avbody"><blockquote class="avhook">Buiten regen, binnen Openhaard Romance: kruidige winterthee met kaneel.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 45-65+ die van herfst en winter een sfeerseizoen maakt.</dd></div><div><dt>Waarom nu</dt><dd>De donkere, natte maanden beginnen.</dd></div><div><dt>Bang voor</dt><dd>"Is hij niet te zoet?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Warmte en gezelligheid in huis.</dd></div><div><dt>Belofte</dt><dd>Buiten regen, binnen gezellig.</dd></div><div><dt>Kanaal</dt><dd>Meta en Instagram (september tot februari)</dd></div><div><dt>Bewijs</dt><dd>Reviews: "een gezellige thee", "voor koude en regenachtige dagen".</dd></div></dl></div></details>
+        <details class="avd"><summary class="av"><code>W9</code><div><b>De Kerstliefhebber</b><span>Haalt in december de kerstsfeer in huis, ook in de mok.</span></div><span class="avscore">16/20</span></summary><div class="avbody"><blockquote class="avhook">Kerst in je kopje: Kerst thee met kaneel, sinaasappelschil en anijs.</blockquote><dl class="avrows"><div><dt>Wie</dt><dd>Vrouw 30-65 die van de kerstdagen houdt: boom, kerstfilms, samen gezellig.</dd></div><div><dt>Waarom nu</dt><dd>December: ze wil dat de feestdagen echt als kerst voelen.</dd></div><div><dt>Bang voor</dt><dd>"Is kerstthee niet gewoon kaneel?"</dd></div><div><dt>Wil eigenlijk</dt><dd>Kerstgevoel in huis tijdens de feestdagen.</dd></div><div><dt>Belofte</dt><dd>Kerstsfeer in je kopje.</dd></div><div><dt>Kanaal</dt><dd>Meta en Instagram (december), Google "kerstthee" (piek 1.355 in december)</dd></div><div><dt>Bewijs</dt><dd>Review: "Je krijgt er direct een kerstgevoel van! … onder een dekentje, een kerstfilm opzetten".</dd></div></dl></div></details>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 3 ============================================================ -->
+<section id="pages"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag f2">Fase 2</span>
+    <span class="label">3. Nieuwe salespages</span>
+    <h2>Per thema een pagina waar advertentiebezoekers direct kopen</h2>
+    <p class="intro">Geen homepage meer als landingspagina. Elke pagina sluit aan op de advertentie en stuurt op een hogere orderwaarde: een cadeauladder in de bovenbalk (€ 25 proefzakjes, € 35 gratis verzending, € 50 theeblik, € 75 mok), een bundel of staffel, en andere producten erbij. Alle beelden en video's zijn gemaakt met AI op basis van de echte thee en verpakking.</p>
+  </div>
+  <div class="lps">
+    <div class="lpk">
+      <div class="shots"><img src="img/lp-desktop.jpg" alt="Salespagina Wilde Kers Superieur op desktop"><img class="mob" src="img/lp-mobiel.jpg" alt="Salespagina Wilde Kers Superieur op mobiel"></div>
+      <div class="tx"><span class="status">Klaar</span><h3>Wilde Kers Superieur</h3>
+        <ul class="lijst">
+          <li><span><b>Fruitbundel</b> van 4 smaken: € 24,99 in plaats van € 26,90, plus 2 proefzakjes.</span></li>
+          <li><span><b>Supermarktzakje vs. Wilde Kers</b> in een tabel en een foto.</span></li>
+          <li><span><b>Andere smaken erbij</b> op basis van wat klanten echt samen kopen.</span></li>
+        </ul>
+        <a class="btn" href="/losse-t-preview/wilde-kers/" target="_blank" rel="noopener">Bekijk de pagina</a></div>
+    </div>
+    <div class="lpk">
+      <div class="shots"><img src="img/lp-avond-desktop.jpg" alt="Salespagina avondthee op desktop"><img class="mob" src="img/lp-avond-mobiel.jpg" alt="Salespagina avondthee op mobiel"></div>
+      <div class="tx"><span class="status">Klaar</span><h3>Jouw avondthee</h3>
+        <ul class="lijst">
+          <li><span><b>Goede Nacht Kruiden en Mooie dromen</b> op één pagina, met een keuzeknop per thee.</span></li>
+          <li><span><b>Avondbundel</b> van 4 cafeïnevrije theeën: € 24,99 in plaats van € 27,49, plus 2 proefzakjes. Bestellingen met avondthee zijn nu gemiddeld € 53.</span></li>
+          <li><span><b>Avondritueel in 4 stappen</b> en een eerlijk antwoord op "Helpt slaapthee echt?".</span></li>
+        </ul>
+        <a class="btn" href="/losse-t-preview/avondthee/" target="_blank" rel="noopener">Bekijk de pagina</a></div>
+    </div>
+    <div class="lpk">
+      <div class="shots"><img src="img/lp-kerst-desktop.jpg" alt="Salespagina kerstpakket op desktop"><img class="mob" src="img/lp-kerst-mobiel.jpg" alt="Salespagina kerstpakket op mobiel"></div>
+      <div class="tx"><span class="status">Klaar</span><h3>Koude Dagen thee kerstpakket</h3>
+        <ul class="lijst">
+          <li><span><b>Sinterklaas en kerst</b>, met uiterste besteldata en een teller tot de feestdag.</span></li>
+          <li><span><b>Staffel</b>: 1 pakket € 15,99, 2 voor € 29,99, 3 voor € 42,99 (voor de juf, een collega en jezelf).</span></li>
+          <li><span><b>Andere cadeaupakketten</b> en de cadeaubon als extra.</span></li>
+        </ul>
+        <a class="btn" href="/losse-t-preview/koude-dagen/kerst.html" target="_blank" rel="noopener">Bekijk de pagina</a></div>
+    </div>
+    <div class="lpk">
+      <div class="shots"><img src="img/lp-evergreen-desktop.jpg" alt="Salespagina cadeaupakket op desktop"><img class="mob" src="img/lp-evergreen-mobiel.jpg" alt="Salespagina cadeaupakket op mobiel"></div>
+      <div class="tx"><span class="status">Klaar</span><h3>Koude Dagen thee pakket (cadeau)</h3>
+        <ul class="lijst">
+          <li><span><b>Het hele koude seizoen</b>: verjaardag, bedankje, beterschap of zomaar.</span></li>
+          <li><span><b>"Eén voor jou, één om weg te geven"</b>: staffel met 2 of 3 pakketten.</span></li>
+          <li><span><b>Beter dan bonbons</b>: een cadeau dat echt opgedronken wordt.</span></li>
+        </ul>
+        <a class="btn" href="/losse-t-preview/koude-dagen/" target="_blank" rel="noopener">Bekijk de pagina</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 ============================================================ -->
+<section id="google"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag f2">Fase 2</span>
+    <span class="label">4. Google Ads: nieuwe structuur</span>
+    <h2>Per thema Shopping, Search en Performance Max, met een eigen landingspagina</h2>
+    <p class="intro">Elk thema krijgt de drie campagnetypes, zodat we per thema zien wat het oplevert en het budget kunnen verschuiven naar wat werkt. Merkzoekers krijgen een eigen kleine campagne en worden uitgesloten in de rest.</p>
+  </div>
+
+  <div class="struct b" style="padding:20px 22px">
+    <table>
+      <thead><tr><th>Thema</th><th>Campagnes</th><th>Doelgroepen</th><th>Landingspagina</th><th class="r">Budget / mnd</th></tr></thead>
+      <tbody>
+        <tr><td>Wilde Kers &amp; fruitthee</td><td><span class="type">Shopping</span><span class="type">Search</span><span class="type">PMax</span></td><td>S6, S3, S2</td><td>Salespagina Wilde Kers</td><td class="r">€ 3.000</td></tr>
+        <tr><td>Avondthee</td><td><span class="type">Shopping</span><span class="type">Search</span><span class="type">PMax</span></td><td>R1, R3, R2, R7</td><td>Salespagina avondthee</td><td class="r">€ 2.500</td></tr>
+        <tr><td>Cadeau &amp; kerst</td><td><span class="type">Shopping</span><span class="type">Search</span><span class="type">PMax</span></td><td>C1, C2, C3, W9</td><td>Kerstpakket / cadeaupakket</td><td class="r">€ 3.000</td></tr>
+        <tr><td>Merk</td><td><span class="type">Search</span></td><td>Zoekt al op Losse-T</td><td>Homepage</td><td class="r">€ 400</td></tr>
+        <tr><td>Video &amp; nieuwe mensen</td><td><span class="type">Demand Gen</span><span class="type">YouTube Shorts</span></td><td>Alle thema's</td><td>Salespagina's</td><td class="r">€ 700</td></tr>
+        <tr><td>Testruimte</td><td><span class="type">Nieuwe thema's</span></td><td>Bijv. winterthee W1</td><td>n.t.b.</td><td class="r">€ 400</td></tr>
+        <tr><td></td><td></td><td></td><td><b>Totaal</b></td><td class="r"><b>€ 10.000</b></td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--zacht);margin-top:12px;font-size:14.5px">In november en december schuift budget van fruitthee naar cadeau en kerst; vanaf januari terug. Elke campagne krijgt een doel-ROAS. Die stellen we samen vast op basis van de marge per thema.</p>
+  </div>
+
+  <h3 style="margin-bottom:14px">Zoekwoorden per thema (volume per maand, NL)</h3>
+  <div class="kw">
+    <div class="b"><h4>Wilde Kers &amp; fruitthee</h4><div class="tabel"><table><tbody>
+      <tr><td>kaneel thee</td><td class="r">400</td></tr><tr><td>kersenthee</td><td class="r">150</td></tr><tr><td>kersen thee</td><td class="r">150</td></tr><tr><td>kersen thee pickwick</td><td class="r">150</td></tr><tr><td>appel kaneel thee</td><td class="r">100</td></tr><tr><td>fruitthee</td><td class="r">60</td></tr>
+    </tbody></table></div></div>
+    <div class="b"><h4>Avondthee</h4><div class="tabel"><table><tbody>
+      <tr><td>slaapthee</td><td class="r">800</td></tr><tr><td>rustgevende thee</td><td class="r">600</td></tr><tr><td>slaap thee</td><td class="r">500</td></tr><tr><td>slaap lekker thee</td><td class="r">400</td></tr><tr><td>thee voor slapen</td><td class="r">200</td></tr><tr><td>thee voor het slapen gaan</td><td class="r">150</td></tr>
+    </tbody></table></div></div>
+    <div class="b"><h4>Cadeau &amp; kerst</h4><div class="tabel"><table><tbody>
+      <tr><td>thee cadeau</td><td class="r">1.200</td></tr><tr><td>thee adventskalender</td><td class="r">1.000</td></tr><tr><td>theepakket</td><td class="r">500</td></tr><tr><td>thee pakket cadeau</td><td class="r">350</td></tr><tr><td>kerst thee</td><td class="r">350</td></tr><tr><td>thee cadeau brievenbus</td><td class="r">200</td></tr>
+    </tbody></table></div></div>
+  </div>
+
+  <h3 style="margin-bottom:14px">Zo zien de zoekadvertenties eruit</h3>
+  <div class="serp">
+    <div class="g"><div class="q">Google <b>kersenthee</b></div><span class="sp">Gesponsord</span><div class="url"><i>LT</i>losse-t.nl › wilde-kers</div><div class="h">Wilde Kers Superieur | Echte Stukjes Kers | Losse-T</div><div class="d">Vol, fruitig en friszoet. Onze best verkochte vruchtenthee, met hibiscus, appel en rozenbottel. Klanten geven ons een 9,6. Vanaf € 35 gratis verzonden.</div><div class="sl"><span>Fruitbundel € 24,99</span><span>Proefzakje € 1,29</span><span>Supermarkt vs. Losse-T</span></div></div>
+    <div class="g"><div class="q">Google <b>slaapthee</b></div><span class="sp">Gesponsord</span><div class="url"><i>LT</i>losse-t.nl › avondthee</div><div class="h">Rustgevende Avondthee | Goede Nacht Kruiden | Losse-T</div><div class="d">Kamille, citroenmelisse en oranjebloesem. Van nature cafeïnevrij: jouw vaste kopje voor het slapengaan. Proef eerst met een proefzakje van € 1,29.</div><div class="sl"><span>Mooie dromen</span><span>Avondbundel</span><span>Zo zet je hem</span></div></div>
+    <div class="g"><div class="q">Google <b>thee cadeau</b></div><span class="sp">Gesponsord</span><div class="url"><i>LT</i>losse-t.nl › cadeau</div><div class="h">Thee Cadeau in Geschenkdoos | 3 Warme Theeën | Losse-T</div><div class="d">Het Koude Dagen thee pakket: 3 theeën, theefilters en een feestelijk doosje voor € 15,99. Voor de juf, een collega of je moeder. Meer stuks, meer voordeel.</div><div class="sl"><span>2 voor € 29,99</span><span>Voor de juf</span><span>Cadeaubon</span></div></div>
+    <div class="g"><div class="q">Google <b>kerst thee</b></div><span class="sp">Gesponsord</span><div class="url"><i>LT</i>losse-t.nl › kerst</div><div class="h">Een Kerstcadeau Dat Naar Winter Ruikt | Losse-T</div><div class="d">Kruidige wintertheeën in een geschenkdoosje. Bestel op tijd, dan ligt het voor kerst in huis. Vanaf € 35 gratis verzonden.</div><div class="sl"><span>Uiterste besteldatum</span><span>Kerst thee</span><span>Cadeaupakketten</span></div></div>
+  </div>
+
+  <h3 style="margin-bottom:14px">Shopping: bestsellers en grote maten vooraan</h3>
+  <div class="shopping">
+    <div style="font-size:13px;color:#5f6368">Gesponsord · Shopping-resultaten · eigen AI-productbeelden in plaats van de huidige foto's</div>
+    <div class="shoprij">
+      <div class="pr"><img src="img/p-zak.jpg" alt=""><span>Wilde Kers Superieur 100 g</span><b>€ 6,75</b><small>losse-t.nl · ★ 9,6</small><span class="st">Echte stukjes kers</span></div>
+      <div class="pr"><img src="img/p-bundel.jpg" alt=""><span>Fruitbundel 4 × 100 g</span><b>€ 24,99</b><small>losse-t.nl · ★ 9,6</small><span class="st">+ 2 proefzakjes</span></div>
+      <div class="pr"><img src="img/n-avond-gnk.jpg" alt=""><span>Goede Nacht Kruiden 100 g</span><b>€ 7,50</b><small>losse-t.nl · ★ 9,6</small><span class="st">Van nature cafeïnevrij</span></div>
+      <div class="pr"><img src="img/n-avond-bundel.jpg" alt=""><span>Avondbundel 4 × 100 g</span><b>€ 24,99</b><small>losse-t.nl · ★ 9,6</small><span class="st">+ 2 proefzakjes</span></div>
+      <div class="pr"><img src="img/n-cadeau.jpg" alt=""><span>Koude Dagen thee pakket</span><b>€ 15,99</b><small>losse-t.nl · ★ 9,6</small><span class="st">In kraft cadeaudoos</span></div>
+      <div class="pr"><img src="img/n-cadeau-drie.jpg" alt=""><span>3 × Koude Dagen pakket</span><b>€ 42,99</b><small>losse-t.nl · ★ 9,6</small><span class="st">€ 14,33 per pakket</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:14px">Performance Max per thema</h3>
+  <p style="color:var(--zacht);margin:-4px 0 22px;max-width:70ch">Eén Performance Max-campagne per thema. Google toont dezelfde beelden, video's en teksten op YouTube, Gmail, Discover, Shopping en websites. Hieronder per thema hoe dat eruitziet, met de assetgroep die we aanleveren.</p>
+<div class="pmthema">
+    <h4>PMax Wilde Kers Superieur</h4><p class="sub">Voor S6, S3 en S2. Landingspagina: salespagina Wilde Kers.</p>
+    <div class="pm2">
+      <div class="pmv"><span class="wat">YouTube Shorts</span>
+        <div class="phone zwart"><div class="short"><video src="img/ad-sv2-kers-s.mp4" poster="img/ad-sv2-kers-s.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="info"><div class="kanaal"><span class="fav">LT</span>Losse-T <em>Gesponsord</em></div><div class="titel">Kers in je thee. Wilde Kers Superieur, vanaf € 6,75.</div><span class="cta">Nu kopen</span></div></div></div></div>
+      <div class="pmv"><span class="wat">YouTube-app</span>
+        <div class="phone"><div class="ytbar"><i></i>YouTube</div>
+          <div class="ytk"><div class="yt"><img src="img/pm-wk-1.jpg" alt=""><span class="dur">0:08</span></div>
+            <div class="ytm"><span class="fav">LT</span><div><b>Wilde Kers Superieur: echte stukjes kers</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:6px;display:inline-block">Nu kopen</span></div></div></div>
+          <div class="leeg"><div class="vlak"></div><div class="lijnen"><i style="width:85%"></i><i style="width:50%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Google Discover</span>
+        <div class="phone"><div class="dcg">Google</div><div class="zoek">Zoeken</div>
+          <div class="dck"><img src="img/pm-wk-2.jpg" alt=""><div class="tx"><b>Na het eten zin in iets zoets? Een beetje thee, een beetje toetje.</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:8px;display:inline-block">Nu kopen</span></div></div>
+          <div class="dck leeg"><div class="vlak"></div><div class="lijnen"><i style="width:90%"></i><i style="width:60%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Gmail · Promoties</span>
+        <div class="phone"><div class="zoek">☰ Zoeken in e-mail</div><div class="gmtab">Promoties</div>
+          <div class="gmr"><span class="fav">LT</span><div><div class="gmv"><span class="bd">Advertentie</span>Losse-T</div><div class="gmon">Ook als ijsthee: Wilde Kers Superieur</div><div class="gmsn">Vol, fruitig en friszoet. Onze best verkochte thee.</div></div></div>
+          <div class="gmo"><img src="img/pm-wk-3.jpg" alt=""><div class="tx"><b>Warm of ijskoud</b>Iets sterker zetten, laten afkoelen en over ijs schenken.<br><span class="cta blauw" style="margin-top:8px;display:inline-block">Nu kopen</span></div></div>
+          <div class="gmr leeg"><span class="fav" style="background:#E6E6E6"></span><div class="lijnen" style="flex:1"><i style="width:40%"></i><i style="width:90%"></i></div></div></div></div>
+    </div>
+    <div class="assetgroep">
+      <div><h5>Koppen (max. 30 tekens)</h5><ul><li>Wilde Kers Superieur</li><li>Echte Stukjes Kers</li><li>Vol, Fruitig en Friszoet</li><li>9,6 uit 3.536 Reviews</li><li>Fruitbundel € 24,99</li></ul></div>
+      <div><h5>Lange kop en beschrijving</h5><ul><li>Wilde Kers Superieur: vruchtenthee met echte stukjes kers, appel en rozenbottel</li><li>Onze best verkochte thee. Proef het verschil met een zakje uit de supermarkt.</li><li>Vanaf € 35 gratis verzonden, vanaf € 25 proefzakjes cadeau.</li></ul></div>
+      <div><h5>Zoekthema's</h5><ul><li>kersenthee</li><li>kersen thee</li><li>fruitthee</li><li>vruchtenthee</li><li>ijsthee kers</li></ul></div>
+      <div><h5>Doelgroepsignalen</h5><ul><li>Bezoekers salespagina Wilde Kers</li><li>Zoekers op kersenthee en fruitthee</li><li>Interesse: thee, koken en bakken</li><li>Klantenlijst (uitsluiten bij doel nieuwe klanten)</li></ul></div>
+    </div>
+  </div>
+<div class="pmthema">
+    <h4>PMax Avondthee</h4><p class="sub">Voor R1, R3, R2 en R7. Landingspagina: salespagina Jouw avondthee.</p>
+    <div class="pm2">
+      <div class="pmv"><span class="wat">YouTube Shorts</span>
+        <div class="phone zwart"><div class="short"><video src="img/av-sv4-lamp-s.mp4" poster="img/av-sv4-lamp-s.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="info"><div class="kanaal"><span class="fav">LT</span>Losse-T <em>Gesponsord</em></div><div class="titel">Het licht gaat uit. Tijd voor je avondthee: Goede Nacht Kruiden.</div><span class="cta">Nu kopen</span></div></div></div></div>
+      <div class="pmv"><span class="wat">YouTube-app</span>
+        <div class="phone"><div class="ytbar"><i></i>YouTube</div>
+          <div class="ytk"><div class="yt"><img src="img/pm-av-1.jpg" alt=""><span class="dur">0:08</span></div>
+            <div class="ytm"><span class="fav">LT</span><div><b>Rustgevende avondthee met kamille</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:6px;display:inline-block">Nu kopen</span></div></div></div>
+          <div class="leeg"><div class="vlak"></div><div class="lijnen"><i style="width:85%"></i><i style="width:50%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Google Discover</span>
+        <div class="phone"><div class="dcg">Google</div><div class="zoek">Zoeken</div>
+          <div class="dck"><img src="img/pm-av-2.jpg" alt=""><div class="tx"><b>Jouw vaste kopje voor het slapengaan. Van nature cafeïnevrij.</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:8px;display:inline-block">Nu kopen</span></div></div>
+          <div class="dck leeg"><div class="vlak"></div><div class="lijnen"><i style="width:90%"></i><i style="width:60%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Gmail · Promoties</span>
+        <div class="phone"><div class="zoek">☰ Zoeken in e-mail</div><div class="gmtab">Promoties</div>
+          <div class="gmr"><span class="fav">LT</span><div><div class="gmv"><span class="bd">Advertentie</span>Losse-T</div><div class="gmon">Lig je 's avonds moe in bed?</div><div class="gmsn">Maak van Goede Nacht Kruiden je laatste kop van de dag.</div></div></div>
+          <div class="gmo"><img src="img/pm-av-3.jpg" alt=""><div class="tx"><b>Goede Nacht Kruiden of Mooie dromen?</b>Zacht en bloemig, of fris en licht kruidig. Proef eerst voor € 1,29.<br><span class="cta blauw" style="margin-top:8px;display:inline-block">Nu kopen</span></div></div>
+          <div class="gmr leeg"><span class="fav" style="background:#E6E6E6"></span><div class="lijnen" style="flex:1"><i style="width:40%"></i><i style="width:90%"></i></div></div></div></div>
+    </div>
+    <div class="assetgroep">
+      <div><h5>Koppen (max. 30 tekens)</h5><ul><li>Rustgevende Avondthee</li><li>Van Nature Cafeïnevrij</li><li>Goede Nacht Kruiden</li><li>Mooie Dromen Thee</li><li>Avondbundel € 24,99</li></ul></div>
+      <div><h5>Lange kop en beschrijving</h5><ul><li>Goede Nacht Kruiden: rustgevende kruidenthee met kamille, citroenmelisse en oranjebloesem</li><li>Jouw vaste kopje voor het slapengaan. Proef eerst met een proefzakje van € 1,29.</li><li>Avondbundel van 4 cafeïnevrije theeën voor € 24,99.</li></ul></div>
+      <div><h5>Zoekthema's</h5><ul><li>slaapthee</li><li>rustgevende thee</li><li>thee voor het slapen gaan</li><li>kamillethee</li><li>cafeïnevrije thee</li></ul></div>
+      <div><h5>Doelgroepsignalen</h5><ul><li>Bezoekers salespagina avondthee</li><li>Zoekers op slaapthee en rustgevende thee</li><li>Interesse: yoga, wellness, boeken</li><li>Klantenlijst (uitsluiten bij doel nieuwe klanten)</li></ul></div>
+    </div>
+  </div>
+<div class="pmthema">
+    <h4>PMax Cadeau &amp; kerst</h4><p class="sub">Voor C3, C1 en C2. Landingspagina: kerstpakket (tot 20 december), daarna cadeaupakket.</p>
+    <div class="pm2">
+      <div class="pmv"><span class="wat">YouTube Shorts</span>
+        <div class="phone zwart"><div class="short"><video src="img/cd-kv2-uitpakken-s.mp4" poster="img/cd-kv2-uitpakken-s.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          <div class="info"><div class="kanaal"><span class="fav">LT</span>Losse-T <em>Gesponsord</em></div><div class="titel">Uitpakken onder de boom: het Koude Dagen thee kerstpakket.</div><span class="cta">Bekijk het pakket</span></div></div></div></div>
+      <div class="pmv"><span class="wat">YouTube-app</span>
+        <div class="phone"><div class="ytbar"><i></i>YouTube</div>
+          <div class="ytk"><div class="yt"><img src="img/pm-cd-1.jpg" alt=""><span class="dur">0:08</span></div>
+            <div class="ytm"><span class="fav">LT</span><div><b>Een kerstcadeau dat naar winter ruikt</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:6px;display:inline-block">Bekijk het pakket</span></div></div></div>
+          <div class="leeg"><div class="vlak"></div><div class="lijnen"><i style="width:85%"></i><i style="width:50%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Google Discover</span>
+        <div class="phone"><div class="dcg">Google</div><div class="zoek">Zoeken</div>
+          <div class="dck"><img src="img/pm-cd-2.jpg" alt=""><div class="tx"><b>Bedankje voor de juf? 3 warme theeën in een kraft cadeaudoos.</b><div class="gs"><strong>Gesponsord</strong> · Losse-T</div><span class="cta blauw" style="margin-top:8px;display:inline-block">Bekijk het pakket</span></div></div>
+          <div class="dck leeg"><div class="vlak"></div><div class="lijnen"><i style="width:90%"></i><i style="width:60%"></i></div></div></div></div>
+      <div class="pmv"><span class="wat">Gmail · Promoties</span>
+        <div class="phone"><div class="zoek">☰ Zoeken in e-mail</div><div class="gmtab">Promoties</div>
+          <div class="gmr"><span class="fav">LT</span><div><div class="gmv"><span class="bd">Advertentie</span>Losse-T</div><div class="gmon">Nog een cadeautje nodig?</div><div class="gmsn">3 theeën in een kraft cadeaudoos voor € 15,99.</div></div></div>
+          <div class="gmo"><img src="img/pm-cd-3.jpg" alt=""><div class="tx"><b>1 voor jou, 2 om weg te geven</b>3 pakketten voor € 42,99. Bestel op tijd voor Sinterklaas en kerst.<br><span class="cta blauw" style="margin-top:8px;display:inline-block">Bekijk het pakket</span></div></div>
+          <div class="gmr leeg"><span class="fav" style="background:#E6E6E6"></span><div class="lijnen" style="flex:1"><i style="width:40%"></i><i style="width:90%"></i></div></div></div></div>
+    </div>
+    <div class="assetgroep">
+      <div><h5>Koppen (max. 30 tekens)</h5><ul><li>Thee Cadeau € 15,99</li><li>3 Warme Theeën in Cadeaudoos</li><li>Kerstpakket Thee</li><li>3 Pakketten € 42,99</li><li>Op Tijd voor Kerst</li></ul></div>
+      <div><h5>Lange kop en beschrijving</h5><ul><li>Koude Dagen thee pakket: 3 warme theeën, theefilters en een kraft cadeaudoos</li><li>Voor de juf, een collega of je moeder. Meer pakketten, meer voordeel.</li><li>Vanaf € 35 gratis verzonden. Bestel op tijd voor Sinterklaas en kerst.</li></ul></div>
+      <div><h5>Zoekthema's</h5><ul><li>thee cadeau</li><li>theepakket</li><li>kerstpakket thee</li><li>cadeau voor de juf</li><li>thee giftset</li></ul></div>
+      <div><h5>Doelgroepsignalen</h5><ul><li>Bezoekers cadeau- en kerstpagina</li><li>Zoekers op thee cadeau en kerstcadeau</li><li>Kopers van cadeaupakketten (GA4)</li><li>Interesse: cadeaus, feestdagen</li></ul></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5 ============================================================ -->
+<section id="meta"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag f2">Fase 2</span>
+    <span class="label">5. Meta Ads</span>
+    <h2>Mensen bereiken die nog niet zoeken</h2>
+    <p class="intro">Google vangt mensen die al zoeken; Meta maakt nieuwe mensen nieuwsgierig. Per doelgroep een eigen advertentieset, met video's die de scroll stoppen. Per thema een selectie; via de knoppen zie je alle 93 advertenties, ingedeeld per doelgroep.</p>
+  </div>
+  <div class="thema">
+    <h3>Wilde Kers Superieur · 27 advertenties</h3><p class="sub">S6 Smaakontdekker, S3 Supermarkt-Upgrader, S2 Zoete trek, retargeting en Black Friday.</p>
+    <div class="ads">
+      <div class="ad"><video class="story" src="img/ad-sv2-kers-s.mp4" poster="img/ad-sv2-kers-s.jpg" muted loop playsinline autoplay preload="metadata"></video><div class="t"><small>S2 · scroll-stopper</small><b>Kers in je thee.</b><span>Kers valt in slow motion in de thee.</span></div></div>
+      <div class="ad"><img src="img/ad-st01-vs-f.jpg" alt="Advertentie supermarktzakje vs. Wilde Kers"><div class="t"><small>S3 · Supermarkt-Upgrader</small><b>Supermarktzakje vs. Wilde Kers</b><span>Het verschil in één beeld.</span></div></div>
+      <div class="ad"><img src="img/ad-st13-kommetjes-f.jpg" alt="Advertentie met de ingrediënten"><div class="t"><small>S6 · Smaakontdekker</small><b>5 ingrediënten, 1 thee</b><span>Echt fruit dat je ziet.</span></div></div>
+      <div class="ad"><img src="img/ad-bf1-s6-f.jpg" alt="Black Friday-advertentie"><div class="t"><small>Black Friday</small><b>25% korting</b><span>Eén per doelgroep.</span></div></div>
+    </div>
+    <div class="knoppen"><a class="btn" href="/losse-t-preview/wilde-kers-ads/avatars.html" target="_blank" rel="noopener">Alle Wilde Kers-ads per doelgroep</a></div>
+  </div>
+  <div class="thema">
+    <h3>Avondthee · 28 advertenties</h3><p class="sub">R2 Slaapzoeker, R1 Avond-Ontspanner, R3 Cafeïnevrij, R7 Ontstresser en retargeting.</p>
+    <div class="ads">
+      <div class="ad"><video class="story" src="img/av-sv4-lamp-s.mp4" poster="img/av-sv4-lamp-s.jpg" muted loop playsinline autoplay preload="metadata"></video><div class="t"><small>R2 · scroll-stopper</small><b>Het licht gaat uit</b><span>Lamp uit, laatste kop van de dag.</span></div></div>
+      <div class="ad"><img src="img/av-st10-telefoon-f.jpg" alt="Advertentie telefoon om half twaalf"><div class="t"><small>R2 · Slaapzoeker</small><b>Om 23:30 nog op je telefoon?</b><span>Probleem als hook, ritueel als antwoord.</span></div></div>
+      <div class="ad"><img src="img/av-st06-cafeine-f.jpg" alt="Advertentie cafeïnevrij"><div class="t"><small>R3 · Cafeïnevrij</small><b>Van nature cafeïnevrij</b><span>'s Avonds thee zonder cafeïne.</span></div></div>
+      <div class="ad"><img src="img/av-st16-bundel-f.jpg" alt="Advertentie Avondbundel"><div class="t"><small>Retargeting</small><b>Avondbundel € 24,99</b><span>Vier avondtheeën + 2 proefzakjes.</span></div></div>
+    </div>
+    <div class="knoppen"><a class="btn" href="/losse-t-preview/avondthee-ads/avatars.html" target="_blank" rel="noopener">Alle avondthee-ads per doelgroep</a></div>
+  </div>
+  <div class="thema">
+    <h3>Cadeau en kerst · 38 advertenties</h3><p class="sub">C3 Kerstshopper, C1 Bedankjesgever, C2 Verwenner en retargeting, voor het kerstpakket en het cadeaupakket.</p>
+    <div class="ads">
+      <div class="ad"><video class="story" src="img/cd-kv2-uitpakken-s.mp4" poster="img/cd-kv2-uitpakken-s.jpg" muted loop playsinline autoplay preload="metadata"></video><div class="t"><small>C3 · video</small><b>Uitpakken onder de boom</b><span>Kerstpakket in beeld.</span></div></div>
+      <div class="ad"><img src="img/cd-k03-besteldata-f.jpg" alt="Advertentie uiterste besteldata"><div class="t"><small>C3 · Kerstshopper</small><b>Op tijd in huis</b><span>Uiterste besteldata Sint en kerst.</span></div></div>
+      <div class="ad"><img src="img/cd-e06-juf-f.jpg" alt="Advertentie cadeau voor de juf"><div class="t"><small>C1 · Bedankjesgever</small><b>Een bedankje voor de juf</b><span>Ontvanger concreet maken.</span></div></div>
+      <div class="ad"><img src="img/cd-k07-staffel-f.jpg" alt="Advertentie staffel"><div class="t"><small>C1 · meer stuks</small><b>3 voor € 42,99</b><span>Hogere orderwaarde.</span></div></div>
+    </div>
+    <div class="knoppen"><a class="btn" href="/losse-t-preview/koude-dagen-ads/kerst.html" target="_blank" rel="noopener">Alle kerst-ads per doelgroep</a><a class="btn licht" href="/losse-t-preview/koude-dagen-ads/evergreen.html" target="_blank" rel="noopener">Alle cadeau-ads per doelgroep</a></div>
+  </div>
+</div></section>
+
+<!-- 6 ============================================================ -->
+<section id="voorstel"><div class="wrap">
+  <div class="kop">
+    <span class="fasetag f2">Fase 2</span>
+    <span class="label">6. Voorstel</span>
+    <h2>Samen opschalen wat werkt</h2>
+    <p class="intro">Eén vaste fee voor ons werk. Het advertentiebudget betalen jullie direct aan Google en Meta. We beginnen met de drie uitgewerkte thema's en schalen op zodra de cijfers het laten zien.</p>
+  </div>
+  <div class="voorstel">
+    <div class="prijs fee"><span class="label">Create &amp; Convert</span><b class="groot">€ 2.000</b><p>per maand. Gaat mee omhoog als Losse-T groeit.</p><ul><li>Google Ads en Meta Ads beheren</li><li>Salespagina's per thema</li><li>Beelden, video's en advertenties</li><li>Maandelijks rapport en bijsturen</li></ul></div>
+    <div class="prijs"><span class="label">Google Ads</span><b class="groot">€ 10.000</b><p style="color:var(--zacht)">advertentiebudget per maand (nu ± € 7.000)</p><ul><li>Shopping, Search en PMax per thema</li><li>Merk apart, en uitgesloten in de rest</li><li>Doel-ROAS per campagne</li></ul></div>
+    <div class="prijs"><span class="label">Meta Ads</span><b class="groot">€ 10.000</b><p style="color:var(--zacht)">advertentiebudget per maand (nu niet actief)</p><ul><li>Een advertentieset per doelgroep</li><li>Video's en scroll-stoppers</li><li>Retargeting naar de salespagina's</li></ul></div>
+  </div>
+  <div class="schaal">
+    <div><b>Maand 1</b><span>Meting nalopen en account opschonen. Cadeau en kerst eerst live (de piek loopt tot 20 december), daarna Wilde Kers en avondthee.</span></div>
+    <div><b>Maand 2-3</b><span>Alle drie de thema's live. Budget verschuiven naar wat werkt, wekelijks bijsturen.</span></div>
+    <div><b>Daarna</b><span>Haalt een thema zijn doel-ROAS, dan gaat het budget daar stap voor stap omhoog (± 20% per twee weken). Nieuwe thema's: winterthee, Chai, theepakketten.</span></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  Voorstel van Create &amp; Convert voor Losse-T, oktober 2026. Cijfers uit Google Ads (account 824-451-1556), Google Analytics 4 en Ahrefs (zoekvolumes NL). De salespagina's en advertenties zijn voorbeelden; alle product- en sfeerbeelden zijn gemaakt met AI op basis van de echte thee en verpakking.
+</div></footer>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Wilde Kers Superieur Salespagina</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: webshop-PDP van Losse-T, mobiel eerst. Header met menu, dealbalk, galerij + koopblok, verhaal-secties, mix-sectie, mandje als zijpaneel, sticky koopbalk op mobiel.
+   Bewust één licht thema (de webshop zelf is licht), alle kleuren expliciet. */
+:root{
+  color-scheme:light;
+  --bg:#fbfaf6; --paper:#ffffff; --cream:#f3efe4; --sage:#a7bd82; --sage-soft:#e7eedb;
+  --forest:#526344; --forest-deep:#3a4730; --ink:#2e332b; --text:#505050; --muted:#767c6f; --line:#e3e2d8;
+  --cherry:#a3263a; --cherry-deep:#7d1a2b; --cherry-soft:#f7e6e8; --gold:#e3a531;
+  --ff:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--ff);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+img,video{max-width:100%;display:block}
+h1,h2,h3{color:var(--ink);line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(24px,4.4vw,32px);font-weight:700}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+a{color:var(--forest)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sage);outline-offset:2px;border-radius:6px}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1160px;margin:0 auto}
+.narrow{max-width:760px;margin:0 auto}
+
+/* preview + header + menu */
+.preview{background:#22281e;color:#d9e2cc;font-size:12px;text-align:center;padding-block:6px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:#fafafa;border-bottom:1px solid #e6e6e6}
+.top .bar1{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;height:76px}
+.h-left,.h-right{display:flex;align-items:center;gap:10px;min-width:0}
+.h-right{justify-content:flex-end}
+.logo{display:block;line-height:0}
+.logo img{width:clamp(130px,22vw,200px);height:auto}
+.iconbtn{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.iconbtn.plain{border:0;background:none;color:#3d3d3d}
+.search{display:none;align-items:center;gap:10px;width:min(100%,340px);height:42px;border:1px solid #cfcfcf;border-radius:6px;background:#fff;padding:0 12px;color:#6b6b6b}
+.search input{border:0;outline:0;font:inherit;font-size:15px;width:100%;background:none;color:var(--ink)}
+.ks{display:none;color:#3d3d3d;text-decoration:none;font-size:15px}
+.cartbtn{position:relative}
+.cartbtn .n{position:absolute;top:2px;right:0;background:var(--cherry);color:#fff;border-radius:999px;font-size:11px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
+.menu{display:none;border-top:1px solid #e6e6e6;background:#fafafa}
+.menu ul{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:nowrap;justify-content:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.menu ul::-webkit-scrollbar{display:none}
+.menu a{display:block;padding:12px clamp(5px,.75vw,12px);font-size:clamp(12.5px,1vw,15px);font-weight:400;color:#3d3d3d;text-decoration:none;white-space:nowrap}
+.menu a:hover{color:var(--forest)}
+.menu a[aria-current="page"]{color:var(--forest);font-weight:500}
+@media(min-width:1080px){.menu{display:block}#menuBtn{display:none}.search{display:flex}.ks{display:inline}}
+.mnav{position:fixed;inset:0;z-index:70;background:rgba(20,24,18,.4);display:none}
+.mnav.open{display:block}
+.mnav .panel{position:absolute;inset:0 auto 0 0;width:min(86vw,340px);background:var(--paper);padding:calc(16px + env(safe-area-inset-top,0px)) 16px 24px max(16px,env(safe-area-inset-left,0px));overflow:auto;display:flex;flex-direction:column;gap:6px}
+.mnav .panel a{padding:12px 10px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:500}
+.mnav .panel a[aria-current="page"]{color:var(--forest);font-weight:700}
+.deal{background:var(--cherry);color:#fff;padding-block:9px 8px}
+.dealrow{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:6px 22px}
+.dtext{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;white-space:nowrap}
+.dbar{position:relative;height:8px;border-radius:99px;background:rgba(255,255,255,.28);margin-bottom:30px;margin-right:30px}
+.dbar i{position:absolute;inset:0;border-radius:99px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .45s ease-out}
+.dbar em{position:absolute;top:-3px;transform:translateX(-50%);font-style:normal;font-size:11px;line-height:1.15;white-space:nowrap;text-align:center;color:rgba(255,255,255,.85)}
+.dbar em::before{content:"";display:block;width:14px;height:14px;margin:0 auto 4px;border-radius:50%;background:var(--cherry);border:2px solid rgba(255,255,255,.7)}
+.dbar em b{display:block;font-weight:700;color:#fff;font-size:11.5px}
+#m75{transform:translateX(-80%)}#m75::before{margin-left:auto;margin-right:12%}
+.dbar em.done::before{background:#fff;border-color:#fff}
+@media(max-width:760px){.deal{padding-block:5px 6px}.dealrow{grid-template-columns:1fr;gap:4px}.dtext{justify-content:center;font-size:12.5px}.dtext svg{width:13px;height:13px}.dbar{height:3px;margin:0}.dbar em{display:none}}
+.crumbs{font-size:13px;color:var(--muted);padding-top:14px}
+.crumbs a{color:var(--muted);text-decoration:none}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-block:12px 8px}
+@media(min-width:900px){.hero{grid-template-columns:1.1fr 1fr;gap:44px;padding-block:20px 16px;align-items:start}}
+.gallery{display:flex;flex-direction:column;gap:10px;min-width:0}
+.stage{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--cream)}
+.stage img,.stage video{width:100%;height:100%;object-fit:cover}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.thumbs button{position:relative;aspect-ratio:1;border:2px solid transparent;border-radius:10px;overflow:hidden;padding:0;background:var(--cream)}
+.thumbs button[aria-pressed="true"]{border-color:var(--forest)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .play{position:absolute;inset:auto 4px 4px auto;background:rgba(0,0,0,.6);color:#fff;border-radius:999px;width:20px;height:20px;display:grid;place-items:center;font-size:10px}
+
+/* labels op foto's */
+.pin{position:absolute;z-index:2;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);color:var(--ink);font-size:12.5px;font-weight:600;padding:5px 10px 5px 6px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.14);white-space:nowrap;transform:translate(-50%,-50%)}
+.pin::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--cherry);box-shadow:0 0 0 3px var(--cherry-soft)}
+.cap{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.cap b{display:block;font-size:clamp(20px,3.6vw,26px);line-height:1.15;font-weight:700}
+.cap span{font-size:14px;font-weight:500}
+.shade::after{content:"";position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(to top,rgba(20,16,12,.62),transparent);z-index:1;pointer-events:none}
+.ref{position:absolute;left:10px;top:10px;background:rgba(20,24,18,.78);color:#fff;font-size:11px;font-weight:500;letter-spacing:.03em;padding:4px 9px;border-radius:999px;z-index:3}
+.vslabel{position:absolute;top:12px;z-index:2;background:rgba(255,255,255,.94);color:var(--ink);font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+
+.buy{display:flex;flex-direction:column;gap:16px;min-width:0;scroll-margin-top:132px}
+.badge{align-self:flex-start;background:var(--cherry);color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.buy h1{font-size:clamp(34px,7vw,48px);font-weight:700}
+.sub{font-size:17px;color:var(--ink)}
+.rating{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px}
+.stars{color:var(--gold);letter-spacing:2px}
+.stock{color:var(--forest);font-weight:500;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#4f9a3c}
+fieldset{border:0;margin:0;padding:0}
+legend{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.sizes label{position:relative;display:flex;flex-direction:column;gap:1px;border:1.5px solid var(--line);border-radius:12px;padding:10px 10px 9px;background:var(--paper);cursor:pointer;min-height:58px}
+.sizes input{position:absolute;opacity:0;pointer-events:none}
+.sizes .w{font-weight:600;color:var(--ink);font-size:14.5px}
+.sizes .p{font-size:13.5px;font-variant-numeric:tabular-nums}
+.sizes .pp{font-size:11.5px;color:var(--forest);font-weight:600}
+.sizes .tag{position:absolute;top:-9px;right:8px;background:var(--forest);color:#fff;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:999px}
+.sizes label:has(input:checked){border-color:var(--forest);background:var(--sage-soft);box-shadow:inset 0 0 0 1px var(--forest)}
+.sizes label:has(input:focus-visible){outline:3px solid var(--sage);outline-offset:2px}
+.nudge{font-size:13.5px;background:var(--cream);border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.nudge button{border:0;background:none;color:var(--forest);font-weight:600;text-decoration:underline;padding:0;font-size:13.5px;flex:none}
+.accs{display:flex;flex-direction:column;gap:6px}
+.acc{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:6px 10px 6px 6px;background:var(--paper);cursor:pointer}
+.acc:has(input:checked){border-color:var(--forest);background:var(--sage-soft)}
+.acc img{width:42px;height:42px;border-radius:8px;object-fit:cover;flex:none;background:#fff}
+.acc span{flex:1;min-width:0;font-size:14px;line-height:1.3}
+.acc small{display:block;color:var(--muted);font-size:12px}
+.acc input{width:22px;height:22px;accent-color:var(--forest);flex:none}
+.addon{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--sage);border-radius:12px;padding:8px 12px 8px 8px;background:var(--paper);cursor:pointer}
+.addon img{width:56px;height:56px;border-radius:9px;object-fit:cover;flex:none}
+.addon .t{flex:1;min-width:0;font-size:14.5px;line-height:1.35}
+.addon small{display:block;color:var(--muted);font-size:12.5px}
+.addon input{width:22px;height:22px;accent-color:var(--forest);flex:none}
+.row{display:flex;gap:10px;align-items:stretch}
+.qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.qty button{width:42px;height:54px;border:0;background:none;font-size:20px;color:var(--ink)}
+.qty output{min-width:22px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.cta{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:12px;background:var(--cherry);color:#fff;font-weight:600;font-size:16.5px;transition:background .2s}
+.cta:hover{background:var(--cherry-deep)}
+.cta .amt{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+.trylink{font-size:14.5px;text-align:center}
+.trylink button{background:none;border:0;color:var(--forest);text-decoration:underline;text-underline-offset:3px;font-weight:500;padding:4px}
+.dealbox{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 12px 8px;display:flex;flex-direction:column;gap:7px;font-size:13.5px}
+.dealbox .head{color:var(--cherry-deep);font-weight:600}
+.bar{height:7px;border-radius:99px;background:var(--cream);overflow:hidden}
+.bar i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--cherry),var(--cherry-deep));transition:transform .35s ease-out}
+.steps3{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.st span img{width:26px;height:26px;border-radius:6px;object-fit:cover;display:block;margin-bottom:3px}
+.st{display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.3;color:var(--muted)}
+.st i{display:block;height:6px;border-radius:99px;background:var(--cream);overflow:hidden;margin-bottom:5px}
+.st i b{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--cherry);transition:transform .35s ease-out}
+.st strong{font-size:13px;color:var(--ink)}
+.st.done strong{color:var(--cherry-deep)}
+.st.done strong::after{content:" ✓"}
+.perks{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13.5px}
+.perks li{display:flex;gap:8px;align-items:center}
+.perks li::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--cherry);flex:none}
+.perks li.done::before{background:var(--cherry) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat}
+.dealbox .hint button{background:none;border:0;padding:0;color:var(--cherry-deep);font-weight:600;text-decoration:underline;font-size:13.5px}
+.combo{border:1.5px solid var(--forest);background:var(--sage-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.combo .ch b{display:block;color:var(--ink);font-size:14.5px}
+.combo .ch span{font-size:12.5px;color:var(--text)}
+.combo .ch .btag{color:#fff;font-size:10.5px}
+.cimgs{display:flex;align-items:flex-start;gap:4px}
+.cimgs figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;width:60px}
+.cimgs figcaption{font-size:10.5px;line-height:1.15;text-align:center;color:var(--ink)}
+.btag{display:inline-block;background:var(--forest);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:4px}
+.cimgs img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.cimgs i{font-style:normal;color:var(--forest);font-weight:700;margin-top:18px}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cfoot span{font-size:14px;color:var(--ink);line-height:1.3}
+.cfoot s{color:var(--muted);font-size:13px}
+.cfoot .bp{color:var(--cherry);font-size:17px}
+.cfoot small{display:block;font-size:12px;color:var(--forest)}
+.cfoot button{border:0;background:var(--forest);color:#fff;border-radius:10px;padding:0 16px;min-height:46px;font-weight:600;flex:none}
+.cfoot button.added{background:var(--cherry)}
+.mini{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini-h{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;color:var(--ink)}
+.mini-h button{background:none;border:0;padding:0;color:var(--forest);font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.mc{flex:0 0 128px;scroll-snap-align:start;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:6px 6px 8px;display:flex;flex-direction:column;gap:3px}
+.mc img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#fff}
+.mc .nm{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.25;min-height:2.5em}
+.mc .pr{font-size:12px;font-variant-numeric:tabular-nums}
+.mc button{position:absolute;top:6px;right:6px;width:32px;height:32px;border-radius:50%;border:0;background:var(--forest);color:#fff;font-size:19px;line-height:1;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.mc button.added{background:var(--cherry)}
+.mc .k{position:absolute;left:10px;top:10px;font-size:10px;font-weight:600;color:var(--cherry);background:var(--cherry-soft);padding:1px 6px;border-radius:999px}
+.trust{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+.trust li{display:flex;align-items:center;gap:10px}
+.trust svg{flex:none;color:var(--forest)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding-block:14px 6px}
+html{scroll-behavior:smooth}
+.sec{scroll-margin-top:150px}
+.chips a{text-decoration:none;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14.5px;font-weight:500;min-height:44px;display:inline-flex;align-items:center}
+.chips a:hover{border-color:var(--forest)}
+
+/* secties */
+.sec{padding-block:56px}
+.sec.alt{background:var(--cream)}
+.split{display:grid;gap:26px;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1fr 1fr;gap:48px}.split.flip>.media,.split.flip>.duo{order:2}}
+.copy{display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--forest)}
+.media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.media img,.media video{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo .media img,.duo .media video{aspect-ratio:3/4}
+.small{font-size:13px;color:var(--muted)}
+.quote{background:var(--paper);border-radius:12px;padding:14px 16px;font-style:italic;color:var(--ink)}
+.quote cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:4px}
+.taste{display:grid;gap:10px;max-width:360px}
+.taste div{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--ink)}
+.pips{display:flex;gap:5px}
+.pips i{width:100%;height:9px;border-radius:99px;background:var(--line)}
+.pips i.on{background:var(--cherry)}
+#zakjes .split{align-items:center}
+#zakjes .media{align-self:center}
+#zakjes .media img{height:auto;aspect-ratio:auto}
+.vslabel.no{background:#fff;color:var(--muted)}
+.vslabel.yes{background:var(--cherry);color:#fff}
+.pin.no::before{background:#9a9a9a;box-shadow:0 0 0 3px #e8e8e8;content:"✕";color:#fff;font-size:8px;display:grid;place-items:center;width:14px;height:14px}
+.pin.big{font-size:14px;padding:7px 12px 7px 8px}
+.pin.yes::before{background:var(--forest);box-shadow:0 0 0 3px var(--sage-soft);content:"✓";color:#fff;font-size:9px;display:grid;place-items:center;width:14px;height:14px}
+@media(max-width:600px){.pin{font-size:11px;padding:3px 8px 3px 4px;gap:4px}.pin::before{width:8px;height:8px;box-shadow:0 0 0 2px var(--cherry-soft)}.pin.big{font-size:12px;padding:4px 9px 4px 5px}.pin.no::before,.pin.yes::before{width:12px;height:12px}.pin .dl{display:none}.vslabel{font-size:11px!important;padding:5px 9px!important;top:10px!important}}
+.vt{display:grid;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);font-size:14px}
+.vr{display:grid;grid-template-columns:.9fr 1fr 1.2fr}
+.vr>span{padding:7px 10px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.35}
+.vr>span:first-child{font-weight:600;color:var(--ink)}
+.vh>span{border-top:0;font-weight:700;color:var(--ink);font-size:12.5px;padding-block:8px}
+.vh>span:last-child{background:var(--cherry);color:#fff}
+.vr>span:last-child{background:var(--sage-soft)}
+.vh>span:last-child{background:var(--cherry)}
+.vsh .them{color:var(--muted)}
+.vsh em{font-style:normal;font-size:.6em;font-weight:600;color:var(--muted);vertical-align:.2em;margin:0 .15em}
+.vsh .us{color:var(--cherry)}
+.vr.big>span{font-size:15px;padding-block:10px}
+.vr.big .v{font-weight:700;color:var(--cherry-deep)}
+.vwist{background:var(--paper);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--text)}
+.vwist b{color:var(--ink)}
+.vq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vq p{background:var(--paper);border-radius:12px;padding:12px 14px;font-style:italic;color:var(--ink);font-size:14.5px}
+.vq cite{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:4px}
+@media(max-width:480px){.vq{grid-template-columns:1fr}}
+.x{color:var(--muted)}.x::before{content:"✕ ";color:#9a9a9a;font-weight:700}
+.v{color:var(--ink);font-weight:500}.v::before{content:"✓ ";color:var(--forest);font-weight:700}
+@media(max-width:480px){.vr{grid-template-columns:1fr 1fr}.vr>span:first-child{grid-column:1/-1;padding-bottom:0;border-top:1px solid var(--line)}.vr>span:not(:first-child){border-top:0}.vh>span:first-child{display:none}}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vs div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14.5px}
+.vs div:last-child{border-color:var(--forest);background:var(--sage-soft)}
+.vs b{display:block;color:var(--ink);margin-bottom:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;counter-increment:s}
+.steps li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;background:var(--forest);color:#fff;font-weight:600;display:grid;place-items:center}
+.eggcard{display:flex;align-items:center;gap:14px;background:var(--paper);border:1.5px dashed var(--sage);border-radius:12px;padding:10px}
+.eggcard img{width:72px;height:72px;border-radius:10px;object-fit:cover}
+.eggcard div{flex:1;min-width:0;font-size:14.5px;line-height:1.4}
+.eggcard button,.pc button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;padding:6px 14px;font-weight:600;font-size:13.5px;min-height:42px;flex:none}
+.eggcard button.added,.pc button.added{background:var(--forest);color:#fff}
+
+/* reviews */
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.score b{font-size:64px;color:var(--forest);line-height:1;font-weight:700}
+.score span{font-size:15px;color:var(--ink);line-height:1.45}
+.proof{display:grid;gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+@media(min-width:860px){.proof{grid-template-columns:auto 1fr;align-items:center;column-gap:40px}.proof .wwk{grid-column:1/-1}}
+.dist{display:grid;gap:6px;min-width:0}
+.dist div{display:grid;grid-template-columns:34px 1fr 46px;align-items:center;gap:10px;font-size:13.5px}
+.dist span{color:var(--ink);font-weight:500}
+.dist i{height:10px;border-radius:99px;background:var(--cream);position:relative;overflow:hidden}
+.dist i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--gold);border-radius:99px}
+.dist em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.wwk{justify-self:start;font-weight:600;color:var(--forest);text-underline-offset:3px}
+.reviews{display:grid;gap:12px}
+@media(min-width:700px){.reviews{grid-template-columns:1fr 1fr}}
+.rv{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.rv p{color:var(--ink)}
+.rv span{font-size:13px;color:var(--muted)}
+.rv.feature{grid-column:1/-1;border-color:var(--cherry)}
+.ugc{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;max-width:340px;margin-inline:auto}
+.ugc .media video{aspect-ratio:9/16}
+
+/* mix */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;min-height:42px}
+.filters button[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.mix{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:760px){.mix{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1040px){.mix{grid-template-columns:repeat(4,1fr)}}
+.pc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pc img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:10px}
+.pc h3{font-size:15px;line-height:1.3}
+.pc p{font-size:12.5px;line-height:1.45}
+.pc .foot{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:auto}
+.pc .price{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-size:14px}
+.pc .kers{align-self:flex-start;font-size:11px;font-weight:600;color:var(--cherry);background:var(--cherry-soft);padding:2px 8px;border-radius:999px}
+.mixbar{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--forest-deep);color:#e9efdf;border-radius:12px;padding:14px 16px;font-size:14.5px}
+.mixbar b{color:#fff}
+
+.feat{display:grid;gap:18px;background:var(--sage-soft);border:1.5px solid var(--forest);border-radius:var(--r);padding:16px;align-items:center}
+@media(min-width:860px){.feat{grid-template-columns:1.1fr 1fr;padding:22px;gap:30px}}
+.fimgs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fimgs img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:12px;border:1px solid var(--line)}
+.ftxt{display:flex;flex-direction:column;gap:10px}
+.ftxt .btag{align-self:flex-start}
+.ftxt h3{font-size:26px}
+.fprice{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.fprice s{color:var(--muted)}
+.fprice b{font-size:28px;color:var(--cherry)}
+.fprice span{font-size:14px;color:var(--forest);font-weight:600}
+.mixhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.mixhead h3{font-size:20px}
+.mix{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+@media(min-width:700px){.mix{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:1000px){.mix{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+.pc img{max-height:150px;margin:0 auto}
+.pc{transition:opacity .2s}
+.pc.dim{opacity:.4}
+.pc .chips2{display:flex;flex-wrap:wrap;gap:4px}
+.pc .chips2 i{font-style:normal;font-size:11px;background:var(--cream);color:var(--ink);padding:1px 7px;border-radius:999px}
+.accrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:860px){.accrow{grid-template-columns:repeat(4,1fr)}}
+.ac{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px}
+.ac img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:8px;flex:none}
+.ac span{flex:1;min-width:0;font-size:13.5px;line-height:1.3}
+.ac button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;width:36px;height:36px;font-size:18px;flex:none}
+.ac button.added{background:var(--forest);color:#fff}
+.tr{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0 16px;margin-bottom:8px}
+.faq summary{cursor:pointer;font-weight:600;color:var(--ink);padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:20px;color:var(--forest);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 16px}
+
+.final{background:var(--forest-deep);color:#e9efdf;text-align:center}
+.final h2{color:#fff}
+.final .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.ghost{min-height:54px;border-radius:12px;border:1.5px solid #cfdcbd;background:transparent;color:#fff;font-weight:600;padding:0 22px}
+footer{font-size:12.5px;color:var(--muted);padding-block:26px 110px;text-align:center}
+
+/* sticky + mandje */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06);padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .25s ease-out}
+.sticky.show{transform:none}
+.sticky .wrap{display:flex;align-items:center;gap:12px}
+.sticky .lbl{flex:1;min-width:0;font-size:13px;line-height:1.3}
+.sticky .lbl b{display:block;color:var(--ink);font-size:15px}
+.sticky .cta{flex:1;padding:0 18px;min-height:46px;font-size:15px}
+@media(min-width:900px){.sticky{display:none}footer{padding-bottom:30px}}
+.drawer{position:fixed;inset:0;z-index:80;background:rgba(20,24,18,.4);display:none}
+.drawer.open{display:block}
+.drawer .panel{position:absolute;inset:0 0 0 auto;width:min(92vw,400px);background:var(--paper);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) 16px;gap:14px}
+.drawer .ph{display:flex;align-items:center;justify-content:space-between}
+.lines{list-style:none;margin:0;padding:0;overflow:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.lines li{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.lines li.gift{color:var(--cherry-deep);font-weight:500}
+.lines .empty{color:var(--muted);border:0}
+.ups{max-height:38vh;overflow:auto}
+.ups h4{margin:0 0 6px;font-size:14px;color:var(--ink)}
+.ups .u{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13.5px}
+.ups .u img{width:42px;height:42px;object-fit:contain;border-radius:8px;background:#fff;flex:none}
+.ups .u span{flex:1;min-width:0;line-height:1.3}
+.ups .u button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;padding:4px 12px;font-weight:600;font-size:13px;min-height:36px}
+.ups .u button.added{background:var(--forest);color:#fff}
+.tot{display:flex;justify-content:space-between;font-weight:700;color:var(--ink);font-size:16px}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.2s ease-out;z-index:90;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+
+<header class="top">
+  <div class="gutter"><div class="wrap bar1">
+    <div class="h-left">
+      <button class="iconbtn plain" id="menuBtn" type="button" aria-label="Menu openen" aria-controls="mnav" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="q" placeholder="Zoeken" aria-label="Zoeken"></label>
+    </div>
+    <a class="logo" href="#top" aria-label="Losse-T"><img src="img/logo.png" alt="Losse-T" width="200" height="51"></a>
+    <div class="h-right">
+      <a class="ks" href="#">Klantenservice</a>
+      <button class="iconbtn plain" type="button" aria-label="Account"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.4-6 8-6s6.8 2 8 6"/></svg></button>
+      <button class="iconbtn plain cartbtn" type="button" id="cartBtn" aria-controls="drawer" aria-expanded="false" aria-label="Winkelmandje"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="n" id="cartCount">0</span><span id="cartTotal" hidden>€ 0,00</span></button>
+    </div>
+  </div></div>
+  <nav class="menu gutter" aria-label="Hoofdmenu"><ul>
+    <li><a href="#">Groene Thee</a></li><li><a href="#">Zwarte Thee</a></li><li><a href="#">Kruiden</a></li>
+    <li><a href="#" aria-current="page">Vruchten Melanges</a></li><li><a href="#">Rooibos</a></li><li><a href="#">Witte Thee</a></li>
+    <li><a href="#">Special Tea's</a></li><li><a href="#">Oolong</a></li><li><a href="#">Thee accessoires</a></li>
+    <li><a href="#">Koffie &amp; Chocolade</a></li><li><a href="#">Cadeau's</a></li><li><a href="#">Nieuw</a></li>
+  </ul></nav>
+  <div class="deal gutter" aria-live="polite"><div class="wrap dealrow">
+    <span class="dtext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M12 9v11M4 13h16M12 9c-2-4-6-4-6-1.5S10 9 12 9c2 0 6 .9 6-1.5S14 5 12 9"/></svg><span id="dealText">Nog € 25,00 tot 2 gratis proefzakjes</span></span>
+    <div class="dbar" aria-hidden="true"><i id="dealFill"></i>
+      <em id="m25" style="left:33.33%"><b>€ 25</b>2 proefzakjes</em>
+      <em id="m35" style="left:46.67%"><b>€ 35</b>5 + gratis verz.</em>
+      <em id="m50" style="left:66.67%"><b>€ 50</b>theeblik</em>
+      <em id="m75" style="left:100%"><b>€ 75</b>mok</em>
+    </div>
+  </div></div>
+</header>
+
+<div class="mnav" id="mnav"><nav class="panel" aria-label="Menu">
+  <button class="iconbtn" type="button" id="menuClose" aria-label="Menu sluiten" style="align-self:flex-end">✕</button>
+  <a href="#">Groene Thee</a><a href="#">Zwarte Thee</a><a href="#">Kruiden</a><a href="#" aria-current="page">Vruchten Melanges</a><a href="#">Rooibos</a><a href="#">Witte Thee</a><a href="#">Special Tea's</a><a href="#">Oolong</a><a href="#">Thee accessoires</a><a href="#">Koffie &amp; Chocolade</a><a href="#">Cadeau's</a><a href="#">Nieuw</a>
+</nav></div>
+
+<main id="top">
+  <section class="gutter">
+    <div class="wrap crumbs"><a href="#">Home</a> › <a href="#">Vruchten Melanges</a> › Wilde Kers Superieur</div>
+    <div class="wrap hero">
+      <div class="gallery">
+        <div class="stage" id="stage"></div>
+        <div class="thumbs" role="group" aria-label="Foto's en video">
+          <button type="button" aria-pressed="true" data-i="0" aria-label="Wilde Kers Superieur"><img src="img/H01.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-i="1" aria-label="Zakje uit de supermarkt tegenover Wilde Kers"><img src="img/H10.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-i="2" aria-label="Video: je toetje van vanavond"><img src="vid/V3-stoom-taart.jpg" alt=""><span class="play" aria-hidden="true">▶</span></button>
+          <button type="button" aria-pressed="false" data-i="3" aria-label="Video: thee-ei in de mok"><img src="vid/V2-thee-ei.jpg" alt=""><span class="play" aria-hidden="true">▶</span></button>
+          <button type="button" aria-pressed="false" data-i="4" aria-label="Video: ook als ijsthee"><img src="vid/V1-ijsthee.jpg" alt=""><span class="play" aria-hidden="true">▶</span></button>
+        </div>
+      </div>
+
+      <div class="buy">
+        <span class="badge">Onze bestseller</span>
+        <h1>Wilde Kers Superieur</h1>
+        <p class="sub">Vruchtenthee met echte stukjes kers, appel en rozenbottel. Vol, fruitig en friszoet.</p>
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.webwinkelkeur.nl/webshop/losse-t-nl_1214392" target="_blank" rel="noopener" style="color:inherit"><b>9,6</b> uit <b>3.536 reviews</b></a><span class="stock"><span class="dot"></span>Op voorraad · Direct leverbaar</span></div>
+
+        <fieldset>
+          <legend>Kies je formaat</legend>
+          <div class="sizes" id="sizes">
+            <label><input type="radio" name="size" value="1.29" data-name="Proefzakje"><span class="w">Proefzakje</span><span class="p">€ 1,29</span></label>
+            <label><input type="radio" name="size" value="3.70" data-name="50 g"><span class="w">50 g</span><span class="p">€ 3,70</span></label>
+            <label><input type="radio" name="size" value="6.75" data-name="100 g" checked><span class="w">100 g</span><span class="p">€ 6,75</span></label>
+            <label><input type="radio" name="size" value="16.90" data-name="250 g"><span class="w">250 g</span><span class="p">€ 16,90</span></label>
+            <label class="best"><input type="radio" name="size" value="50.65" data-name="1 kg" id="kilo"><span class="tag">Favoriet</span><span class="w">1 kg</span><span class="p">€ 50,65</span><span class="pp">€ 5,07 / 100 g</span></label>
+          </div>
+        </fieldset>
+        <div class="nudge" id="nudge"><span>Vaste klanten nemen hem per kilo: <b>€ 5,07 per 100 g</b>.</span><button type="button" id="toKilo">Kies 1 kg</button></div>
+
+        <fieldset class="accs">
+          <legend>Maak het compleet</legend>
+          <label class="acc"><img src="img/thee-ei.jpg" alt=""><span><b>Thee-ei</b> · € 3,99<small>Vullen, in je mok hangen, klaar</small></span><input type="checkbox" data-name="Thee-ei" data-price="3.99"></label>
+          <label class="acc"><img src="img/u-lepel.jpg" alt=""><span><b>Maatlepel 1 kopje</b> · € 4,99<small>Altijd precies genoeg thee</small></span><input type="checkbox" data-name="Maatlepel 1 kopje" data-price="4.99"></label>
+          <label class="acc"><img src="img/u-filters.jpg" alt=""><span><b>Theefilterzakjes</b> · € 3,25<small>Wegwerpfiltertjes voor één kop</small></span><input type="checkbox" data-name="Theefilterzakjes Tbar XS" data-price="3.25"></label>
+        </fieldset>
+
+        <div class="row">
+          <div class="qty" aria-label="Aantal"><button type="button" id="minus" aria-label="Eén minder">−</button><output id="qty">1</output><button type="button" id="plus" aria-label="Eén meer">+</button></div>
+          <button class="cta" type="button" id="addBtn">In mijn mandje <span class="amt" id="addAmt">€ 6,75</span></button>
+        </div>
+
+        <div class="combo">
+          <div class="ch"><span class="btag">Bundel</span><b>Fruitbundel</b><span>Wilde Kers Superieur + 3 fruitige smaken die er vaak bij worden gekocht</span></div>
+          <div class="cimgs"><figure><img src="img/losse-thee.jpg" alt=""><figcaption>Wilde Kers</figcaption></figure><i>+</i><figure><img src="img/m-bosvruchten-thee-114501579.jpg" alt=""><figcaption>Bosvruchten</figcaption></figure><i>+</i><figure><img src="img/m-lovely-raspberry.jpg" alt=""><figcaption>Lovely Raspberry</figcaption></figure><i>+</i><figure><img src="img/m-granaatappel.jpg" alt=""><figcaption>Granaatappel</figcaption></figure></div>
+          <div class="cfoot"><span>4 × 100 g · <s>€ 26,90</s> <b class="bp">€ 24,99</b><small>+ 2 proefzakjes cadeau</small></span><button type="button" id="comboBtn">Voeg bundel toe</button></div>
+        </div>
+
+        <div class="mini">
+          <div class="mini-h"><b>Andere smaken erbij</b><button type="button" id="toMix">Alle smaken ↓</button></div>
+          <div class="strip" id="strip" role="list" aria-label="Andere smaken"></div>
+        </div>
+
+        <ul class="trust">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Gratis verzending vanaf € 35 in Nederland</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.8 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>9,6 uit 3.536 reviews bij WebwinkelKeur</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>Proefzakjes van andere smaken cadeau vanaf € 25</li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="wrap chips" aria-label="Over Wilde Kers">
+      <a href="#erin">Ingrediënten</a>
+      <a href="#smaak">Smaak</a>
+      <a href="#zetten">Zo zet je hem</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#mix">Andere smaken</a>
+      <a href="#faq">Vragen</a>
+    </nav>
+  </section>
+
+  <section class="sec gutter" id="erin">
+    <div class="wrap split">
+      <div class="media">
+        <img src="img/H03.jpg" alt="De ingrediënten van Wilde Kers naast elkaar" loading="lazy">
+        <span class="pin" style="left:14%;top:62%">Hibiscus</span>
+        <span class="pin" style="left:24%;top:36%">Appel</span>
+        <span class="pin" style="left:46%;top:62%">Wilde Kers</span>
+        <span class="pin" style="left:66%;top:36%">Rozijn</span>
+        <span class="pin" style="left:80%;top:62%">Rozenbottel</span>
+        <span class="pin" style="left:88%;top:36%">Kers</span>
+      </div>
+      <div class="copy">
+        <span class="eyebrow">Wat zit erin</span>
+        <h2>Dit zit er in je glas</h2>
+        <p>Hibiscus, appel, rozijnen, rozenbottel en stukjes kers. Open de zak en je ziet elk stukje terug. Eerlijk is eerlijk: in de stukjes kers zit een beetje suiker. Daar komt de zoete smaak vandaan.</p>
+        <p class="small">Hibiscus, stukjes appel, rozijnen, rozebottel, stukjes kers (kersen, suiker, zonnebloemolie), natuurlijk aroma, aroma.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="smaak">
+    <div class="wrap split flip">
+      <div class="media shade"><img src="img/H02.jpg" alt="Bord met losse Wilde Kers en een glas thee" loading="lazy"><div class="cap"><b>"Deze is friszoet."</b><span>Iris, klant</span></div></div>
+      <div class="copy">
+        <span class="eyebrow">Zo smaakt hij</span>
+        <h2>Vol, fruitig en een tikje fris</h2>
+        <p>De kers proef je bij de eerste slok. De hibiscus geeft er een frisse rand aan. Vind je hem te fris? Laat hem iets korter trekken, of roer er een lepel honing door.</p>
+        <div class="taste" aria-label="Smaakprofiel">
+          <div>Zoet<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+          <div>Fruitig<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+          <div>Fris<span class="pips"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="toetje">
+    <div class="wrap split">
+      <div class="media shade"><video src="vid/V3-stoom-taart.mp4" poster="vid/V3-stoom-taart.jpg" autoplay muted loop playsinline aria-label="Dampend glas Wilde Kers met kersentaart"></video><div class="cap"><b>Je toetje van vanavond</b><span>Zoet van echte stukjes kers</span></div></div>
+      <div class="copy">
+        <span class="eyebrow">Zin in iets zoets?</span>
+        <h2>Een beetje thee. Een beetje toetje.</h2>
+        <p>Na het eten zin in iets zoets? Zet een kop Wilde Kers. Dieprood, vol van smaak en zoet van de stukjes kers. Je drinkt hem op de bank, met of zonder plakje taart.</p>
+        <h3>En in de zomer: ijsthee</h3>
+        <p>Zet een pot iets sterker, laat hem afkoelen en schenk hem over ijs. Met een kan in de koelkast kom je een warme middag door.</p>
+        <div class="duo">
+          <div class="media"><video src="vid/V1-ijsthee.mp4" poster="vid/V1-ijsthee.jpg" autoplay muted loop playsinline aria-label="IJsthee met Wilde Kers inschenken"></video></div>
+          <div class="media shade"><img src="img/H08.jpg" alt="IJsthee met Wilde Kers" loading="lazy"><div class="cap"><b>Ook als ijsthee</b></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="zakjes">
+    <div class="wrap split flip">
+      <div class="media"><img src="img/H10.jpg" alt="Mok met zakje naast een mok met Wilde Kers" loading="lazy"><span class="vslabel no" style="left:12px">Zakje uit de supermarkt</span><span class="vslabel yes" style="right:12px">Wilde Kers Superieur</span><span class="pin no" style="left:24%;top:36%">Vlak van smaak</span><span class="pin no" style="left:27%;top:50%">Fijngemalen<span class="dl">, in een papiertje</span></span><span class="pin yes" style="left:70%;top:24%">Dieprood</span><span class="pin yes big" style="left:67%;top:52%">Vol, fruitig en friszoet</span><span class="pin yes" style="left:70%;top:94%">Echte stukjes fruit</span></div>
+      <div class="copy">
+        <span class="eyebrow">Klaar met zakjes?</span>
+        <h2 class="vsh"><span class="them">Supermarktzakje</span> <em>vs.</em> <span class="us">Wilde Kers Superieur</span></h2>
+        <div class="vt" role="table" aria-label="Zakje uit de supermarkt tegenover Wilde Kers Superieur">
+          <div class="vr vh" role="row"><span></span><span>Zakje uit de supermarkt</span><span>Wilde Kers Superieur</span></div>
+          <div class="vr big" role="row"><span>Smaak</span><span class="x">Vlak en snel uitgewerkt</span><span class="v">Vol, fruitig en friszoet</span></div>
+          <div class="vr" role="row"><span>De thee</span><span class="x">De kleinste deeltjes ("dust"), fijngemalen</span><span class="v">Hele stukjes, die je ook echt ziet</span></div>
+          <div class="vr" role="row"><span>Ingrediënten</span><span class="x">Zie je niet</span><span class="v">Echte stukjes gedroogd fruit (kers, appel, rozijn, rozenbottel) en hibiscusbloem</span></div>
+          <div class="vr" role="row"><span>Het zakje</span><span class="x">Soms deels van plastic</span><span class="v">Geen zakje: alleen thee in je thee-ei</span></div>
+          <div class="vr" role="row"><span>Sterkte</span><span class="x">Eén zakje, één sterkte</span><span class="v">Jij bepaalt: meer of minder thee</span></div>
+          <div class="vr" role="row"><span>Eerst proberen</span><span class="x">Een heel doosje kopen</span><span class="v">Proefzakje voor € 1,29</span></div>
+          <div class="vr" role="row"><span>Keuze</span><span class="x">Wat in het schap ligt</span><span class="v">Ruim 400 smaken</span></div>
+          <div class="vr" role="row"><span>Extra</span><span class="muted">–</span><span class="v">Proefzakjes cadeau vanaf € 25</span></div>
+        </div>
+        <p class="small vwist"><b>Wist je dat?</b> In de meeste theezakjes zitten de kleinste deeltjes van de thee, in de theewereld "dust" en "fannings" genoemd. Ze trekken snel, maar zijn ook sneller hun smaak kwijt. Losse thee bestaat uit hele stukjes.</p>
+        <div class="vq">
+          <p>"Niet te vergelijken met thee uit de supermarkt."<cite>Diana, klant</cite></p>
+          <p>"Veel beter dan theezakjes van de supermarkt."<cite>Petra, klant</cite></p>
+        </div>
+        <p>Overstappen is makkelijk. Een theelepel in een thee-ei en klaar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="zetten">
+    <div class="wrap split">
+      <div class="duo">
+        <div class="media shade"><img src="img/H12.jpg" alt="Schep Wilde Kers in een thee-ei" loading="lazy"><div class="cap"><b>1 theelepel</b><span>per kop</span></div></div>
+        <div class="media"><video src="vid/V2-thee-ei.mp4" poster="vid/V2-thee-ei.jpg" autoplay muted loop playsinline aria-label="Thee-ei met Wilde Kers in een mok"></video></div>
+      </div>
+      <div class="copy">
+        <span class="eyebrow">Zo zet je hem</span>
+        <h2>In drie stappen klaar</h2>
+        <ol class="steps">
+          <li>Doe 1 theelepel in een thee-ei of filterzakje.</li>
+          <li>Giet er water van 100 °C op.</li>
+          <li>Laat hem 8 tot 10 minuten trekken.</li>
+        </ol>
+        <div class="eggcard"><img src="img/thee-ei.jpg" alt="Thee-ei van rvs"><div><b>Nog geen thee-ei?</b><br>Thee-ei van rvs · € 3,99</div><button type="button" id="eggInline">Voeg toe</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="reviews">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:22px">
+      <div class="copy">
+        <span class="eyebrow">Wat klanten zeggen</span>
+        <h2>3.536 klanten gingen je voor</h2>
+        <div class="proof">
+          <div class="score"><b>9,6</b><span>gemiddeld uit <strong>3.536 reviews</strong> bij WebwinkelKeur<br>738 daarvan in het afgelopen jaar</span></div>
+          <div class="dist" aria-label="Verdeling van de sterren">
+            <div><span>5 ★</span><i style="--w:85.9%"></i><em>3.022</em></div>
+            <div><span>4 ★</span><i style="--w:11.2%"></i><em>393</em></div>
+            <div><span>3 ★</span><i style="--w:1.4%"></i><em>50</em></div>
+            <div><span>2 ★</span><i style="--w:0.5%"></i><em>17</em></div>
+            <div><span>1 ★</span><i style="--w:1%"></i><em>34</em></div>
+          </div>
+          <a class="wwk" href="https://www.webwinkelkeur.nl/webshop/losse-t-nl_1214392" target="_blank" rel="noopener">Lees alle 3.536 reviews op WebwinkelKeur →</a>
+        </div>
+      </div>
+      <div class="split" style="align-items:start">
+        <div class="reviews">
+          <div class="rv feature"><span class="stars" aria-label="4 sterren">★★★★☆</span><p>"Heerlijk deze thee! Veel smaken geprobeerd maar de meeste vind ik veel te zoet. Deze is friszoet."</p><span>Iris · over Wilde Kers</span></div>
+          <div class="rv"><p>"Snelle levering en heerlijke thee."</p><span>Petra · over Losse-T</span></div>
+          <div class="rv"><p>"Fijn dat je ook 50 gram kunt bestellen. Kun je meer smaken proberen."</p><span>Monique · over Losse-T</span></div>
+          <div class="rv"><p>"Hier komen geen theezakjes meer in huis."</p><span>Mariska · over Losse-T</span></div>
+          <div class="rv"><p>"Je voelt je gewaardeerd als klant!"</p><span>Lucas · over Losse-T</span></div>
+        </div>
+        <div class="ugc">
+          <div class="media"><span class="ref">Gemaakt met AI</span><video src="vid/ugc-wildekers.mp4" poster="vid/ugc-wildekers.jpg" controls playsinline preload="none" aria-label="Video: Wilde Kers Superieur tegenover een theezakje uit de supermarkt"></video></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="mix">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:22px">
+      <div class="copy">
+        <span class="eyebrow">Andere smaken</span>
+        <h2>Lekker samen met Wilde Kers Superieur</h2>
+        <p>Ruim de helft van de klanten die Wilde Kers Superieur bestelt, neemt er een andere smaak bij. Dit zijn de smaken die het vaakst samen worden gekocht.</p>
+      </div>
+
+      <div class="feat">
+        <div class="fimgs"><img src="img/losse-thee.jpg" alt="Wilde Kers Superieur"><img src="img/m-bosvruchten-thee-114501579.jpg" alt="Bosvruchten"><img src="img/m-lovely-raspberry.jpg" alt="Lovely Raspberry"><img src="img/m-granaatappel.jpg" alt="Granaatappel"></div>
+        <div class="ftxt">
+          <span class="btag">Bundel</span>
+          <h3>Fruitbundel</h3>
+          <p>Wilde Kers Superieur, Bosvruchten, Lovely Raspberry en Granaatappel. Vier fruitige smaken die vaak samen worden gekocht, elk 100 g.</p>
+          <div class="fprice"><s>€ 26,90</s> <b>€ 24,99</b><span>+ 2 proefzakjes cadeau</span></div>
+          <button class="cta" type="button" id="comboMix" style="flex:none;align-self:flex-start;padding:0 22px">Voeg Fruitbundel toe</button>
+        </div>
+      </div>
+
+      <div class="mixhead"><h3>Of kies zelf je smaken</h3>
+        <div class="filters" role="group" aria-label="Filter smaken">
+          <button type="button" aria-pressed="true" data-f="samen">Vaak samen gekocht</button>
+          <button type="button" aria-pressed="false" data-f="fris">Fris en fruitig</button>
+          <button type="button" aria-pressed="false" data-f="warm">Zoet en warm</button>
+        </div>
+      </div>
+      <div class="mix" id="mixGrid"></div>
+
+      <div class="mixhead"><h3>Handig erbij</h3></div>
+      <div class="accrow" id="accRow"></div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="faq">
+    <div class="narrow faq">
+      <h2 style="margin-bottom:18px">Veelgestelde vragen</h2>
+      <details><summary>Is hij erg zoet?</summary><p>Fruitig-zoet, door de stukjes kers. Klanten noemen hem friszoet. In de kers zit een beetje suiker.</p></details>
+      <details><summary>Is hij zuur?</summary><p>De hibiscus geeft een frisse rand. Laat hem korter trekken of doe er honing bij als je hem zachter wilt.</p></details>
+      <details><summary>Zit er cafeïne in?</summary><p>Nee. Wilde Kers is vruchtenthee zonder theeblad, dus van nature cafeïnevrij. Ook 's avonds lekker.</p></details>
+      <details><summary>Kan ik er ijsthee van maken?</summary><p>Ja. Zet hem iets sterker, laat hem afkoelen en schenk hem over ijs.</p></details>
+      <details><summary>Hoeveel heb ik per kop nodig?</summary><p>Eén theelepel per kop, 8 tot 10 minuten laten trekken op 100 °C.</p></details>
+      <details><summary>Hoe werkt de cadeauladder?</summary><p>Vanaf € 25 doen we 2 proefzakjes van andere smaken cadeau. Vanaf € 35 worden het er 5 en verzenden we gratis. Vanaf € 50 krijg je een theeblik om je thee in te bewaren, en vanaf € 75 ook een mok met zeefje.</p></details>
+      <details><summary>Wat als ik hem niet lekker vind?</summary><p>Begin met een proefzakje van € 1,29. Dan weet je het zeker voordat je een grotere zak neemt.</p></details>
+      <details><summary>Wat kost verzenden?</summary><p>Gratis vanaf € 35 in Nederland, anders € 4,95.</p></details>
+    </div>
+  </section>
+
+  <section class="sec final gutter">
+    <div class="narrow">
+      <h2>Zin om hem te proeven?</h2>
+      <p style="margin-top:10px">Neem hem samen met de smaken die er het vaakst bij gekocht worden. Vanaf € 25 krijg je 2 proefzakjes cadeau, vanaf € 35 verzenden we gratis. Vanaf € 25 krijg je 2 proefzakjes cadeau, vanaf € 35 zelfs 5 en verzenden we gratis.</p>
+      <div class="btns"><button class="cta" type="button" data-final="6.75" style="flex:none;padding:0 26px">In mijn mandje · 100 g · € 6,75</button><button class="ghost" type="button" id="comboFinal">Neem de Fruitbundel · € 24,99</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter">Preview voor Losse-T, oktober 2026. Productfoto's: losse-t.nl en AI-beelden op basis van de echte melange. Video's met het label "Referentie" komen van andere merken en worden voor livegang zelf nagebouwd. De cadeauladder (€ 25: 2 proefzakjes, € 35: 5 + gratis verzending, € 50: theeblik, € 75: mok met zeefje) is een voorstel: kosten per zakje eerst laten doorrekenen.</footer>
+
+<div class="sticky gutter" id="sticky" aria-hidden="true">
+  <div class="wrap">
+    <button class="cta" type="button" id="stickyAdd">Bestel Wilde Kers Superieur</button>
+  </div>
+</div>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Je mandje"><div class="panel">
+  <div class="ph"><h3>Je mandje</h3><button class="iconbtn" type="button" id="drawerClose" aria-label="Mandje sluiten">✕</button></div>
+  <ul class="lines" id="lines"></ul>
+  <div class="ups"><h4>Vaak samen gekocht</h4><div id="drawerUps"></div></div>
+  <div class="dealbox"><div class="head"><span id="drawerDeal">Nog € 25,00 tot 2 gratis proefzakjes</span></div><div class="bar"><i id="drawerBar"></i></div></div>
+  <div class="tot"><span>Totaal</span><span id="drawerTot">€ 0,00</span></div>
+  <button class="cta" type="button" style="flex:none">Afrekenen</button>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const eur=v=>"€ "+v.toFixed(2).replace(".",",");
+const FREE=35, EGG=3.99;
+const lines=[]; let qty=1;
+
+/* galerij met labels */
+const SLIDES=[
+ {img:"img/H01.jpg",alt:"Schep losse Wilde Kers met een glas rode thee",pins:[["Echte stukjes kers",34,64],["Appel en rozenbottel",56,84],["Dieprood door hibiscus",30,22]]},
+ {img:"img/H10.jpg",alt:"Een zakje uit de supermarkt naast Wilde Kers",vs:true},
+ {video:"vid/V3-stoom-taart.mp4",poster:"vid/V3-stoom-taart.jpg",cap:["Je toetje van vanavond","Zoet van echte stukjes kers"]},
+ {video:"vid/V2-thee-ei.mp4",poster:"vid/V2-thee-ei.jpg",cap:["1 theelepel in een thee-ei","100 °C, 8 tot 10 minuten"]},
+ {video:"vid/V1-ijsthee.mp4",poster:"vid/V1-ijsthee.jpg",cap:["Ook als ijsthee","Iets sterker zetten, afkoelen, over ijs"]}
+];
+function show(i){
+  const s=SLIDES[i], st=$("#stage");
+  if(s.video){ st.classList.add("shade"); st.innerHTML=`<video src="${s.video}" poster="${s.poster}" autoplay muted loop playsinline></video>`+(s.cap?`<div class="cap"><b>${s.cap[0]}</b><span>${s.cap[1]}</span></div>`:""); return; }
+  st.classList.remove("shade");
+  st.innerHTML=`<img src="${s.img}" alt="${s.alt}">`+(s.pins||[]).map(p=>`<span class="pin" style="left:${p[1]}%;top:${p[2]}%">${p[0]}</span>`).join("")+
+    (s.vs?`<span class="vslabel no" style="left:12px">Zakje uit de supermarkt</span><span class="vslabel yes" style="right:12px">Wilde Kers Superieur</span><span class="pin no" style="left:24%;top:36%">Vlak van smaak</span><span class="pin no" style="left:27%;top:50%">Fijngemalen<span class="dl">, in een papiertje</span></span><span class="pin yes" style="left:70%;top:24%">Dieprood</span><span class="pin yes big" style="left:67%;top:52%">Vol, fruitig en friszoet</span><span class="pin yes" style="left:70%;top:94%">Echte stukjes fruit</span>`:"");
+}
+$$(".thumbs button").forEach(b=>b.onclick=()=>{ $$(".thumbs button").forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); show(+b.dataset.i); });
+show(0);
+
+/* mix-grid */
+const MIX=[
+ {n:"Winter Sfeer",t:["Kruidig","Warm"],p:5.70,img:"img/m-winter-sfeer.jpg",d:"Met kaneel en stukjes sinaasappel. Warm en kruidig.",f:["top","samen","warm"]},
+ {n:"Bosvruchten",t:["Fruitig","Fris","IJsthee"],p:6.70,img:"img/m-bosvruchten-thee-114501579.jpg",d:"Vol en fris, met een rijke bessensmaak. Ook als ijsthee.",f:["top","samen","fris"]},
+ {n:"Droomvlucht",t:["Fruitig"],p:9.85,img:"img/m-droomvlucht.jpg",d:"Een van de smaken die het vaakst samen met Wilde Kers wordt besteld.",f:["top","samen"]},
+ {n:"Lovely Raspberry",t:["Fruitig","Bloemig","IJsthee"],p:6.55,img:"img/m-lovely-raspberry.jpg",d:"Framboos, roos en cranberry. Fruitig en zacht bloemig.",f:["samen","fris"]},
+ {n:"Granaatappel",t:["Fruitig","Vol"],p:6.90,img:"img/m-granaatappel.jpg",d:"Fruitig en vol. Vaak samen met Wilde Kers besteld.",f:["samen","fris"]},
+ {n:"Tropical Bird",t:["Tropisch","Lichtzoet","IJsthee"],p:6.65,img:"img/m-tropical-bird-thee-vruchtenthee.jpg",d:"Papaja, mango, appel en kokos. Zacht en lichtzoet.",f:["samen","fris"]},
+ {n:"Rode Vruchten",t:["Fruitig","Krachtig"],p:4.99,img:"img/m-rode-vruchten.jpg",d:"Krachtige, volle vruchtenthee met bosvruchten.",f:["samen","fris"]},
+ {n:"Sweet Cookies",t:["Zoet","Toetje"],p:4.99,img:"img/m-sweet-cookies.jpg",d:"Karamel, chocolade, kaneel en hazelnoot. Echt een verwenmoment.",f:["samen","warm"]},
+ {n:"Zomerblend Perzik",t:["Fruitig","Zachtzoet","IJsthee"],p:2.55,u:"50 g",img:"img/m-zomerblend-perzik.jpg",d:"Perzik, appel en citroengras. Vaak samen met Wilde Kers besteld.",f:["samen","fris"]},
+ {n:"Magic Mango",t:["Tropisch","IJsthee"],p:7.55,img:"img/m-magic-mango-thee.jpg",d:"Mango, ananas, sinaasappel en aardbei. Ook als ijsthee.",f:["samen","fris"]}
+];
+const SETS={samen:MIX,fris:[
+ {"n": "Bosvruchten", "t": ["Fruitig", "Fris", "IJsthee"], "p": 6.7, "u": "100 g", "img": "img/m-bosvruchten-thee-114501579.jpg", "d": "Vol en fris, met een rijke bessensmaak. Ook als ijsthee.", "f": []},
+ {"n": "Magic Mango", "t": ["Tropisch", "IJsthee"], "p": 7.55, "u": "100 g", "img": "img/m-magic-mango-thee.jpg", "d": "Mango, ananas, sinaasappel en aardbei. Ook als ijsthee.", "f": []},
+ {"n": "Happy Fruit", "t": ["Fruitig"], "p": 6.0, "u": "100 g", "img": "img/m-happy-fruit-vruchten-thee.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Sunny Melon", "t": ["Fris", "Munt"], "p": 6.3, "u": "100 g", "img": "img/m-sunny-melon.jpg", "d": "Frisse vruchtenthee met meloen en pepermunt.", "f": []},
+ {"n": "Hibiscus thee", "t": ["Fris", "Dieprood"], "p": 3.99, "u": "100 g", "img": "img/m-hibiscus-thee.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Rode Vruchten", "t": ["Fruitig", "Krachtig"], "p": 4.99, "u": "100 g", "img": "img/m-rode-vruchten.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Droom der Zuidzee", "t": ["Fruitig", "Tropisch"], "p": 4.5, "u": "100 g", "img": "img/m-droom-der-zuidzee.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Sweet Passion", "t": ["Fruitig", "Witte thee"], "p": 6.5, "u": "100 g", "img": "img/m-sweet-passion-thee-witte-thee.jpg", "d": "Witte thee met perzik, passievrucht en rozenblaadjes.", "f": []},
+ {"n": "Kir Royal", "t": ["Fruitig"], "p": 8.4, "u": "100 g", "img": "img/m-kir-royal.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Fata Morgana", "t": ["Fruitig"], "p": 6.7, "u": "100 g", "img": "img/m-fata-morgana.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []}
+],warm:[
+ {"n": "Sinaasappel Chai", "t": ["Kruidig", "Warm"], "p": 5.95, "u": "100 g", "img": "img/m-sinaasappel-chai.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Openhaard Romance", "t": ["Kruidig", "Warm"], "p": 6.5, "u": "100 g", "img": "img/m-openhaard-romance.jpg", "d": "Kruidige winterthee met kaneel.", "f": []},
+ {"n": "Sterrenmix", "t": ["Zoet", "Kruidig"], "p": 7.8, "u": "100 g", "img": "img/m-sterrenmix.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Winter Sfeer", "t": ["Kruidig", "Warm"], "p": 5.7, "u": "100 g", "img": "img/m-winter-sfeer.jpg", "d": "Met kaneel en stukjes sinaasappel. Warm en kruidig.", "f": []},
+ {"n": "Rooibos Vanille", "t": ["Zoet", "Rooibos"], "p": 6.05, "u": "100 g", "img": "img/m-rooibos-vanille.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Blueberry Muffin", "t": ["Zoet", "Toetje"], "p": 5.4, "u": "100 g", "img": "img/m-blueberry-muffin.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Sweet Cookies", "t": ["Zoet", "Toetje"], "p": 4.99, "u": "100 g", "img": "img/m-sweet-cookies.jpg", "d": "Karamel, chocolade, kaneel en hazelnoot. Echt een verwenmoment.", "f": []},
+ {"n": "Oma's Appeltaart", "t": ["Zoet", "Toetje"], "p": 5.4, "u": "100 g", "img": "img/m-omas-appeltaart-thee.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Appelstrudel", "t": ["Zoet", "Toetje"], "p": 5.7, "u": "100 g", "img": "img/m-appelstrudel.jpg", "d": "Een van de best verkochte thees van Losse-T.", "f": []},
+ {"n": "Hazelnoot Brownie", "t": ["Zoet", "Toetje"], "p": 6.05, "u": "100 g", "img": "img/m-hazelnoot-brownie.jpg", "d": "Zwarte thee met chocolade, cacao en hazelnoot.", "f": []}
+]};
+let curSet="samen";
+const unitOf=m=>m.u||"100 g";
+function renderGrid(){
+  const list=SETS[curSet];
+  $("#mixGrid").innerHTML=list.map((m,i)=>{ const done=lines.some(l=>l.label===m.n+" "+unitOf(m)); return `<article class="pc">
+  ${(curSet==="samen"&&m.f.includes("top"))?'<span class="kers">Top 3 samen gekocht</span>':''}
+  <img src="${m.img}" alt="${m.n}"><h3>${m.n}</h3><div class="chips2">${(m.t||[]).map(x=>`<i>${x}</i>`).join("")}</div><p>${m.d}</p>
+  <div class="foot"><span class="price">${eur(m.p)} · ${unitOf(m)}</span><button type="button" data-set="${curSet}" data-idx="${i}" class="${done?"added":""}">${done?"✓ Toegevoegd":"+ Voeg toe"}</button></div></article>`; }).join("");
+}
+renderGrid();
+$("#strip").innerHTML=MIX.map((m,i)=>`<div class="mc" role="listitem">${m.f.includes("top")?'<span class="k">top 3</span>':''}<img src="${m.img}" alt=""><span class="nm">${m.n}</span><span class="pr">${eur(m.p)} · ${unitOf(m)}</span><button type="button" data-mix="${i}" aria-label="${m.n} toevoegen">+</button></div>`).join("");
+$$(".filters button").forEach(b=>b.onclick=()=>{ $$(".filters button").forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); curSet=b.dataset.f; renderGrid(); });
+$("#mixGrid").addEventListener("click",e=>{ const b=e.target.closest("[data-set]"); if(!b)return; const m=SETS[b.dataset.set][+b.dataset.idx]; add(m.n+" "+unitOf(m),m.p); b.classList.add("added"); b.textContent="✓ Toegevoegd"; });
+
+/* mandje */
+const total=()=>lines.reduce((a,l)=>a+l.p,0);
+const TIERS=[25,35,50,75];
+function tierInfo(t){ const next=TIERS.find(x=>t<x); return {next, left: next? next-t : 0}; }
+function nextMsg(t){ const b=lines.some(l=>l.label.startsWith("Fruitbundel")); let {next,left}=tierInfo(t); if(b&&next===25){ next=35; left=35-t; } if(!next) return "Alles binnen: 5 proefzakjes, gratis verzending, theeblik en mok";
+  const what= next===25?"2 gratis proefzakjes": next===35?"5 proefzakjes en gratis verzending": next===50?"een gratis theeblik":"een gratis mok met zeefje"; return `Nog ${eur(left)} tot ${what}`; }
+function render(){
+  const t=total(), count=lines.reduce((a,l)=>a+l.q,0);
+  $("#cartTotal").textContent=eur(t); $("#cartCount").textContent=count;
+  const msg=nextMsg(t);
+  ["#dealText","#drawerDeal"].forEach(s=>$(s).textContent=msg);
+  $("#dealFill").style.transform=`scaleX(${Math.min(1,t/75)})`;
+  $("#drawerBar").style.transform=`scaleX(${Math.min(1,t/75)})`;
+  [25,35,50,75].forEach(x=>$("#m"+x).classList.toggle("done",t>=x||(x===25&&lines.some(l=>l.label.startsWith("Fruitbundel")))));
+  const bundel=lines.some(l=>l.label.startsWith("Fruitbundel"));
+  const n= t>=35?5: (t>=25||bundel)?2:0;
+  const g= n? [`<li class="gift"><span>${n} proefzakjes cadeau</span><span>€ 0,00</span></li>`] : [];
+  if(t>=35) g.push('<li class="gift"><span>Verzending</span><span>gratis</span></li>');
+  if(t>=50) g.push('<li class="gift"><span>Theeblik cadeau (vanaf € 50)</span><span>€ 0,00</span></li>');
+  if(t>=75) g.push('<li class="gift"><span>Mok met zeefje cadeau (vanaf € 75)</span><span>€ 0,00</span></li>');
+  $("#lines").innerHTML = lines.length ? lines.map(l=>`<li><span>${l.label}</span><span>${eur(l.p)}</span></li>`).join("")+g.join("") : '<li class="empty">Je mandje is nog leeg.</li>';
+  $("#drawerTot").textContent=eur(t);
+  const inCart=n=>lines.some(l=>l.label===n);
+  const UPS=[{n:"Thee-ei",p:3.99,img:"img/thee-ei.jpg"},{n:"Maatlepel 1 kopje",p:4.99,img:"img/u-lepel.jpg"},{n:"Permanentfilter Ornament RVS",p:6.99,img:"img/u-ornament.jpg"},{n:"Bamboe theeplank met 6 theeblikjes",p:34.99,img:"img/u-plank.jpg",d:"Voor wie graag mixt"}];
+  const smaken=[0,1,2].map(i=>({i,...MIX[i]}));
+  $("#drawerUps").innerHTML = smaken.map(u=>{ const done=inCart(u.n+" 100 g"); return `<div class="u"><img src="${u.img}" alt=""><span><b>${u.n}</b><br>${eur(u.p)} · 100 g</span><button type="button" data-mix="${u.i}" class="${done?"added":""}">${done?"✓":"+ Voeg toe"}</button></div>`; }).join("")
+    + UPS.filter(u=>!inCart(u.n)).map(u=>`<div class="u"><img src="${u.img}" alt=""><span><b>${u.n}</b><br>${u.d?u.d+" · ":""}${eur(u.p)}</span><button type="button" data-acc="${u.n}" data-p="${u.p}">+ Voeg toe</button></div>`).join("");
+}
+let tt; function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("on"),2000); }
+function add(label,p,q=1){ lines.push({label,p,q}); render(); toast(label+" toegevoegd · "+nextMsg(total()).toLowerCase()); }
+
+const sizeEl=()=>$('input[name="size"]:checked');
+const accSum=()=>$$(".acc input:checked").reduce((a,c)=>a+ +c.dataset.price,0);
+function refreshAmt(){ $("#addAmt").textContent=eur(+sizeEl().value*qty+accSum()); $("#nudge").hidden = sizeEl().id==="kilo"; }
+$$('input[name="size"]').forEach(r=>r.addEventListener("change",refreshAmt));
+$$(".acc input").forEach(c=>c.addEventListener("change",refreshAmt));
+$("#toKilo").onclick=()=>{ $("#kilo").checked=true; refreshAmt(); };
+$("#plus").onclick=()=>{qty=Math.min(20,qty+1);$("#qty").textContent=qty;refreshAmt()};
+$("#minus").onclick=()=>{qty=Math.max(1,qty-1);$("#qty").textContent=qty;refreshAmt()};
+function addMain(){ const s=sizeEl(); add(qty+"× Wilde Kers Superieur "+s.dataset.name,+s.value*qty,qty); $$(".acc input:checked").forEach(c=>{ add(c.dataset.name,+c.dataset.price); c.checked=false; }); refreshAmt(); setTimeout(()=>panel($("#drawer"),$("#cartBtn"),true),350); }
+const rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+$("#addBtn").onclick=addMain; $("#stickyAdd").onclick=()=>document.querySelector(".buy").scrollIntoView({behavior:rm?"auto":"smooth",block:"start"});
+$("#eggInline").onclick=e=>{ add("Thee-ei",EGG); e.target.textContent="Toegevoegd"; e.target.classList.add("added"); };
+function addCombo(btn){ add("Fruitbundel (4 × 100 g)",24.99,4); setTimeout(()=>{ if(curSet==="samen"){ [1,3,4].forEach(i=>{ const c=$$("#mixGrid [data-idx]")[i]; if(c){c.classList.add("added");c.textContent="✓ In bundel";} }); } },0); [1,3,4].forEach(i=>$$(`[data-mix="${i}"]`).forEach(b=>{b.classList.add("added"); b.textContent=b.closest(".mc")?"✓":"✓ Toegevoegd";})); if(btn){btn.textContent="✓ Toegevoegd";btn.classList.add("added");} setTimeout(()=>panel($("#drawer"),$("#cartBtn"),true),350); }
+$("#comboBtn").onclick=e=>addCombo(e.currentTarget); $("#comboFinal").onclick=e=>addCombo(e.currentTarget);
+$("#toMix").onclick=()=>$("#mix").scrollIntoView({behavior:"smooth"});
+function addMix(i){ const m=MIX[i]; add(m.n+" "+(m.u||"100 g"),m.p); if(curSet==="samen") renderGrid();
+  $$(`[data-mix="${i}"]`).forEach(b=>{ b.classList.add("added"); b.textContent = b.closest(".mc") ? "✓" : "✓ Toegevoegd"; }); }
+["#strip","#drawerUps"].forEach(sel=>$(sel).addEventListener("click",e=>{ const b=e.target.closest("[data-mix]"); if(b) addMix(+b.dataset.mix); const g=e.target.closest("[data-acc]"); if(g) add(g.dataset.acc,+g.dataset.p); }));
+$$("[data-final]").forEach(b=>b.onclick=()=>add("1× Wilde Kers Superieur 100 g",+b.dataset.final));
+
+/* panelen */
+function panel(el,btn,open){ el.classList.toggle("open",open); btn&&btn.setAttribute("aria-expanded",open); }
+$("#cartBtn").onclick=()=>panel($("#drawer"),$("#cartBtn"),true);
+const ACC=[{n:"Thee-ei",p:3.99,img:"img/thee-ei.jpg"},{n:"Maatlepel 1 kopje",p:4.99,img:"img/u-lepel.jpg"},{n:"Theefilterzakjes Tbar XS",p:3.25,img:"img/u-filters.jpg"},{n:"Bamboe theeplank met 6 theeblikjes",p:34.99,img:"img/u-plank.jpg"}];
+$("#accRow").innerHTML=ACC.map(a=>`<div class="ac"><img src="${a.img}" alt=""><span><b>${a.n}</b><br>${eur(a.p)}</span><button type="button" data-acc="${a.n}" data-p="${a.p}" aria-label="${a.n} toevoegen">+</button></div>`).join("");
+$("#accRow").addEventListener("click",e=>{ const b=e.target.closest("[data-acc]"); if(!b)return; add(b.dataset.acc,+b.dataset.p); b.textContent="✓"; b.classList.add("added"); });
+$("#comboMix").onclick=e=>addCombo(e.currentTarget);
+$("#drawerClose").onclick=()=>panel($("#drawer"),$("#cartBtn"),false);
+$("#drawer").onclick=e=>{ if(e.target.id==="drawer") panel($("#drawer"),$("#cartBtn"),false); };
+$("#menuBtn").onclick=()=>panel($("#mnav"),$("#menuBtn"),true);
+$("#menuClose").onclick=()=>panel($("#mnav"),$("#menuBtn"),false);
+$("#mnav").onclick=e=>{ if(e.target.id==="mnav") panel($("#mnav"),$("#menuBtn"),false); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ panel($("#drawer"),$("#cartBtn"),false); panel($("#mnav"),$("#menuBtn"),false);} });
+
+/* sticky balk + video's in beeld */
+const sticky=$("#sticky");
+new IntersectionObserver(([e])=>{ const show=!e.isIntersecting && e.boundingClientRect.top<0; sticky.classList.toggle("show",show); sticky.setAttribute("aria-hidden",!show); }).observe($("#addBtn"));
+const vo=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target; if(rm){v.pause();return} e.isIntersecting?v.play().catch(()=>{}):v.pause();}));
+$$("video[autoplay]").forEach(v=>vo.observe(v));
+refreshAmt(); render();
+</script>
+<!--uitleg--><style>
+.ux-btn{position:absolute;top:12px;right:12px;z-index:30;display:inline-flex;align-items:center;gap:6px;font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.ux-btn:hover{background:#3a4a30}
+.ux-btn .i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#fff;color:#1f2a1a;font-size:11px;font-weight:700}
+.ux-panel{position:absolute;top:50px;right:12px;z-index:31;width:min(380px,calc(100% - 24px));background:#fff;color:#1f2a1a;border:1px solid #d9dccf;border-left:4px solid #a3263a;border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.18);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}
+.ux-panel[hidden]{display:none}
+.ux-panel h4{margin:0 0 8px;font-size:15px;font-weight:700}
+.ux-panel dl{margin:0;display:grid;gap:8px}
+.ux-panel dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#a3263a}
+.ux-panel dd{margin:2px 0 0}
+.ux-all{position:fixed;left:14px;bottom:14px;z-index:60;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:#1f2a1a;border:1px solid #1f2a1a;border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+body.ux-off .ux-btn,body.ux-off .ux-panel{display:none!important}
+</style><script>
+(function(){
+  var D = {"top": {"titel": "Cadeauladder in de bovenbalk", "waarom": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 vijf plus gratis verzending, € 50 theeblik, € 75 mok met zeefje.", "voorwie": "Iedereen die iets in het mandje legt", "oplevert": "De gemiddelde bestelling is € 42. De balk laat steeds zien hoeveel er nog nodig is voor het volgende cadeautje, zodat mensen net iets meer bijpakken. Goedgekeurd door de klant op 28-10."}, "hero": {"titel": "Productblok bovenaan", "waarom": "Wie op een advertentie klikt, ziet meteen de thee zelf: zak, prijs, maten en de knop. Daarnaast het reviewcijfer (9,6 uit 3.536) en \"Onze bestseller\".", "voorwie": "Iedereen uit de advertenties: Smaakontdekker (S6), Supermarkt-Upgrader (S3) en Zoete-Trek-Vervanger (S2)", "oplevert": "Standaard staat 100 gram aan: nieuwe klanten kopen geen kilo. Direct onder de knop staat \"Vaak samen gekocht\" als upsell."}, "erin": {"titel": "Wat zit erin", "waarom": "Laat elk ingrediënt los zien, met de echte stukjes kers. Eerlijk dat er suiker in de kers zit, zodat niemand teleurgesteld raakt.", "voorwie": "Supermarkt-Upgrader (S3): wil zien dat dit geen gruis is", "oplevert": "Neemt het bezwaar \"is dit wel echt fruit?\" weg, en voorkomt klachten over de zoetheid."}, "smaak": {"titel": "Zo smaakt hij", "waarom": "Beschrijft de smaak in gewone woorden, met een klantcitaat (\"friszoet\"). Plus een tip als hij iemand te fris is.", "voorwie": "Smaakontdekker (S6): \"wat als ik hem niet lekker vind?\"", "oplevert": "Haalt de angst voor een miskoop weg. Het proefzakje van € 1,29 staat als vangnet."}, "toetje": {"titel": "Een beetje thee, een beetje toetje", "waarom": "Koppelt Wilde Kers aan het moment na het eten, als vervanging van iets zoets. Plus ijsthee voor de zomer.", "voorwie": "Zoete-Trek-Vervanger (S2)", "oplevert": "Geeft een vast moment om hem te drinken, en zo een reden om terug te komen."}, "zakjes": {"titel": "Supermarktzakje vs. Wilde Kers", "waarom": "Zet het zakje uit de supermarkt naast onze thee: fijngemalen tegenover hele stukjes. Feitelijk, zonder merken te noemen.", "voorwie": "Supermarkt-Upgrader (S3): drinkt nu kersenthee uit een zakje", "oplevert": "Maakt duidelijk waarom losse thee meer kost en waarom dat het waard is."}, "zetten": {"titel": "Zo zet je hem", "waarom": "Drie stappen, zodat losse thee geen gedoe lijkt. Met het thee-ei van € 3,99 er direct bij.", "voorwie": "Iedereen die nog nooit losse thee heeft gezet", "oplevert": "Neemt het bezwaar \"losse thee is gedoe\" weg, en verkoopt het thee-ei mee."}, "reviews": {"titel": "Reviews", "waarom": "Het echte cijfer van WebwinkelKeur: 9,6 uit 3.536 reviews, met de verdeling per ster en een link naar alle reviews.", "voorwie": "Twijfelaars die de winkel nog niet kennen", "oplevert": "Vertrouwen vlak voor het mandje. Alleen echte reviews, niets verzonnen."}, "mix": {"titel": "Andere smaken en Fruitbundel", "waarom": "Laat de smaken zien die klanten echt samen met Wilde Kers kopen (uit GA4), plus de Fruitbundel van 4 smaken voor € 24,99.", "voorwie": "Wie al besloten heeft te kopen", "oplevert": "Ruim de helft van de Wilde Kers-kopers neemt een andere smaak mee. De bundel tilt de bestelling over € 25 (proefzakjes) en richting € 35 (gratis verzending)."}, "faq": {"titel": "Veelgestelde vragen", "waarom": "Beantwoordt de laatste twijfels: is hij zoet of zuur, zit er cafeïne in, wat als ik hem niet lekker vind, en wat kost verzenden.", "voorwie": "Iedereen die nog twijfelt", "oplevert": "Minder vragen aan de klantenservice en minder afhakers vlak voor de koop."}, "final": {"titel": "Laatste oproep", "waarom": "Herhaalt het aanbod met de cadeauladder en een knop, zodat niemand terug hoeft te scrollen.", "voorwie": "Wie de hele pagina heeft gelezen", "oplevert": "Een laatste duwtje naar het mandje, met nog een keer de upsell."}};
+  function el(key){
+    if(key==='top') return document.querySelector('section.gutter:not(.sec)');
+    if(key==='hero') return document.querySelector('section.gutter:not(.sec)');
+    if(key==='final') return document.querySelector('section.sec.final');
+    return document.getElementById(key);
+  }
+  Object.keys(D).forEach(function(key){
+    var host = el(key); if(!host) return;
+    var d = D[key];
+    if(getComputedStyle(host).position==='static') host.style.position='relative';
+    var b = document.createElement('button'); b.type='button'; b.className='ux-btn';
+    b.innerHTML='<span class="i">i</span>Uitleg';
+    var p = document.createElement('div'); p.className='ux-panel'; p.hidden=true;
+    p.innerHTML='<h4></h4><dl><div><dt>Waarom dit blok</dt><dd class="a"></dd></div><div><dt>Voor wie</dt><dd class="b"></dd></div><div><dt>Wat het oplevert</dt><dd class="c"></dd></div></dl>';
+    p.querySelector('h4').textContent=d.titel;
+    p.querySelector('.a').textContent=d.waarom;
+    p.querySelector('.b').textContent=d.voorwie;
+    p.querySelector('.c').textContent=d.oplevert;
+    if(key==='top'){ b.style.right='112px'; b.innerHTML='<span class="i">i</span>Uitleg rode balk'; }
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = p.hidden;
+      document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; });
+      p.hidden = !open;
+    });
+    p.addEventListener('click', function(e){ e.stopPropagation(); });
+    host.appendChild(b); host.appendChild(p);
+  });
+  document.addEventListener('click', function(){ document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; }); });
+  var t = document.createElement('button'); t.type='button'; t.className='ux-all'; t.textContent='Uitleg verbergen';
+  t.addEventListener('click', function(e){ e.stopPropagation(); var off=document.body.classList.toggle('ux-off'); t.textContent = off ? 'Uitleg tonen' : 'Uitleg verbergen'; });
+  document.body.appendChild(t);
+})();
+</script><!--/uitleg-->

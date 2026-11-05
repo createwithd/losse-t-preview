@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<title>Losse-T Hookbank</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: smalle leeskolom, tabbalk per thee, per avatar een blok met eigen hooks (groot) en concurrenten (inklapbaar) */
+:root{
+  --bg:#f7f8f3; --surface:#ffffff; --fg:#2c3227; --muted:#5f6858; --line:#dfe4d6;
+  --sage:#a7bd82; --forest:#526344; --forest-ink:#3f4d34;
+  --cherry:#a3263a; --night:#3e4a6b; --amber:#b8682e;
+  --warn-bg:#fbf1e4; --warn-fg:#7a4a17; --tint:#eef2e6;
+  --display:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161a14; --surface:#1f251c; --fg:#e8ecdf; --muted:#a5ae9a; --line:#323a2c;
+  --sage:#b6cc90; --forest:#a7bd82; --forest-ink:#cfe0b2;
+  --cherry:#e0707f; --night:#9fb0dc; --amber:#e3a06a;
+  --warn-bg:#33281a; --warn-fg:#f0c48f; --tint:#262e22; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161a14; --surface:#1f251c; --fg:#e8ecdf; --muted:#a5ae9a; --line:#323a2c;
+  --sage:#b6cc90; --forest:#a7bd82; --forest-ink:#cfe0b2;
+  --cherry:#e0707f; --night:#9fb0dc; --amber:#e3a06a;
+  --warn-bg:#33281a; --warn-fg:#f0c48f; --tint:#262e22; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.2;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,40px);color:var(--forest-ink)}
+h2{font-size:24px}
+h3{font-size:20px}
+.lead{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ins{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.ins b{display:block;margin-bottom:4px;color:var(--forest-ink)}
+.ins p{margin:0;font-size:14px;color:var(--muted)}
+.ins.alert{background:var(--warn-bg);border-color:transparent}
+.ins.alert b,.ins.alert p{color:var(--warn-fg)}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:10px;z-index:5;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.tab{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 16px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:var(--bg)}
+.tab:focus-visible,.copy:focus-visible,summary:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+
+.panel{display:flex;flex-direction:column;gap:22px}
+.tea-intro{display:flex;flex-direction:column;gap:4px}
+.tea-intro p{margin:0;color:var(--muted);max-width:62ch}
+.avatar{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.av-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.code{font-size:12px;font-weight:600;color:var(--surface);background:var(--c);letter-spacing:.04em;padding:2px 8px;border-radius:999px}
+.comp a{color:var(--forest-ink)}
+.who{margin:0;color:var(--muted);font-size:15px}
+.mech{margin:0;font-size:14px;background:var(--tint);padding:10px 12px;border-radius:8px}
+.mech b{color:var(--forest-ink)}
+.hooks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.hook{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:8px}
+.hook p{margin:0;flex:1;min-width:0;font-size:16px}
+.hook small{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+.copy{flex:none;font:inherit;font-size:13px;font-weight:500;border:1px solid var(--line);background:transparent;color:var(--forest-ink);padding:5px 10px;border-radius:6px;cursor:pointer}
+.copy.done{background:var(--forest);color:var(--bg);border-color:var(--forest)}
+.warn{margin:0;font-size:14px;background:var(--warn-bg);color:var(--warn-fg);padding:10px 12px;border-radius:8px}
+details{border-top:1px solid var(--line);padding-top:10px}
+summary{cursor:pointer;font-size:14px;font-weight:500;color:var(--muted)}
+.comp{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.comp li{font-size:14px;display:grid;grid-template-columns:1fr auto;gap:2px 12px}
+.comp q{font-style:italic}
+.comp .src{color:var(--muted);font-size:12.5px;text-align:right}
+@media (max-width:560px){.comp li{grid-template-columns:1fr}.comp .src{text-align:left}.hook{flex-direction:column}.copy{align-self:flex-start}}
+
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.plan ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.plan ul{margin:0;padding-left:20px;color:var(--muted);font-size:14px}
+footer{font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Losse-T · Meta-ads · NL</div>
+    <h1>Hookbank per doelgroep</h1>
+    <p class="lead">Per doelgroep vind je eerst onze eigen hooks om te gebruiken. Daaronder staan de hooks van concurrenten waar ze op gebaseerd zijn. Bron: Meta Ad Library, 27 oktober 2026.</p>
+  </header>
+
+  <section class="insights" aria-label="Belangrijkste inzichten">
+    <div class="ins"><b>Niemand gebruikt klantreviews</b><p>Theewinkels bewijzen het met "350+ soorten" of "200 jaar". Losse-T heeft een 9,6. Dat is je grootste troef.</p></div>
+    <div class="ins"><b>De avond is vrij</b><p>Alleen Pickwick en Theey adverteren erop. Geen enkele losse-theewinkel heeft een vaste avondcampagne.</p></div>
+    <div class="ins alert"><b>Zachtethee verkoopt ook "Wilde Kers"</b><p>Hun versie is zwarte thee zonder toegevoegde suiker. Die van ons is vruchtenthee met suiker in de kers. Neem hun claims nooit over.</p></div>
+    <div class="ins"><b>Kerstthee: 1 nov – eind dec</b><p>Dan lopen de kerst-ads. Adventskalenders starten al eind augustus, winterthee vanaf half september.</p></div>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Kies een thee" id="tabs"></nav>
+  <main id="panels"></main>
+
+  <section class="plan" aria-labelledby="plan-h">
+    <h2 id="plan-h">Testvolgorde</h2>
+    <ol>
+      <li><b>Nu tot 20 december:</b> Cadeaugever. Vanaf 1 november de Kerstliefhebber erbij. De Gezelligheidsmaker loopt door tot februari.</li>
+      <li><b>Altijd aan:</b> Avond-Ontspanner en Cafeïnevrije Avonddrinker. Test de eerlijke slaap-hook ("Geen wondermiddel…") apart.</li>
+      <li><b>Wilde Kers:</b> Smaakontdekker en Zoetekauw. Start de Supermarkt-Upgrader pas als duidelijk is hoe we ons onderscheiden van Zachtethee.</li>
+      <li><b>Per ad:</b> één hook, één thee groot in beeld, één aanbod (proefzakje, gratis verzending vanaf €35 of cadeauzak).</li>
+    </ol>
+    <h3>Nog navragen bij de klant</h3>
+    <ul>
+      <li>Is Zachtethee een concurrent, of verbonden aan Losse-T?</li>
+      <li>Welk reviewaantal gebruiken we: 1.841 of 3.516?</li>
+      <li>Uiterste besteldata voor Sinterklaas en kerst.</li>
+      <li>Grammen per kop, voor een hook met de prijs per kop.</li>
+    </ul>
+  </section>
+
+  <footer>Regels voor elke hook: de thee bij naam, een herkenbare situatie, een productfeit, klopt met de productpagina, op de grens zoals Pickwick ("ontspannen avond", "tot rust komen"), nooit "helpt slapen", "beter slapen" of "tegen stress".</footer>
+</div>
+
+<script>
+const DATA=[
+ {id:"wilde-kers",tab:"Wilde Kers",color:"var(--cherry)",title:"Wilde Kers Superieur",
+  intro:"Onze best verkochte thee. Vruchtenthee met hibiscus, appel, rozijnen, rozenbottel en stukjes kers. Vol, fruitig en licht fris. Proefzakje €1,29.",
+  avatars:[
+  {code:"S6",name:"De Smaakontdekker",who:"Vrouw 25-55 die graag nieuwe smaken probeert, maar bang is voor een miskoop.",
+   mech:"'Onze populairste' als bewijs, plus een proefzakje als kleine eerste stap.",
+   hooks:[
+    ["Benieuwd naar onze best verkochte thee? Dit is Wilde Kers: vol, fruitig en licht fris. Proef hem eerst, voor €1,29."],
+    ["400 soorten en je weet niet waar je moet beginnen? Begin met de thee die we het meest verkopen: Wilde Kers."],
+    ["Ruik eens: kers, appel en rozenbottel. Wilde Kers is onze nummer 1."],
+    ["Je keek naar Wilde Kers, maar bestelde nog niet. Probeer eerst een proefzakje voor €1,29.","Retargeting"],
+    ["Onze populairste thee in vier woorden: vol, fruitig, licht fris. Wilde Kers."]],
+   comp:[["Onze populairste theeblends morgen in je brievenbus🍃","Thee.be · 15 maanden","2174521403087206"],
+    ["Welke mix past bij jou? Probeer ze allemaal en word verliefd op je nieuwe favoriete thee!","Besser im Glas · proefpakket -18%","1982722958943856"],
+    ["Kun je niet kiezen welke smaak jouw favoriet wordt? Geen stress!","Passie voor Thee · 5 weken","1795814708535946"],
+    ["Je snuffelde rond in ons theewalhalla… maar liep met lege handen weg.","Van Bruggen · 13 maanden","3213686435472774"]]},
+  {code:"S3",name:"De Supermarkt-Upgrader",who:"Vrouw 25-44 die nu kersenthee uit de supermarkt drinkt. Wij tegen de supermarkt.",
+   mech:"Laat het verschil zien: losse stukjes kers tegenover een zakje. Feitelijk, zonder gezondheidsclaim.",
+   hooks:[
+    ["Kersenthee uit een zakje? Kijk eens wat er in Wilde Kers zit: hibiscus, appel, rozenbottel en echte stukjes kers. Dat zie je gewoon."],
+    ["Leg een zakje kersenthee naast een schep Wilde Kers. Je ziet het verschil al voordat je proeft."],
+    ["Op zoek naar échte kersenthee? Wilde Kers: losse vruchtenthee met stukjes kers. Proefzakje €1,29."],
+    ["Alles heel, niks gemalen: appel, rozijnen, rozenbottel en stukjes kers. Dit is Wilde Kers."],
+    ["Van de supermarkt naar losse thee, zonder gedoe: 1 schep Wilde Kers, heet water, klaar."]],
+   warn:"Niet zeggen: \"zonder suiker\", \"geen aroma's\" (er zit aroma in), \"gezonder dan zakjes\". Noem geen merken bij naam. Zachtethee gebruikt deze hoek al met hun eigen Wilde Kers.",
+   comp:[["De kers zit op het doosje. Niet in het zakje.","Zachtethee · actief","1795000228376431"],
+    ["De meeste \"kersenthee\" smaakt naar snoepjes uit een fabriek. Deze niet.","Zachtethee · 7 weken","989916043787983"],
+    ["STOP met theezakjes! ❌","Natuurproduct.com · 5,5 maanden (met gezondheidsclaim)","1314642350152654"],
+    ["Op zoek naar échte thee? 🍃","Thee.be · 6 maanden","923477360014823"]]},
+  {code:"S2",name:"De Zoete-Trek-Vervanger",who:"Vrouw 25-55, een zoetekauw die na het eten iets zoets wil.",
+   mech:"Thee als toetje of traktatie, in korte zinnen met een vast ritme.",
+   hooks:[
+    ["Een beetje thee. Een beetje toetje. Wilde Kers: vol, fruitig en zoet van echte stukjes kers."],
+    ["Na het eten zin in iets zoets? Zet een kop Wilde Kers voordat je de koektrommel pakt."],
+    ["Zoetekauw? Probeer Wilde Kers: fruitig, vol en zoet van stukjes kers."],
+    ["Je toetje van vanavond past in een mok. Wilde Kers, warm of als ijsthee."],
+    ["Vier uur en zin in iets zoets? Wilde Kers in plaats van een koekje."]],
+   comp:[["Een beetje koffie. Een beetje dessert.","Simon Lévelt · actief","993263720468650"],
+    ["🍮 Rooibos Caramel Crumble – Zoet, Warm & Pure Verwennerij!","Theehub · 3 kopieën","4174271402840752"],
+    ["…stukje gevulde speculaas of chocolade erbij 🍫 en een heerlijke kop winterthee","Tijd voor Thee","714415444489154"]]}
+ ]},
+ {id:"avondthee",tab:"Avondthee",color:"var(--night)",title:"Goede Nacht Kruiden & Mooie dromen",
+  intro:"Goede Nacht Kruiden: kamille, citroenmelisse, pepermunt, rozenblaadjes, oranjebloesem, van nature cafeïnevrij. Mooie dromen: zacht, bloemig, fris en licht kruidig.",
+  avatars:[
+  {code:"R1",name:"De Avond-Ontspanner",who:"Vrouw 35-64 die na een drukke dag een vast avondmoment op de bank wil.",
+   mech:"Taal op de grens, net als Pickwick: 'ontspannen avond', 'tot rust komen na een drukke dag', 'dag rustig afsluiten'. Geen belofte over slapen of stress.",
+   hooks:[["Gun jezelf een ontspannen avond met Goede Nacht Kruiden: kamille, citroenmelisse en oranjebloesem."],
+    ["Na een drukke dag even tot rust komen? Zet een pot Goede Nacht Kruiden en sluit je dag rustig af."],
+    ["Sluit je dag rustig af met Mooie dromen: zacht, bloemig en licht kruidig."],
+    ["'Elke avond een kopje', schrijft een klant over haar avondthee. Welke wordt de jouwe?", "Echte NL-review"],
+    ["Jouw ontspannen avondmoment begint bij de waterkoker. Goede Nacht Kruiden, van nature cafeïnevrij."]],
+   comp:[["Unwind met Pickwick Evening Blend 🧘 … om jouw dag rustig af te sluiten.","Pickwick · nov–apr","1654923809027946"],
+    ["Sluit je dag rustig af. ☕","Theehub","1003301819425683"],
+    ["Een vast avondritueel waar inmiddels duizenden klanten voor kiezen om de dag rustig af te sluiten.","Theey · actief sinds aug","27598016473182419"]]},
+  {code:"R3",name:"De Cafeïnevrije Avonddrinker",who:"Iemand van 40+ die overdag gewone thee drinkt, maar 's avonds geen cafeïne wil.",
+   mech:"Cafeïnevrij plus 'perfect als avondthee'. Simpel, en het werkt al een jaar bij Theehub.",
+   hooks:[["Na acht uur nog thee? Goede Nacht Kruiden is van nature cafeïnevrij."],
+    ["Rustig de avond in, zonder cafeïne: Goede Nacht Kruiden."],
+    ["Cafeïnevrij en toch vol van smaak: kamille, citroenmelisse en oranjebloesem. Goede Nacht Kruiden."],
+    ["Overdag Earl Grey, 's avonds Goede Nacht Kruiden. Zelfde mok, geen cafeïne."],
+    ["Perfect als avondthee: Goede Nacht Kruiden, cafeïnevrij en bloemig."]],
+   warn:"Alleen Goede Nacht Kruiden heet op de site \"van nature cafeïnevrij\". Bij Mooie dromen staat het er niet: eerst navragen.",
+   comp:[["Ontdek de pure smaak van rooibos – een zachte, cafeïnevrije thee die altijd en overal past. … Perfect als avondthee","Theehub · bijna 1 jaar, 8 kopieën","775014098693232"],
+    ["Kies uit 16+ biologische blends met en zonder cafeïne.","De Theeplantage","1724423478692446"]]},
+  {code:"R2",name:"De Slaapzoeker",who:"Vrouw 30-60 die beter wil slapen en slaapthee uit de supermarkt niet lekker vond.",
+   mech:"Herken het probleem, maar beloof niks. Daarna het ritueel. Concurrenten noemen slaapthee 'magische thee', dus eerlijk zijn valt op.",
+   hooks:[["Lig je 's avonds nog te malen? Maak er een vast, ontspannen avondritueel van: Goede Nacht Kruiden."],
+    ["Geen wondermiddel, wel een fijne laatste kop van de dag. Goede Nacht Kruiden, cafeïnevrij.", "Eerlijke hook, apart testen"],
+    ["Thee voor het slapengaan die je écht lekker vindt? Proef Mooie dromen eerst, voor €1,29."],
+    ["Het laatste kopje van de dag: kamille, citroenmelisse en oranjebloesem. Rustig de nacht in."],
+    ["Je avondritueel begint bij de waterkoker. Goede Nacht Kruiden: elke avond dezelfde vertrouwde kop."]],
+   warn:"Wel (op de grens): ontspannen avond, tot rust komen, dag rustig afsluiten. Niet: \"helpt je slapen\", \"beter slapen\", \"doorslapen\", \"werkt\". Gebruik geen reviews over het slaapeffect.",
+   comp:[["Lig je 's avonds uitgeput in bed, maar blijf je toch wakker liggen?","Theey · actief","27598016473182419"],
+    ["Wat je nodig hebt, is geen kussen met verkoelende gel of magische thee.","Slaapcoach · maakt slaapthee belachelijk","866629766346899"],
+    ["Schaapjes tellen is verleden tijd met Clipper Snore & Peace.","Clipper · claim, niet overnemen","1296757995629560"]]},
+  {code:"R7",name:"De Ontstresser",who:"Werkende 30-55 bij wie het hoofd na het werk nog vol zit.",
+   mech:"Een modus-schakelaar met een knipoog: werk uit, thee aan. Het moment noemen, niet het effect.",
+   hooks:[["Werkdag erop, hoofd nog vol? Kom tot rust met een pot Mooie dromen."],
+    ["Werkmodus: uit. Kopje Mooie dromen: aan."],
+    ["Even ontspannen na je werkdag: Mooie dromen, zacht, bloemig en licht kruidig."],
+    ["Na de laatste mail: thee. Mooie dromen, om je dag rustig af te sluiten."],
+    ["Gun jezelf een ontspannen moment na een drukke dag. Mooie dromen staat klaar."]],
+   warn:"Wel (op de grens): tot rust komen, even ontspannen. Niet: \"tegen stress\", \"stress weg\", \"kalmerend\". Noem Mooie dromen niet cafeïnevrij: dat is niet bevestigd.",
+   comp:[["🦹‍♀️Supermom-modus: aan! Tijd voor een momentje van rust en kalmte met 100% Kamille, of in elk geval een slokje daarvan. 😅","Zonnatura","1346343020262952"],
+    ["In een wereld die steeds sneller draait, vergeten we vaak even stil te staan.","Koffie Loods · 8 maanden","820682767157413"],
+    ["Midden in Amsterdam. Even weg van de drukte. Tijd voor thee","Het Kleinste Huis · 8 maanden","1137115058387986"]]}
+ ]},
+ {id:"winter",tab:"Winter & kerst",color:"var(--amber)",title:"Openhaard Romance, Winter Sfeer, Sterrenmix & Kerst thee",
+  intro:"Kerst thee is zwarte thee (met cafeïne), met kaneel, sinaasappelschil en anijs. Warm, kruidig en licht zoet, €5,40 per 100 g.",
+  avatars:[
+  {code:"W1",name:"De Gezelligheidsmaker",who:"Vrouw 45-65+ die van herfst en winter een gezellig seizoen maakt.",
+   mech:"Eerst de sfeer en het weer, dan de thee als laatste puzzelstuk.",
+   hooks:[
+    ["Buiten regen, binnen Openhaard Romance: kruidige winterthee met kaneel."],
+    ["Dekentjes uit de kast, kaarsjes aan? Dan mist alleen nog Openhaard Romance."],
+    ["Eerste koude avond? Tijd om Winter Sfeer uit de kast te halen."],
+    ["Koude handen? Warm ze aan een kop Openhaard Romance: kruidig, met kaneel."],
+    ["'Een gezellige thee.' Zo omschrijft een klant Openhaard Romance. Proef zelf.","Echte NL-review"],
+    ["De dagen worden korter, je theekast mag warmer: Openhaard Romance, Winter Sfeer en Sterrenmix."]],
+   comp:[["Regen tegen het raam, kop warme kersenthee in je handen.","Zachtethee · 8 weken","881044641033344"],
+    ["Het cozy seizoen staat weer voor de deur! 🍂✨ … Dan ontbreekt er nog maar één ding","Passie voor Thee · 5 weken","1795814708535946"],
+    ["Winter Chai is de thee die je in november opzet en pas in maart weer wegzet","Ave Teas · 5 weken","1857120145668103"],
+    ["De dagen worden korter en knusser… (verkoopt ook Open Haard Romance)","Theewinkel Stadskanaal","2271669860225409"]]},
+  {code:"W2",name:"De Cadeaugever",who:"Iemand van 25-65 die een cadeau zoekt voor Sinterklaas, kerst, de juf of een collega.",
+   mech:"Maak de ontvanger concreet en stuur op meer smaken of meer gram per bestelling (gemiddelde bestelling ≈ €42). Geen lage prijs als lokkertje: de grens van €35 voor gratis verzending is het anker.",
+   hooks:[
+    ["Nog een cadeautje voor de juf? Kerst thee in een jute cadeauzak: warm, kruidig en licht zoet."],
+    ["Vergeet de standaard bonbons. Geef een thee die naar kerst ruikt: Kerst thee met kaneel, sinaasappelschil en anijs."],
+    ["Eén cadeau, drie smaken: Kerst thee, Openhaard Romance en Winter Sfeer. Stel je eigen winterpakket samen, vanaf €35 gratis verzonden.","Verhoogt de orderwaarde"],
+    ["Iets voor jezelf én een cadeautje? Bestel je eigen winterthee en een tweede zak om weg te geven. Vanaf €35 gratis verzonden.","Twee zakken per bestelling"],
+    ["'Al een keer cadeau gekregen en nu grote zak besteld.' Geef jij Openhaard Romance dit jaar door?","Echte review"],
+    ["Voor je collega, de juf of de buurvrouw: Kerst thee, warm en kruidig. Bestel voor [datum] voor Sinterklaas.","Datum invullen"]],
+   warn:"Niet zeggen: \"morgen in huis\". Dat is niet gegarandeerd, en GLS is de grootste klacht in de reviews. Noem wel een duidelijke uiterste besteldatum.",
+   comp:[["Thee is altijd een goed idee – voor jezelf of een ander!","Van Bruggen · 13 maanden","2186409305170886"],
+    ["Geef een cadeau dat naar meer smaakt.","Simon Lévelt · actief, 7 kopieën","1083993620908885"],
+    ["Vind je perfecte cadeautjes onder €20.","Simon Lévelt · actief","2952279818461191"],
+    ["Verras de juf met een bijzonder thee cadeau!","Tuindreef","1478099666918836"]]},
+  {code:"W9",name:"De Kerstliefhebber",who:"Vrouw 30-65 die van de kerstdagen houdt: de boom, kerstfilms, samen gezellig.",
+   mech:"De geur van kerst plus de kerstrituelen. Losse-T heeft klantcitaten die de concurrenten missen.",
+   hooks:[
+    ["Kerst in je kopje: Kerst thee met kaneel, sinaasappelschil en anijs."],
+    ["De geur van kerst, al voordat je inschenkt. Kerst thee: warm, kruidig en licht zoet."],
+    ["Boom staat, lichtjes branden. Nu nog de thee: Kerst thee, Holy Night of Hollandse Kerstthee."],
+    ["Kerstfilm, dekentje en een pot Hollandse Kerstthee. 'Echt de geur van kerst', zegt een klant.","Echte NL-review"],
+    ["'Je krijgt er direct een kerstgevoel van!' Een klant over onze Kerst thee.","Eerst checken of de reviewer uit NL komt"]],
+   comp:[["De magie van kerst begint in jouw kopje.","The Blue Barn","1191898932808934"],
+    ["De geur van kerst vult het huis. Kaneel, sinaasappel en een vleugje magie","The Blue Barn","812448531632448"],
+    ["Warm de winter op met ons kerst theepakket … Kerst Thee, Holy Night en Hollandse Kerstthee","Passie voor Thee · dezelfde thees als Losse-T","872801658569592"]]}
+ ]},
+ {id:"algemeen",tab:"Algemeen",color:"var(--forest)",title:"Merk-hooks en retargeting",
+  intro:"Voor alle doelgroepen, en om bezoekers terug te halen die nog niet bestelden.",
+  avatars:[
+  {code:"ALL",name:"Merk & retargeting",who:"Alle doelgroepen. Het meest geschikt voor retargeting en lookalikes.",
+   mech:"Identiteit ('gek op thee'), een zachte terughaal-hook en reviews als bewijs.",
+   hooks:[
+    ["Gek op thee? Dan ben je bij ons goed: ruim 400 soorten losse thee, gratis verzonden vanaf €35."],
+    ["Nog aan het twijfelen? Begin klein: een proefzakje kost €1,29.","Retargeting"],
+    ["Onze klanten geven ons een 9,6. Proef waarom.","Reviewaantal eerst laten bevestigen"]],
+   warn:"Een hook met de prijs per kop (zoals Theey: \"€0,24 per kop\") werkt goed. Daarvoor moeten we eerst weten hoeveel gram thee er in een kop gaat.",
+   comp:[["Als jij, net als wij, gek bent op thee, dan ben je hier aan het juiste adres 🍃","Thee.be · sinds juni 2025","1134387872874667"],
+    ["Je snuffelde rond in ons theewalhalla… maar liep met lege handen weg.","Van Bruggen · 13 maanden","3213686435472774"],
+    ["4,4/5 sterren uit 880+ reviews","Theey","27598016473182419"]]}
+ ]}
+];
+
+const tabs=document.getElementById("tabs"),panels=document.getElementById("panels");
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+DATA.forEach(t=>{
+  const b=document.createElement("button");
+  b.className="tab";b.id="tab-"+t.id;b.setAttribute("role","tab");b.setAttribute("aria-controls","p-"+t.id);b.textContent=t.tab;
+  b.addEventListener("click",()=>{location.hash=t.id});
+  tabs.appendChild(b);
+  const p=document.createElement("section");
+  p.className="panel";p.id="p-"+t.id;p.setAttribute("role","tabpanel");p.setAttribute("aria-labelledby","tab-"+t.id);
+  p.innerHTML=`<div class="tea-intro"><h2>${esc(t.title)}</h2><p>${esc(t.intro)}</p></div>`+
+   t.avatars.map(a=>`<article class="avatar" style="--c:${t.color}">
+     <div class="av-head"><span class="code">${a.code}</span><h3>${esc(a.name)}</h3></div>
+     <p class="who">${esc(a.who)}</p>
+     <p class="mech"><b>Wat werkt:</b> ${esc(a.mech)}</p>
+     <div class="eyebrow">Onze hooks</div>
+     <ul class="hooks">${a.hooks.map(h=>`<li class="hook"><p>${esc(h[0])}${h[1]?`<small>${esc(h[1])}</small>`:""}</p><button class="copy" type="button" data-t="${esc(h[0])}">Kopieer</button></li>`).join("")}</ul>
+     ${a.warn?`<p class="warn">⚠️ ${esc(a.warn)}</p>`:""}
+     <details><summary>Zo doen concurrenten het (${a.comp.length})</summary>
+       <ul class="comp">${a.comp.map(c=>`<li><q>${esc(c[0])}</q><span class="src">${esc(c[1])}${c[2]?` · <a href="https://www.facebook.com/ads/library/?id=${c[2]}" target="_blank" rel="noopener">bekijk ad</a>`:""}</span></li>`).join("")}</ul></details>
+   </article>`).join("");
+  panels.appendChild(p);
+});
+function show(){
+  const id=(location.hash||"").slice(1);const cur=DATA.some(t=>t.id===id)?id:DATA[0].id;
+  DATA.forEach(t=>{const on=t.id===cur;document.getElementById("p-"+t.id).hidden=!on;document.getElementById("tab-"+t.id).setAttribute("aria-selected",on)});
+}
+window.addEventListener("hashchange",show);show();
+panels.addEventListener("click",e=>{
+  const b=e.target.closest(".copy");if(!b)return;
+  const done=()=>{b.textContent="Gekopieerd";b.classList.add("done");setTimeout(()=>{b.textContent="Kopieer";b.classList.remove("done")},1500)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(b.dataset.t).then(done,fallback)}catch(err){fallback()}
+});
+</script>

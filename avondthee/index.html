@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Avondthee Salespagina</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: webshop-PDP van Losse-T, mobiel eerst. Header met menu, dealbalk, galerij + koopblok, verhaal-secties, mix-sectie, mandje als zijpaneel, sticky koopbalk op mobiel.
+   Bewust één licht thema (de webshop zelf is licht), alle kleuren expliciet. */
+:root{
+  color-scheme:light;
+  --bg:#fbfaf6; --paper:#ffffff; --cream:#f3efe4; --sage:#a7bd82; --sage-soft:#e7eedb;
+  --forest:#526344; --forest-deep:#3a4730; --ink:#2e332b; --text:#505050; --muted:#767c6f; --line:#e3e2d8;
+  --cherry:#5b7a42; --cherry-deep:#42592f; --cherry-soft:#e6efdc; --gold:#e3a531; /* v02: rood vervangen door het groen van het Losse-T-logo (#9fbc86), verdiept voor witte tekst */
+  --ff:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--ff);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+img,video{max-width:100%;display:block}
+h1,h2,h3{color:var(--ink);line-height:1.2;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(24px,4.4vw,32px);font-weight:700}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+a{color:var(--forest)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sage);outline-offset:2px;border-radius:6px}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1160px;margin:0 auto}
+.narrow{max-width:760px;margin:0 auto}
+
+/* preview + header + menu */
+.preview{background:#22281e;color:#d9e2cc;font-size:12px;text-align:center;padding-block:6px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:#fafafa;border-bottom:1px solid #e6e6e6}
+.top .bar1{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;height:76px}
+.h-left,.h-right{display:flex;align-items:center;gap:10px;min-width:0}
+.h-right{justify-content:flex-end}
+.logo{display:block;line-height:0}
+.logo img{width:clamp(130px,22vw,200px);height:auto}
+.iconbtn{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.iconbtn.plain{border:0;background:none;color:#3d3d3d}
+.search{display:none;align-items:center;gap:10px;width:min(100%,340px);height:42px;border:1px solid #cfcfcf;border-radius:6px;background:#fff;padding:0 12px;color:#6b6b6b}
+.search input{border:0;outline:0;font:inherit;font-size:15px;width:100%;background:none;color:var(--ink)}
+.ks{display:none;color:#3d3d3d;text-decoration:none;font-size:15px}
+.cartbtn{position:relative}
+.cartbtn .n{position:absolute;top:2px;right:0;background:var(--cherry);color:#fff;border-radius:999px;font-size:11px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
+.menu{display:none;border-top:1px solid #e6e6e6;background:#fafafa}
+.menu ul{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:nowrap;justify-content:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.menu ul::-webkit-scrollbar{display:none}
+.menu a{display:block;padding:12px clamp(5px,.75vw,12px);font-size:clamp(12.5px,1vw,15px);font-weight:400;color:#3d3d3d;text-decoration:none;white-space:nowrap}
+.menu a:hover{color:var(--forest)}
+.menu a[aria-current="page"]{color:var(--forest);font-weight:500}
+@media(min-width:1080px){.menu{display:block}#menuBtn{display:none}.search{display:flex}.ks{display:inline}}
+.mnav{position:fixed;inset:0;z-index:70;background:rgba(20,24,18,.4);display:none}
+.mnav.open{display:block}
+.mnav .panel{position:absolute;inset:0 auto 0 0;width:min(86vw,340px);background:var(--paper);padding:calc(16px + env(safe-area-inset-top,0px)) 16px 24px max(16px,env(safe-area-inset-left,0px));overflow:auto;display:flex;flex-direction:column;gap:6px}
+.mnav .panel a{padding:12px 10px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:500}
+.mnav .panel a[aria-current="page"]{color:var(--forest);font-weight:700}
+.deal{background:var(--cherry);color:#fff;padding-block:9px 8px}
+.dealrow{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:6px 22px}
+.dtext{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;white-space:nowrap}
+.dbar{position:relative;height:8px;border-radius:99px;background:rgba(255,255,255,.28);margin-bottom:30px;margin-right:30px}
+.dbar i{position:absolute;inset:0;border-radius:99px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .45s ease-out}
+.dbar em{position:absolute;top:-3px;transform:translateX(-50%);font-style:normal;font-size:11px;line-height:1.15;white-space:nowrap;text-align:center;color:rgba(255,255,255,.85)}
+.dbar em::before{content:"";display:block;width:14px;height:14px;margin:0 auto 4px;border-radius:50%;background:var(--cherry);border:2px solid rgba(255,255,255,.7)}
+.dbar em b{display:block;font-weight:700;color:#fff;font-size:11.5px}
+#m75{transform:translateX(-80%)}#m75::before{margin-left:auto;margin-right:12%}
+.dbar em.done::before{background:#fff;border-color:#fff}
+@media(max-width:760px){.deal{padding-block:5px 6px}.dealrow{grid-template-columns:1fr;gap:4px}.dtext{justify-content:center;font-size:12.5px}.dtext svg{width:13px;height:13px}.dbar{height:3px;margin:0}.dbar em{display:none}}
+.crumbs{font-size:13px;color:var(--muted);padding-top:14px}
+.crumbs a{color:var(--muted);text-decoration:none}
+
+/* hero */
+.hero{display:grid;gap:22px;padding-block:12px 8px}
+@media(min-width:900px){.hero{grid-template-columns:1.1fr 1fr;gap:44px;padding-block:20px 16px;align-items:start}}
+.gallery{display:flex;flex-direction:column;gap:10px;min-width:0}
+.stage{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--cream)}
+.stage img,.stage video{width:100%;height:100%;object-fit:cover}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.thumbs button{position:relative;aspect-ratio:1;border:2px solid transparent;border-radius:10px;overflow:hidden;padding:0;background:var(--cream)}
+.thumbs button[aria-pressed="true"]{border-color:var(--forest)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .play{position:absolute;inset:auto 4px 4px auto;background:rgba(0,0,0,.6);color:#fff;border-radius:999px;width:20px;height:20px;display:grid;place-items:center;font-size:10px}
+
+/* labels op foto's */
+.pin{position:absolute;z-index:2;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);color:var(--ink);font-size:12.5px;font-weight:600;padding:5px 10px 5px 6px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.14);white-space:nowrap;transform:translate(-50%,-50%)}
+.pin::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--cherry);box-shadow:0 0 0 3px var(--cherry-soft)}
+.cap{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.cap b{display:block;font-size:clamp(20px,3.6vw,26px);line-height:1.15;font-weight:700}
+.cap span{font-size:14px;font-weight:500}
+.shade::after{content:"";position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(to top,rgba(20,16,12,.62),transparent);z-index:1;pointer-events:none}
+.ref{position:absolute;left:10px;top:10px;background:rgba(20,24,18,.78);color:#fff;font-size:11px;font-weight:500;letter-spacing:.03em;padding:4px 9px;border-radius:999px;z-index:3}
+.vslabel{position:absolute;top:12px;z-index:2;background:rgba(255,255,255,.94);color:var(--ink);font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+
+.buy{display:flex;flex-direction:column;gap:16px;min-width:0;scroll-margin-top:132px}
+.badge{align-self:flex-start;background:var(--cherry);color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+.buy h1{font-size:clamp(34px,7vw,48px);font-weight:700}
+.sub{font-size:17px;color:var(--ink)}
+.rating{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px}
+.stars{color:var(--gold);letter-spacing:2px}
+.stock{color:var(--forest);font-weight:500;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#4f9a3c}
+fieldset{border:0;margin:0;padding:0}
+legend{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.sizes label{position:relative;display:flex;flex-direction:column;gap:1px;border:1.5px solid var(--line);border-radius:12px;padding:10px 10px 9px;background:var(--paper);cursor:pointer;min-height:58px}
+.sizes input{position:absolute;opacity:0;pointer-events:none}
+.sizes .w{font-weight:600;color:var(--ink);font-size:14.5px}
+.sizes .p{font-size:13.5px;font-variant-numeric:tabular-nums}
+.sizes .pp{font-size:11.5px;color:var(--forest);font-weight:600}
+.sizes .tag{position:absolute;top:-9px;right:8px;background:var(--forest);color:#fff;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:999px}
+.sizes label:has(input:checked){border-color:var(--forest);background:var(--sage-soft);box-shadow:inset 0 0 0 1px var(--forest)}
+.sizes label:has(input:focus-visible){outline:3px solid var(--sage);outline-offset:2px}
+.nudge{font-size:13.5px;background:var(--cream);border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.nudge button{border:0;background:none;color:var(--forest);font-weight:600;text-decoration:underline;padding:0;font-size:13.5px;flex:none}
+.accs{display:flex;flex-direction:column;gap:6px}
+.acc{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:6px 10px 6px 6px;background:var(--paper);cursor:pointer}
+.acc:has(input:checked){border-color:var(--forest);background:var(--sage-soft)}
+.acc img{width:42px;height:42px;border-radius:8px;object-fit:cover;flex:none;background:#fff}
+.acc span{flex:1;min-width:0;font-size:14px;line-height:1.3}
+.acc small{display:block;color:var(--muted);font-size:12px}
+.acc input{width:22px;height:22px;accent-color:var(--forest);flex:none}
+.addon{display:flex;align-items:center;gap:12px;border:1.5px dashed var(--sage);border-radius:12px;padding:8px 12px 8px 8px;background:var(--paper);cursor:pointer}
+.addon img{width:56px;height:56px;border-radius:9px;object-fit:cover;flex:none}
+.addon .t{flex:1;min-width:0;font-size:14.5px;line-height:1.35}
+.addon small{display:block;color:var(--muted);font-size:12.5px}
+.addon input{width:22px;height:22px;accent-color:var(--forest);flex:none}
+.row{display:flex;gap:10px;align-items:stretch}
+.qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--paper)}
+.qty button{width:42px;height:54px;border:0;background:none;font-size:20px;color:var(--ink)}
+.qty output{min-width:22px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.cta{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border:0;border-radius:12px;background:var(--cherry);color:#fff;font-weight:600;font-size:16.5px;transition:background .2s}
+.cta:hover{background:var(--cherry-deep)}
+.cta .amt{font-variant-numeric:tabular-nums;opacity:.9;font-weight:500}
+.trylink{font-size:14.5px;text-align:center}
+.trylink button{background:none;border:0;color:var(--forest);text-decoration:underline;text-underline-offset:3px;font-weight:500;padding:4px}
+.dealbox{border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:10px 12px 8px;display:flex;flex-direction:column;gap:7px;font-size:13.5px}
+.dealbox .head{color:var(--cherry-deep);font-weight:600}
+.bar{height:7px;border-radius:99px;background:var(--cream);overflow:hidden}
+.bar i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--cherry),var(--cherry-deep));transition:transform .35s ease-out}
+.steps3{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.st span img{width:26px;height:26px;border-radius:6px;object-fit:cover;display:block;margin-bottom:3px}
+.st{display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.3;color:var(--muted)}
+.st i{display:block;height:6px;border-radius:99px;background:var(--cream);overflow:hidden;margin-bottom:5px}
+.st i b{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:var(--cherry);transition:transform .35s ease-out}
+.st strong{font-size:13px;color:var(--ink)}
+.st.done strong{color:var(--cherry-deep)}
+.st.done strong::after{content:" ✓"}
+.perks{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13.5px}
+.perks li{display:flex;gap:8px;align-items:center}
+.perks li::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--cherry);flex:none}
+.perks li.done::before{background:var(--cherry) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat}
+.dealbox .hint button{background:none;border:0;padding:0;color:var(--cherry-deep);font-weight:600;text-decoration:underline;font-size:13.5px}
+.combo{border:1.5px solid var(--forest);background:var(--sage-soft);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.combo .ch b{display:block;color:var(--ink);font-size:14.5px}
+.combo .ch span{font-size:12.5px;color:var(--text)}
+.combo .ch .btag{color:#fff;font-size:10.5px}
+.cimgs{display:flex;align-items:flex-start;gap:4px}
+.cimgs figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:3px;width:60px}
+.cimgs figcaption{font-size:10.5px;line-height:1.15;text-align:center;color:var(--ink)}
+.btag{display:inline-block;background:var(--forest);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:4px}
+.cimgs img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.cimgs i{font-style:normal;color:var(--forest);font-weight:700;margin-top:18px}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cfoot span{font-size:14px;color:var(--ink);line-height:1.3}
+.cfoot s{color:var(--muted);font-size:13px}
+.cfoot .bp{color:var(--cherry);font-size:17px}
+.cfoot small{display:block;font-size:12px;color:var(--forest)}
+.cfoot button{border:0;background:var(--forest);color:#fff;border-radius:10px;padding:0 16px;min-height:46px;font-weight:600;flex:none}
+.cfoot button.added{background:var(--cherry)}
+.mini{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mini-h{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;color:var(--ink)}
+.mini-h button{background:none;border:0;padding:0;color:var(--forest);font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.mc{flex:0 0 128px;scroll-snap-align:start;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:6px 6px 8px;display:flex;flex-direction:column;gap:3px}
+.mc img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:8px;background:#fff}
+.mc .nm{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.25;min-height:2.5em}
+.mc .pr{font-size:12px;font-variant-numeric:tabular-nums}
+.mc button{position:absolute;top:6px;right:6px;width:32px;height:32px;border-radius:50%;border:0;background:var(--forest);color:#fff;font-size:19px;line-height:1;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.mc button.added{background:var(--cherry)}
+.mc .k{position:absolute;left:10px;top:10px;font-size:10px;font-weight:600;color:var(--cherry);background:var(--cherry-soft);padding:1px 6px;border-radius:999px}
+.trust{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+.trust li{display:flex;align-items:center;gap:10px}
+.trust svg{flex:none;color:var(--forest)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding-block:14px 6px}
+html{scroll-behavior:smooth}
+.sec{scroll-margin-top:150px}
+.chips a{text-decoration:none;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14.5px;font-weight:500;min-height:44px;display:inline-flex;align-items:center}
+.chips a:hover{border-color:var(--forest)}
+
+/* secties */
+.sec{padding-block:56px}
+.sec.alt{background:var(--cream)}
+.split{display:grid;gap:26px;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1fr 1fr;gap:48px}.split.flip>.media,.split.flip>.duo{order:2}}
+.copy{display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--forest)}
+.media{position:relative;border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.media img,.media video{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo .media img,.duo .media video{aspect-ratio:3/4}
+.small{font-size:13px;color:var(--muted)}
+.quote{background:var(--paper);border-radius:12px;padding:14px 16px;font-style:italic;color:var(--ink)}
+.quote cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:4px}
+.taste{display:grid;gap:10px;max-width:360px}
+.taste div{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--ink)}
+.pips{display:flex;gap:5px}
+.pips i{width:100%;height:9px;border-radius:99px;background:var(--line)}
+.pips i.on{background:var(--cherry)}
+#zakjes .split{align-items:center}
+#zakjes .media{align-self:center}
+#zakjes .media img{height:auto;aspect-ratio:auto}
+.vslabel.no{background:#fff;color:var(--muted)}
+.vslabel.yes{background:var(--cherry);color:#fff}
+.pin.no::before{background:#9a9a9a;box-shadow:0 0 0 3px #e8e8e8;content:"✕";color:#fff;font-size:8px;display:grid;place-items:center;width:14px;height:14px}
+.pin.big{font-size:14px;padding:7px 12px 7px 8px}
+.pin.yes::before{background:var(--forest);box-shadow:0 0 0 3px var(--sage-soft);content:"✓";color:#fff;font-size:9px;display:grid;place-items:center;width:14px;height:14px}
+@media(max-width:600px){.pin{font-size:11px;padding:3px 8px 3px 4px;gap:4px}.pin::before{width:8px;height:8px;box-shadow:0 0 0 2px var(--cherry-soft)}.pin.big{font-size:12px;padding:4px 9px 4px 5px}.pin.no::before,.pin.yes::before{width:12px;height:12px}.pin .dl{display:none}.vslabel{font-size:11px!important;padding:5px 9px!important;top:10px!important}}
+.vt{display:grid;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);font-size:14px}
+.vr{display:grid;grid-template-columns:.9fr 1fr 1.2fr}
+.vr>span{padding:7px 10px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.35}
+.vr>span:first-child{font-weight:600;color:var(--ink)}
+.vh>span{border-top:0;font-weight:700;color:var(--ink);font-size:12.5px;padding-block:8px}
+.vh>span:last-child{background:var(--cherry);color:#fff}
+.vr>span:last-child{background:var(--sage-soft)}
+.vh>span:last-child{background:var(--cherry)}
+.vsh .them{color:var(--muted)}
+.vsh em{font-style:normal;font-size:.6em;font-weight:600;color:var(--muted);vertical-align:.2em;margin:0 .15em}
+.vsh .us{color:var(--cherry)}
+.vr.big>span{font-size:15px;padding-block:10px}
+.vr.big .v{font-weight:700;color:var(--cherry-deep)}
+.vwist{background:var(--paper);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--text)}
+.vwist b{color:var(--ink)}
+.vq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vq p{background:var(--paper);border-radius:12px;padding:12px 14px;font-style:italic;color:var(--ink);font-size:14.5px}
+.vq cite{display:block;font-style:normal;font-size:12.5px;color:var(--muted);margin-top:4px}
+@media(max-width:480px){.vq{grid-template-columns:1fr}}
+.x{color:var(--muted)}.x::before{content:"✕ ";color:#9a9a9a;font-weight:700}
+.v{color:var(--ink);font-weight:500}.v::before{content:"✓ ";color:var(--forest);font-weight:700}
+@media(max-width:480px){.vr{grid-template-columns:1fr 1fr}.vr>span:first-child{grid-column:1/-1;padding-bottom:0;border-top:1px solid var(--line)}.vr>span:not(:first-child){border-top:0}.vh>span:first-child{display:none}}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vs div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14.5px}
+.vs div:last-child{border-color:var(--forest);background:var(--sage-soft)}
+.vs b{display:block;color:var(--ink);margin-bottom:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;counter-increment:s}
+.steps li::before{content:counter(s);flex:none;width:32px;height:32px;border-radius:50%;background:var(--forest);color:#fff;font-weight:600;display:grid;place-items:center}
+.eggcard{display:flex;align-items:center;gap:14px;background:var(--paper);border:1.5px dashed var(--sage);border-radius:12px;padding:10px}
+.eggcard img{width:72px;height:72px;border-radius:10px;object-fit:cover}
+.eggcard div{flex:1;min-width:0;font-size:14.5px;line-height:1.4}
+.eggcard button,.pc button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;padding:6px 14px;font-weight:600;font-size:13.5px;min-height:42px;flex:none}
+.eggcard button.added,.pc button.added{background:var(--forest);color:#fff}
+
+/* reviews */
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.score b{font-size:64px;color:var(--forest);line-height:1;font-weight:700}
+.score span{font-size:15px;color:var(--ink);line-height:1.45}
+.proof{display:grid;gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+@media(min-width:860px){.proof{grid-template-columns:auto 1fr;align-items:center;column-gap:40px}.proof .wwk{grid-column:1/-1}}
+.dist{display:grid;gap:6px;min-width:0}
+.dist div{display:grid;grid-template-columns:34px 1fr 46px;align-items:center;gap:10px;font-size:13.5px}
+.dist span{color:var(--ink);font-weight:500}
+.dist i{height:10px;border-radius:99px;background:var(--cream);position:relative;overflow:hidden}
+.dist i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--gold);border-radius:99px}
+.dist em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.wwk{justify-self:start;font-weight:600;color:var(--forest);text-underline-offset:3px}
+.reviews{display:grid;gap:12px}
+@media(min-width:700px){.reviews{grid-template-columns:1fr 1fr}}
+.rv{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.rv p{color:var(--ink)}
+.rv span{font-size:13px;color:var(--muted)}
+.rv.feature{grid-column:1/-1;border-color:var(--cherry)}
+.ugc{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;max-width:340px;margin-inline:auto}
+.ugc .media video{aspect-ratio:9/16}
+
+/* mix */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500;min-height:42px}
+.filters button[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.mix{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:760px){.mix{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1040px){.mix{grid-template-columns:repeat(4,1fr)}}
+.pc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pc img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:10px}
+.pc h3{font-size:15px;line-height:1.3}
+.pc p{font-size:12.5px;line-height:1.45}
+.pc .foot{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:auto}
+.pc .price{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;font-size:14px}
+.pc .kers{align-self:flex-start;font-size:11px;font-weight:600;color:var(--cherry);background:var(--cherry-soft);padding:2px 8px;border-radius:999px}
+.mixbar{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--forest-deep);color:#e9efdf;border-radius:12px;padding:14px 16px;font-size:14.5px}
+.mixbar b{color:#fff}
+
+.feat{display:grid;gap:18px;background:var(--sage-soft);border:1.5px solid var(--forest);border-radius:var(--r);padding:16px;align-items:center}
+@media(min-width:860px){.feat{grid-template-columns:1.1fr 1fr;padding:22px;gap:30px}}
+.fimgs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.fimgs img{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border-radius:12px;border:1px solid var(--line)}
+.ftxt{display:flex;flex-direction:column;gap:10px}
+.ftxt .btag{align-self:flex-start}
+.ftxt h3{font-size:26px}
+.fprice{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.fprice s{color:var(--muted)}
+.fprice b{font-size:28px;color:var(--cherry)}
+.fprice span{font-size:14px;color:var(--forest);font-weight:600}
+.mixhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.mixhead h3{font-size:20px}
+.mix{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+@media(min-width:700px){.mix{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:1000px){.mix{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+.pc img{max-height:150px;margin:0 auto}
+.pc{transition:opacity .2s}
+.pc.dim{opacity:.4}
+.pc .chips2{display:flex;flex-wrap:wrap;gap:4px}
+.pc .chips2 i{font-style:normal;font-size:11px;background:var(--cream);color:var(--ink);padding:1px 7px;border-radius:999px}
+.accrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:860px){.accrow{grid-template-columns:repeat(4,1fr)}}
+.ac{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px}
+.ac img{width:56px;height:56px;object-fit:contain;background:#fff;border-radius:8px;flex:none}
+.ac span{flex:1;min-width:0;font-size:13.5px;line-height:1.3}
+.ac button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;width:36px;height:36px;font-size:18px;flex:none}
+.ac button.added{background:var(--forest);color:#fff}
+.tr{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0 16px;margin-bottom:8px}
+.faq summary{cursor:pointer;font-weight:600;color:var(--ink);padding:15px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:20px;color:var(--forest);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 16px}
+
+.final{background:var(--forest-deep);color:#e9efdf;text-align:center}
+.final h2{color:#fff}
+.final .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.ghost{min-height:54px;border-radius:12px;border:1.5px solid #cfdcbd;background:transparent;color:#fff;font-weight:600;padding:0 22px}
+footer{font-size:12.5px;color:var(--muted);padding-block:26px 110px;text-align:center}
+
+/* sticky + mandje */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.06);padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .25s ease-out}
+.sticky.show{transform:none}
+.sticky .wrap{display:flex;align-items:center;gap:12px}
+.sticky .lbl{flex:1;min-width:0;font-size:13px;line-height:1.3}
+.sticky .lbl b{display:block;color:var(--ink);font-size:15px}
+.sticky .cta{flex:1;padding:0 18px;min-height:46px;font-size:15px}
+@media(min-width:900px){.sticky{display:none}footer{padding-bottom:30px}}
+.drawer{position:fixed;inset:0;z-index:80;background:rgba(20,24,18,.4);display:none}
+.drawer.open{display:block}
+.drawer .panel{position:absolute;inset:0 0 0 auto;width:min(92vw,400px);background:var(--paper);display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) 16px;gap:14px}
+.drawer .ph{display:flex;align-items:center;justify-content:space-between}
+.lines{list-style:none;margin:0;padding:0;overflow:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.lines li{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.lines li.gift{color:var(--cherry-deep);font-weight:500}
+.lines .empty{color:var(--muted);border:0}
+.ups{max-height:38vh;overflow:auto}
+.ups h4{margin:0 0 6px;font-size:14px;color:var(--ink)}
+.ups .u{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:13.5px}
+.ups .u img{width:42px;height:42px;object-fit:contain;border-radius:8px;background:#fff;flex:none}
+.ups .u span{flex:1;min-width:0;line-height:1.3}
+.ups .u button{border:1.5px solid var(--forest);background:var(--paper);color:var(--forest);border-radius:999px;padding:4px 12px;font-weight:600;font-size:13px;min-height:36px}
+.ups .u button.added{background:var(--forest);color:#fff}
+.tot{display:flex;justify-content:space-between;font-weight:700;color:var(--ink);font-size:16px}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.2s ease-out;z-index:90;max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<style>
+/* avond-aanvullingen: themakeuze, nachtsectie, ritueel */
+:root{--night:#1f2433;--night-2:#2a3044;--moon:#f2e3b3;--gnk:#e2b93b;--md:#e7a3ae}
+body[data-tea="gnk"] .m, body[data-tea="md"] .g{display:none!important}
+.eyebrow2{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--forest);margin-bottom:-8px}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pick label{position:relative;display:flex;gap:9px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:8px;background:var(--paper);cursor:pointer;min-height:64px}
+.pick input{position:absolute;opacity:0;pointer-events:none}
+.pick img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none}
+.pick b{display:block;font-size:14px;line-height:1.25;color:var(--ink)}
+.pick small{display:block;font-size:12px;line-height:1.3;color:var(--muted)}
+.pick label:has(input:checked){border-color:var(--forest);background:var(--sage-soft);box-shadow:inset 0 0 0 1px var(--forest)}
+.pick label:has(input:focus-visible){outline:3px solid var(--sage);outline-offset:2px}
+.prate{font-size:13px;color:var(--muted)}
+.tt{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px;background:var(--paper);gap:2px;align-self:flex-start;max-width:100%}
+.tt button{border:0;background:none;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--ink);min-height:38px}
+.tt button[aria-pressed="true"]{background:var(--forest);color:#fff}
+.two{display:grid;gap:12px}
+@media(min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.tc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.tc h3{display:flex;align-items:center;gap:8px;font-size:17px}
+.tc h3 i{width:16px;height:16px;border-radius:50%;flex:none}
+.tc .taste div{grid-template-columns:64px 1fr}
+.tc .pips i.on{background:var(--forest)}
+.caf{display:flex;gap:12px;align-items:center;background:var(--sage-soft);border:1.5px solid var(--forest);border-radius:12px;padding:12px 14px;font-size:14.5px;color:var(--ink)}
+.caf svg{flex:none;color:var(--forest)}
+.night{background:var(--night);color:#d7dbe8}
+.night h2,.night h3{color:#fff}
+.night .eyebrow{color:var(--moon)}
+.night .small{color:#a9b0c5}
+.hookq{font-size:clamp(26px,5vw,40px);font-weight:700;color:#fff;line-height:1.15;max-width:22ch}
+.rit{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:620px){.rit{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.rit{grid-template-columns:repeat(4,1fr)}}
+.rit article{background:var(--night-2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.rit .media{border-radius:0;background:#141824}
+.rit .media img,.rit .media video{aspect-ratio:4/5}
+.rit .tx{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px}
+.rit .n{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--moon)}
+.rit h3{font-size:17px}
+.rit p{font-size:14.5px;color:#c5cad9}
+.nightquote{display:grid;gap:18px;align-items:center}
+@media(min-width:860px){.nightquote{grid-template-columns:1fr 1fr;gap:44px}}
+.honest{background:var(--night-2);border-radius:12px;padding:12px 14px;font-style:italic;color:#e6e8f0}
+.honest .small{font-style:normal}
+.zetkaart{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.zetkaart div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.zetkaart b{display:block;font-size:20px;color:var(--ink)}
+.zetkaart span{font-size:12.5px;color:var(--muted)}
+.pscore{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink)}
+.pscore b{color:var(--ink)}
+.rv .ab{font-size:12px;color:var(--forest);font-weight:600}
+@media(max-width:600px){.accrow{grid-template-columns:1fr}}
+</style>
+
+<header class="top">
+  <div class="gutter"><div class="wrap bar1">
+    <div class="h-left">
+      <button class="iconbtn plain" id="menuBtn" type="button" aria-label="Menu openen" aria-controls="mnav" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="q" placeholder="Zoeken" aria-label="Zoeken"></label>
+    </div>
+    <a class="logo" href="#top" aria-label="Losse-T"><img src="img/logo.png" alt="Losse-T" width="200" height="51"></a>
+    <div class="h-right">
+      <a class="ks" href="#">Klantenservice</a>
+      <button class="iconbtn plain" type="button" aria-label="Account"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.2-4 4.4-6 8-6s6.8 2 8 6"/></svg></button>
+      <button class="iconbtn plain cartbtn" type="button" id="cartBtn" aria-controls="drawer" aria-expanded="false" aria-label="Winkelmandje"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="n" id="cartCount">0</span><span id="cartTotal" hidden>€ 0,00</span></button>
+    </div>
+  </div></div>
+  <nav class="menu gutter" aria-label="Hoofdmenu"><ul>
+    <li><a href="#">Groene Thee</a></li><li><a href="#">Zwarte Thee</a></li><li><a href="#" aria-current="page">Kruiden</a></li>
+    <li><a href="#">Vruchten Melanges</a></li><li><a href="#">Rooibos</a></li><li><a href="#">Witte Thee</a></li>
+    <li><a href="#">Special Tea's</a></li><li><a href="#">Oolong</a></li><li><a href="#">Thee accessoires</a></li>
+    <li><a href="#">Koffie &amp; Chocolade</a></li><li><a href="#">Cadeau's</a></li><li><a href="#">Nieuw</a></li>
+  </ul></nav>
+  <div class="deal gutter" aria-live="polite"><div class="wrap dealrow">
+    <span class="dtext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M12 9v11M4 13h16M12 9c-2-4-6-4-6-1.5S10 9 12 9c2 0 6 .9 6-1.5S14 5 12 9"/></svg><span id="dealText">Nog € 25,00 tot 2 gratis proefzakjes</span></span>
+    <div class="dbar" aria-hidden="true"><i id="dealFill"></i>
+      <em id="m25" style="left:33.33%"><b>€ 25</b>2 proefzakjes</em>
+      <em id="m35" style="left:46.67%"><b>€ 35</b>5 + gratis verz.</em>
+      <em id="m50" style="left:66.67%"><b>€ 50</b>theeblik</em>
+      <em id="m75" style="left:100%"><b>€ 75</b>mok</em>
+    </div>
+  </div></div>
+</header>
+
+<div class="mnav" id="mnav"><nav class="panel" aria-label="Menu">
+  <button class="iconbtn" type="button" id="menuClose" aria-label="Menu sluiten" style="align-self:flex-end">✕</button>
+  <a href="#">Groene Thee</a><a href="#">Zwarte Thee</a><a href="#" aria-current="page">Kruiden</a><a href="#">Vruchten Melanges</a><a href="#">Rooibos</a><a href="#">Witte Thee</a><a href="#">Special Tea's</a><a href="#">Oolong</a><a href="#">Thee accessoires</a><a href="#">Koffie &amp; Chocolade</a><a href="#">Cadeau's</a><a href="#">Nieuw</a>
+</nav></div>
+
+<main id="top">
+  <section class="gutter">
+    <div class="wrap crumbs"><a href="#">Home</a> › <a href="#">Kruiden</a> › Avondthee</div>
+    <div class="wrap hero">
+      <div class="gallery">
+        <div class="stage" id="stage"></div>
+        <div class="thumbs" role="group" aria-label="Foto's en video">
+          <button type="button" aria-pressed="true" data-i="0" aria-label="De avondthee los en in de kop"><img id="th0" src="img/H01.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-i="1" aria-label="Slaapthee in een zakje tegenover Goede Nacht Kruiden"><img src="img/H05.jpg" alt=""></button>
+          <button type="button" aria-pressed="false" data-i="2" aria-label="Video: je kopje voor het slapengaan"><img id="th2" src="vid/V1-stoom.jpg" alt=""><span class="play" aria-hidden="true">▶</span></button>
+          <button type="button" aria-pressed="false" data-i="3" aria-label="Video: even helemaal uit op de bank"><img src="vid/V3-bank.jpg" alt=""><span class="play" aria-hidden="true">▶</span></button>
+          <button type="button" aria-pressed="false" data-i="4" aria-label="Goede Nacht Kruiden en Mooie dromen naast elkaar"><img src="img/P4.jpg" alt=""></button>
+        </div>
+      </div>
+
+      <div class="buy">
+        <span class="badge">Van nature cafeïnevrij</span>
+        <span class="eyebrow2">Jouw avondthee</span>
+        <h1 id="h1">Goede Nacht Kruiden</h1>
+        <p class="sub g">Rustgevende kruidenthee met kamille, citroenmelisse en sinaasappelbloesem. Zacht, bloemig en fris. Jouw kopje voor het slapengaan.</p>
+        <p class="sub m">Rustgevende kruidenthee met citroenmelisse, rozenbloesem, kamille en een vleugje kardemom. Zacht, bloemig en licht kruidig. Jouw laatste kop van de dag.</p>
+        <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span><a href="https://www.webwinkelkeur.nl/webshop/losse-t-nl_1214392" target="_blank" rel="noopener" style="color:inherit"><b>9,6</b> uit <b>3.536 reviews</b></a><span class="stock"><span class="dot"></span>Op voorraad · Direct leverbaar</span></div>
+
+        <fieldset>
+          <legend>Kies je avondthee</legend>
+          <div class="pick">
+            <label><input type="radio" name="tea" value="gnk" checked><img src="img/gnk-3.jpg" alt=""><span><b>Goede Nacht Kruiden</b><small>Bloemig en fris · zet goudgeel</small><small class="prate">★ 4,65 · 14 reviews</small></span></label>
+            <label><input type="radio" name="tea" value="md"><img src="img/md-3.jpg" alt=""><span><b>Mooie dromen thee</b><small>Zacht, licht kruidig · zet roze</small><small class="prate">★ 4,25 · 17 reviews</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Kies je formaat</legend>
+          <div class="sizes" id="sizes"></div>
+        </fieldset>
+        <div class="nudge" id="nudge"><span>Vaste klanten nemen hem per kilo: <b id="kiloPer">€ 5,62 per 100 g</b>.</span><button type="button" id="toKilo">Kies 1 kg</button></div>
+
+        <fieldset class="accs">
+          <legend>Maak het compleet</legend>
+          <label class="acc"><img src="img/thee-ei.jpg" alt=""><span><b>Thee-ei</b> · € 3,99<small>Vullen, in je mok hangen, klaar</small></span><input type="checkbox" data-name="Thee-ei" data-price="3.99"></label>
+          <label class="acc"><img src="img/u-lepel.jpg" alt=""><span><b>Maatlepel 1 kopje</b> · € 4,99<small>Ook om tien uur 's avonds precies genoeg</small></span><input type="checkbox" data-name="Maatlepel 1 kopje" data-price="4.99"></label>
+          <label class="acc"><img src="img/u-filters.jpg" alt=""><span><b>Theefilterzakjes</b> · € 3,25<small>Na afloop weggooien, geen afwas</small></span><input type="checkbox" data-name="Theefilterzakjes Tbar XS" data-price="3.25"></label>
+        </fieldset>
+
+        <div class="row">
+          <div class="qty" aria-label="Aantal"><button type="button" id="minus" aria-label="Eén minder">−</button><output id="qty">1</output><button type="button" id="plus" aria-label="Eén meer">+</button></div>
+          <button class="cta" type="button" id="addBtn">In mijn mandje <span class="amt" id="addAmt">€ 7,50</span></button>
+        </div>
+
+        <div class="combo">
+          <div class="ch"><span class="btag">Bundel</span><b>Avondbundel</b><span>Beide avondtheeën + de twee kruidentheeën die er het vaakst bij worden gekocht. Alle vier cafeïnevrij.</span></div>
+          <div class="cimgs"><figure><img src="img/gnk-2.jpg" alt=""><figcaption>Goede Nacht Kruiden</figcaption></figure><i>+</i><figure><img src="img/md-2.jpg" alt=""><figcaption>Mooie dromen</figcaption></figure><i>+</i><figure><img src="img/m-innerlijke-rust.jpg" alt=""><figcaption>Innerlijke rust</figcaption></figure><i>+</i><figure><img src="img/m-kamillebloesem.jpg" alt=""><figcaption>Kamille&shy;bloesem</figcaption></figure></div>
+          <div class="cfoot"><span>4 × 100 g · <s>€ 27,49</s> <b class="bp">€ 24,99</b><small>+ 2 proefzakjes cadeau</small></span><button type="button" id="comboBtn">Voeg bundel toe</button></div>
+        </div>
+
+        <div class="mini">
+          <div class="mini-h"><b>Vaak samen gekocht</b><button type="button" id="toMix">Alle smaken ↓</button></div>
+          <div class="strip" id="strip" role="list" aria-label="Vaak samen gekocht"></div>
+        </div>
+
+        <ul class="trust">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Gratis verzending vanaf € 35 in Nederland</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.8 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>9,6 uit 3.536 reviews bij WebwinkelKeur</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg>Proefzakjes van andere smaken cadeau vanaf € 25</li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="wrap chips" aria-label="Over de avondthee">
+      <a href="#erin">Ingrediënten</a>
+      <a href="#smaak">Welke past bij jou?</a>
+      <a href="#ritueel">Jouw avondritueel</a>
+      <a href="#zakjes">Zakje of los</a>
+      <a href="#zetten">Zo zet je hem</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#mix">Andere smaken</a>
+      <a href="#faq">Vragen</a>
+    </nav>
+  </section>
+
+  <section class="sec gutter" id="erin">
+    <div class="wrap split">
+      <div class="media">
+        <div class="g" style="position:relative">
+          <img src="img/H03.jpg" alt="De ingrediënten van Goede Nacht Kruiden in losse schaaltjes" loading="lazy">
+          <span class="pin" style="left:33%;top:20%">Kruizemunt</span>
+          <span class="pin" style="left:70%;top:23%">Kamillebloesem</span>
+          <span class="pin" style="left:22%;top:44%">Citroenmelisse</span>
+          <span class="pin" style="left:80%;top:47%">Bramenblad</span>
+          <span class="pin" style="left:22%;top:74%">Aardbeiblad</span>
+          <span class="pin" style="left:56%;top:93%">Rozenblaadjes</span>
+          <span class="pin" style="left:76%;top:79%">Sinaasappel&shy;bloesem</span>
+        </div>
+        <div class="m" style="position:relative">
+          <img src="img/H04.jpg" alt="De ingrediënten van Mooie dromen thee in losse schaaltjes" loading="lazy">
+          <span class="pin" style="left:27%;top:15%">Druiven</span>
+          <span class="pin" style="left:76%;top:18%">Rozenbottel</span>
+          <span class="pin" style="left:82%;top:36%">Venkel</span>
+          <span class="pin" style="left:18%;top:51%">Jasmijn</span>
+          <span class="pin" style="left:82%;top:55%">Lemongrass</span>
+          <span class="pin" style="left:18%;top:69%">Salie</span>
+          <span class="pin" style="left:80%;top:74%">Rozenknopjes</span>
+          <span class="pin" style="left:54%;top:90%">Kamille</span>
+          <span class="pin" style="left:78%;top:92%">Kardemom</span>
+        </div>
+      </div>
+      <div class="copy">
+        <span class="eyebrow">Wat zit erin</span>
+        <div class="tt" role="group" aria-label="Kies een avondthee"><button type="button" data-tea="gnk" aria-pressed="true">Goede Nacht Kruiden</button><button type="button" data-tea="md" aria-pressed="false">Mooie dromen thee</button></div>
+        <h2 class="g">Zeven kruiden en bloemen. Alles heel.</h2>
+        <h2 class="m">Twaalf ingrediënten, één zachte kop</h2>
+        <p class="g">Kamille en citroenmelisse zijn al generaties de klassiekers in avondthee. In Goede Nacht Kruiden komen daar kruizemunt, bramen- en aardbeiblad, rozenblaadjes en sinaasappelbloesem bij. Open de zak en je ziet de kamillebloemetjes gewoon zitten.</p>
+        <p class="m">Citroenmelisse en kamille als basis, rozenbloesem en jasmijn voor het bloemige, en venkel, kardemom en een snufje nootmuskaat voor het lichte kruidige. De druiven maken hem zacht van smaak.</p>
+        <p class="small g">Kruizemunt, kamillebloesem, citroenmelisse, bramenbladeren, aardbeibladeren, rozenblaadjes, sinaasappelbloesem. Van nature cafeïnevrij. Geen valeriaan.</p>
+        <p class="small m">Druiven, citroenmelisse, rozenbottelschil, venkel, lemongrass, rozenbloesem, kardemom, kamillebloesem, pepermuntblaadjes, salieblaadjes, jasmijnbloesem, stukjes nootmuskaat. Cafeïnevrij. Geen valeriaan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="smaak">
+    <div class="wrap split flip">
+      <div class="media shade"><img src="img/P4.jpg" alt="Goede Nacht Kruiden en Mooie dromen naast elkaar, met een goudgele en een roze kop thee" loading="lazy"><div class="cap"><b>Goudgeel of zacht roze</b><span>Allebei cafeïnevrij</span></div></div>
+      <div class="copy">
+        <span class="eyebrow">Welke past bij jou?</span>
+        <h2>Bloemig en fris, of zacht en licht kruidig</h2>
+        <p>Twijfel je tussen de twee? Dat doen meer mensen: 50 klanten namen ze vorig jaar allebei in één bestelling.</p>
+        <div class="two">
+          <div class="tc"><h3><i style="background:var(--gnk)"></i>Goede Nacht Kruiden</h3>
+            <div class="taste" aria-label="Smaakprofiel Goede Nacht Kruiden">
+              <div>Bloemig<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+              <div>Fris<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+              <div>Kruidig<span class="pips"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+              <div>Zoet<span class="pips"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+            </div>
+            <p class="small">Voor wie van kamille houdt, met een frisse rand van munt.</p>
+            <p class="quote" style="padding:10px 12px;font-size:14px">"Vertrouwde geur en smaak"<cite>Astrid, klant</cite></p>
+          </div>
+          <div class="tc"><h3><i style="background:var(--md)"></i>Mooie dromen thee</h3>
+            <div class="taste" aria-label="Smaakprofiel Mooie dromen thee">
+              <div>Bloemig<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+              <div>Fris<span class="pips"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+              <div>Kruidig<span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+              <div>Zoet<span class="pips"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div>
+            </div>
+            <p class="small">Zachter en ronder, met kardemom en druiven. Lekker met een lepel honing.</p>
+            <p class="quote" style="padding:10px 12px;font-size:14px">"Zacht en zoet"<cite>Rinus, klant</cite></p>
+          </div>
+        </div>
+        <div class="caf"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 9h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h2a2 2 0 0 1 0 4h-2"/><path d="M3 3l18 18"/></svg><span><b>Na 18:00 geen cafeïne meer?</b> Dan zit je goed. Overdag je gewone thee, 's avonds een van deze twee. Er zit geen theeblad in, alleen kruiden, bloemen en fruit.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec night gutter" id="ritueel">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:30px">
+      <div class="nightquote">
+        <div class="copy">
+          <span class="eyebrow">Jouw avondritueel</span>
+          <p class="hookq">Lig je 's avonds moe in bed, maar blijft je hoofd maar doorgaan?</p>
+          <p>Herkenbaar. Een kop thee is geen wondermiddel, en dat gaan we je ook niet beloven. Wat wel helpt om tot rust te komen: elke avond hetzelfde rustige moment. Vaste tijd, schermen weg, iets warms in je handen. Goede Nacht Kruiden en Mooie dromen thee zijn gemaakt voor precies dat moment.</p>
+          <p class="honest">"Lekkere thee ziet er ook goed uit, of ik er mooi van droom kan ik nog niet zeggen."<br><span class="small">Nicole, klant, over Mooie dromen thee</span></p>
+        </div>
+        <div class="media shade"><video src="vid/V3-bank.mp4" poster="vid/V3-bank.jpg" autoplay muted loop playsinline aria-label="Vrouw op de bank met een kop avondthee onder een deken"></video><div class="cap"><b>Dit kwartier is van jou</b><span>Kinderen in bed, keuken aan kant</span></div></div>
+      </div>
+      <h2>Zo maak je er een ritueel van, in 4 stappen</h2>
+      <div class="rit">
+        <article><div class="media"><video src="vid/V5-laptop.mp4" poster="vid/V5-laptop.jpg" autoplay muted loop playsinline aria-label="Man klapt zijn laptop dicht en schenkt thee in"></video></div><div class="tx"><span class="n">Stap 1 · Na het avondeten</span><h3>Laptop dicht, water aan</h3><p>Het geluid van de waterkoker is je teken: de werkdag is klaar.</p></div></article>
+        <article><div class="media"><img src="img/H10.jpg" alt="Thee-ei met Goede Nacht Kruiden kleurt het water goudgeel" loading="lazy"></div><div class="tx"><span class="n">Stap 2 · Een uur voor bed</span><h3>Zet je avondthee</h3><p>1 tot 2 theelepels in een thee-ei, water van 100 °C, 5 tot 10 minuten.</p></div></article>
+        <article><div class="media"><img src="img/H11.jpg" alt="Vrouw om 23:30 in bed op haar telefoon" loading="lazy"></div><div class="tx"><span class="n">Stap 3 · Telefoon weg</span><h3>Om 23:30 nog aan het scrollen?</h3><p>Leg je telefoon aan de lader in de keuken en doe het grote licht uit.</p></div></article>
+        <article><div class="media"><img src="img/H06.jpg" alt="Nachtkastje met leeslamp, boek, kop thee en de zak Goede Nacht Kruiden" loading="lazy"></div><div class="tx"><span class="n">Stap 4 · Kopje mee naar bed</span><h3>De laatste kop van de dag</h3><p>Boek erbij, leeslamp aan. Je slaapmutsje zit in een kopje.</p></div></article>
+      </div>
+      <div class="split" style="align-items:center">
+        <div class="media shade"><video src="vid/V4-slapen.mp4" poster="vid/V4-slapen.jpg" autoplay muted loop playsinline aria-label="Vrouw slaapt, lege mok op het nachtkastje, het lampje dimt"></video><div class="cap"><b>Lamp uit. Goede nacht.</b></div></div>
+        <div class="copy">
+          <h3>Waarom een vast moment?</h3>
+          <p>Ook slaapexperts raden een avondritueel aan waar je van geniet. Het is nooit dat ene dingetje dat alles oplost, wel een vaste gewoonte die je volhoudt. Dan moet de thee wel lekker zijn, anders hou je het niet vol. Daarom: eerst proeven welke van de twee jouw kop wordt.</p>
+          <p class="small">Wij beloven geen effect op je slaap. We beloven een avondthee die je elke avond lekker vindt.</p>
+          <button class="cta" type="button" id="ritCta" style="flex:none;align-self:flex-start;padding:0 22px">Kies jouw avondthee</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="zakjes">
+    <div class="wrap split flip">
+      <div class="media"><img src="img/H05.jpg" alt="Een theezakje uit de supermarkt naast een schep losse Goede Nacht Kruiden" loading="lazy"><span class="vslabel no" style="left:12px">Slaapthee in een zakje</span><span class="vslabel yes" style="right:12px">Goede Nacht Kruiden</span><span class="pin no" style="left:25%;top:35%">Slap van kleur</span><span class="pin no" style="left:28%;top:64%">Fijngemalen<span class="dl">, in een papiertje</span></span><span class="pin yes" style="left:80%;top:30%">Goudgeel</span><span class="pin yes big" style="left:72%;top:50%">Zacht, bloemig en fris</span><span class="pin yes" style="left:74%;top:88%">Hele kamillebloemen</span></div>
+      <div class="copy">
+        <span class="eyebrow">Slaapthee uit de supermarkt viel tegen?</span>
+        <h2 class="vsh"><span class="them">Slaapthee in een zakje</span> <em>vs.</em> <span class="us">Goede Nacht Kruiden</span></h2>
+        <div class="vt" role="table" aria-label="Slaapthee in een zakje tegenover Goede Nacht Kruiden">
+          <div class="vr vh" role="row"><span></span><span>Slaapthee in een zakje</span><span>Goede Nacht Kruiden</span></div>
+          <div class="vr big" role="row"><span>Smaak</span><span class="x">Vaak vlak: heet water met een geurtje</span><span class="v">Zacht, bloemig en fris</span></div>
+          <div class="vr" role="row"><span>De thee</span><span class="x">Fijngemalen, in een papiertje</span><span class="v">Hele kamillebloemen en blaadjes die je ziet</span></div>
+          <div class="vr" role="row"><span>Ingrediënten</span><span class="x">Zie je niet</span><span class="v">7 kruiden en bloemen, van kamille tot sinaasappelbloesem</span></div>
+          <div class="vr" role="row"><span>Sterkte</span><span class="x">Eén zakje, één sterkte</span><span class="v">Jij bepaalt: 1 of 2 theelepels</span></div>
+          <div class="vr" role="row"><span>Eerst proberen</span><span class="x">Een heel doosje kopen</span><span class="v">Vanaf een proefzakje van € 1,29</span></div>
+          <div class="vr" role="row"><span>Keuze</span><span class="x">Wat in het schap ligt</span><span class="v">2 avondtheeën en ruim 40 kruidentheeën</span></div>
+          <div class="vr" role="row"><span>Extra</span><span class="muted">–</span><span class="v">Proefzakjes cadeau vanaf € 25</span></div>
+        </div>
+        <p class="small vwist"><b>Wist je dat?</b> 44% van de theedrinkers drinkt thee tussen het avondeten en het slapengaan. Bij vrouwen is dat zelfs de helft (Nationaal koffie- en theeonderzoek 2024). De avond is hét theemoment.</p>
+        <div class="vq">
+          <p>"Proefzakje genomen omdat ik van de meeste slaapthee niet heel blij word."<cite>Sabine, klant</cite></p>
+          <p>"Heerlijke thee, vooral in de avond."<cite>Conny, klant</cite></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="zetten">
+    <div class="wrap split">
+      <div class="duo">
+        <div class="media shade"><video src="vid/SV2-thee-ei.mp4" poster="vid/SV2-thee-ei.jpg" autoplay muted loop playsinline aria-label="Thee-ei met avondthee kleurt het water goudgeel"></video><div class="cap"><b>1-2 theelepels</b><span>per kop</span></div></div>
+        <div class="media g"><video src="vid/V1-stoom.mp4" poster="vid/V1-stoom.jpg" autoplay muted loop playsinline aria-label="Dampende kop Goede Nacht Kruiden bij de leeslamp"></video></div>
+        <div class="media m"><video src="vid/V2-inschenken.mp4" poster="vid/V2-inschenken.jpg" autoplay muted loop playsinline aria-label="Mooie dromen thee wordt ingeschonken"></video></div>
+      </div>
+      <div class="copy">
+        <span class="eyebrow">Zo zet je hem</span>
+        <h2>Klaar terwijl jij je tanden poetst</h2>
+        <div class="zetkaart">
+          <div><b class="g">1-2</b><b class="m">1</b><span>theelepel per kop</span></div>
+          <div><b>100 °C</b><span>kokend water</span></div>
+          <div><b>5-10</b><span>minuten trekken</span></div>
+        </div>
+        <ol class="steps">
+          <li>Doe de thee in een thee-ei of filterzakje.</li>
+          <li>Giet er water van 100 °C op.</li>
+          <li>Laat hem 5 tot 10 minuten trekken. Langer is voller.</li>
+        </ol>
+        <p class="small">Uit 100 gram haal je ruim 25 koppen. Dat is minder dan 30 cent per kop.</p>
+        <div class="eggcard"><img src="img/thee-ei.jpg" alt="Thee-ei van rvs"><div><b>Nog geen thee-ei?</b><br>Thee-ei van rvs · € 3,99</div><button type="button" id="eggInline">Voeg toe</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="reviews">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:22px">
+      <div class="copy">
+        <span class="eyebrow">Wat klanten zeggen</span>
+        <h2>3.536 klanten gingen je voor</h2>
+        <div class="proof">
+          <div class="score"><b>9,6</b><span>gemiddeld uit <strong>3.536 reviews</strong> bij WebwinkelKeur<br>738 daarvan in het afgelopen jaar</span></div>
+          <div class="dist" aria-label="Verdeling van de sterren">
+            <div><span>5 ★</span><i style="--w:85.9%"></i><em>3.022</em></div>
+            <div><span>4 ★</span><i style="--w:11.2%"></i><em>393</em></div>
+            <div><span>3 ★</span><i style="--w:1.4%"></i><em>50</em></div>
+            <div><span>2 ★</span><i style="--w:0.5%"></i><em>17</em></div>
+            <div><span>1 ★</span><i style="--w:1%"></i><em>34</em></div>
+          </div>
+          <a class="wwk" href="https://www.webwinkelkeur.nl/webshop/losse-t-nl_1214392" target="_blank" rel="noopener">Lees alle 3.536 reviews op WebwinkelKeur →</a>
+        </div>
+        <div class="pscore"><span><span class="stars">★★★★★</span> <b>4,65</b> uit 14 reviews · Goede Nacht Kruiden</span><span><span class="stars">★★★★☆</span> <b>4,25</b> uit 17 reviews · Mooie dromen thee</span></div>
+      </div>
+      <div class="reviews">
+        <div class="rv feature"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"Heerlijke thee wij deinken m s avonds en slapen er leker op"</p><span>Carool · <span class="ab">over Mooie dromen thee</span></span></div>
+        <div class="rv"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"heerlijke thee, vooral in de avond"</p><span>Conny · <span class="ab">over Goede Nacht Kruiden</span></span></div>
+        <div class="rv"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"Vertrouwde geur en smaak"</p><span>Astrid · <span class="ab">over Goede Nacht Kruiden</span></span></div>
+        <div class="rv"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"Heerlijke thee En mooie dromen toe"</p><span>Amanda · <span class="ab">over Mooie dromen thee</span></span></div>
+        <div class="rv"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"Zeer goed en smaakvol"</p><span>Ria · <span class="ab">over Goede Nacht Kruiden</span></span></div>
+        <div class="rv"><span class="stars" aria-label="4 sterren">★★★★☆</span><p>"Heerlijke thee, doe er wel iets honing bij."</p><span>Cobie · <span class="ab">over Mooie dromen thee</span></span></div>
+        <div class="rv"><span class="stars" aria-label="5 sterren">★★★★★</span><p>"Heerlijke thee voor een goede prijs. Ga hier zeker vaker bestellen!"</p><span>Michael · <span class="ab">over Goede Nacht Kruiden</span></span></div>
+      </div>
+      <p class="small">Letterlijk overgenomen van de productpagina's op losse-t.nl.</p>
+    </div>
+  </section>
+
+  <section class="sec gutter" id="mix">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:22px">
+      <div class="copy">
+        <span class="eyebrow">Andere smaken</span>
+        <h2>Maak er een avondvoorraad van</h2>
+        <p>Wie avondthee bestelt, neemt er vaak iets bij: de gemiddelde bestelling met Goede Nacht Kruiden of Mooie dromen thee is ruim € 53. Dit zijn de smaken die het vaakst samen worden gekocht.</p>
+      </div>
+
+      <div class="feat">
+        <div class="fimgs"><img src="img/gnk-2.jpg" alt="Goede Nacht Kruiden"><img src="img/md-2.jpg" alt="Mooie dromen thee"><img src="img/m-innerlijke-rust.jpg" alt="Innerlijke rust"><img src="img/m-kamillebloesem.jpg" alt="Kamillebloesem"></div>
+        <div class="ftxt">
+          <span class="btag">Bundel</span>
+          <h3>Avondbundel</h3>
+          <p>Goede Nacht Kruiden, Mooie dromen thee, Innerlijke rust en Kamillebloesem. Elke avond een andere, alle vier van nature cafeïnevrij, elk 100 g.</p>
+          <div class="fprice"><s>€ 27,49</s> <b>€ 24,99</b><span>+ 2 proefzakjes cadeau</span></div>
+          <button class="cta" type="button" id="comboMix" style="flex:none;align-self:flex-start;padding:0 22px">Voeg Avondbundel toe</button>
+        </div>
+      </div>
+
+      <div class="mixhead"><h3>Of kies zelf je smaken</h3>
+        <div class="filters" role="group" aria-label="Filter smaken">
+          <button type="button" aria-pressed="true" data-f="samen">Vaak samen gekocht</button>
+          <button type="button" aria-pressed="false" data-f="zacht">Zacht en bloemig</button>
+          <button type="button" aria-pressed="false" data-f="warm">Warm en kruidig</button>
+        </div>
+      </div>
+      <div class="mix" id="mixGrid"></div>
+
+      <div class="mixhead"><h3>Handig erbij</h3></div>
+      <div class="accrow" id="accRow"></div>
+    </div>
+  </section>
+
+  <section class="sec alt gutter" id="faq">
+    <div class="narrow faq">
+      <h2 style="margin-bottom:18px">Veelgestelde vragen</h2>
+      <details><summary>Helpt slaapthee echt?</summary><p>Eerlijk antwoord: thee is geen wondermiddel, en wij beloven niet dat je er beter van slaapt. Kamille en citroenmelisse zijn al generaties de klassiekers in avondthee. Wat veel mensen helpt om tot rust te komen, is een vast avondritueel: elke avond hetzelfde moment, schermen weg, iets warms. Voor dat moment hebben we deze twee theeën.</p></details>
+      <details><summary>Zit er cafeïne in?</summary><p>Nee. Goede Nacht Kruiden is van nature cafeïnevrij, Mooie dromen thee ook. Er zit geen theeblad in, alleen kruiden, bloemen en fruit.</p></details>
+      <details><summary>Zit er valeriaan in?</summary><p>Nee, in geen van beide. Bij "Wat zit erin" staan alle ingrediënten.</p></details>
+      <details><summary>Wat is het verschil tussen de twee?</summary><p>Goede Nacht Kruiden is bloemig en fris, met kamille en een frisse rand van kruizemunt. Hij zet goudgeel. Mooie dromen thee is zachter en licht kruidig, met kardemom, venkel en druiven. Hij zet zacht roze. Kun je niet kiezen? In de Avondbundel zitten ze allebei.</p></details>
+      <details><summary>Mag ik dit drinken als ik zwanger ben of medicijnen gebruik?</summary><p>Twijfel je, overleg dan even met je verloskundige, huisarts of apotheek. Neem de ingrediëntenlijst mee, die staat bij "Wat zit erin".</p></details>
+      <details><summary>Hoeveel koppen haal ik uit 100 gram?</summary><p>Ruim 25. Je gebruikt 1 tot 2 theelepels per kop. Dat is minder dan 30 cent per kop.</p></details>
+      <details><summary>Hoe werkt de cadeauladder?</summary><p>Vanaf € 25 doen we 2 proefzakjes van andere smaken cadeau. Vanaf € 35 worden het er 5 en verzenden we gratis. Vanaf € 50 krijg je een theeblik om je thee in te bewaren, en vanaf € 75 ook een mok met zeefje.</p></details>
+      <details><summary>Wat als ik hem niet lekker vind?</summary><p>Begin met 50 gram of een proefzakje van € 1,29. Dan weet je het zeker voordat je een grotere zak neemt.</p></details>
+      <details><summary>Wat kost verzenden?</summary><p>Gratis vanaf € 35 in Nederland, anders € 4,95.</p></details>
+    </div>
+  </section>
+
+  <section class="sec final gutter">
+    <div class="narrow">
+      <h2>Klaar voor je avondritueel?</h2>
+      <p style="margin-top:10px">Kies je avondthee, of neem ze allebei in de Avondbundel. Vanaf € 25 krijg je 2 proefzakjes cadeau, vanaf € 35 zelfs 5 en verzenden we gratis.</p>
+      <div class="btns"><button class="cta" type="button" id="finalBtn" style="flex:none;padding:0 26px">In mijn mandje · 100 g · € 7,50</button><button class="ghost" type="button" id="comboFinal">Neem de Avondbundel · € 24,99</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="gutter">Preview voor Losse-T, oktober 2026. Productfoto's: losse-t.nl. Overige foto's en video's zijn eigen AI-beelden op basis van de echte melanges en de echte zak. Reviews letterlijk van losse-t.nl (alleen Nederlandse reviewers uitgelicht). De cadeauladder (€ 25: 2 proefzakjes, € 35: 5 + gratis verzending, € 50: theeblik, € 75: mok met zeefje) is akkoord.</footer>
+
+<div class="sticky gutter" id="sticky" aria-hidden="true">
+  <div class="wrap">
+    <button class="cta" type="button" id="stickyAdd">Kies jouw avondthee</button>
+  </div>
+</div>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Je mandje"><div class="panel">
+  <div class="ph"><h3>Je mandje</h3><button class="iconbtn" type="button" id="drawerClose" aria-label="Mandje sluiten">✕</button></div>
+  <ul class="lines" id="lines"></ul>
+  <div class="ups"><h4>Vaak samen gekocht</h4><div id="drawerUps"></div></div>
+  <div class="dealbox"><div class="head"><span id="drawerDeal">Nog € 25,00 tot 2 gratis proefzakjes</span></div><div class="bar"><i id="drawerBar"></i></div></div>
+  <div class="tot"><span>Totaal</span><span id="drawerTot">€ 0,00</span></div>
+  <button class="cta" type="button" style="flex:none">Afrekenen</button>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const eur=v=>"€ "+v.toFixed(2).replace(".",",");
+const EGG=3.99, BUNDEL="Avondbundel";
+const lines=[]; let qty=1;
+
+/* de twee avondtheeën */
+const TEA={
+ gnk:{n:"Goede Nacht Kruiden",hero:"img/H01.jpg",vid:"vid/V1-stoom",kilo:"€ 5,62 per 100 g",
+   sizes:[["Proefzakje",1.29],["50 g",4.10],["100 g",7.50],["250 g",18.70],["1 kg",56.15,"€ 5,62 / 100 g"]],
+   pins:[["Hele kamillebloemetjes",34,74],["Rozenblaadjes en sinaasappelbloesem",42,88],["Goudgeel in je kop",72,30]],
+   cap:["Je kopje voor het slapengaan","Zacht, bloemig en fris"]},
+ md:{n:"Mooie dromen thee",hero:"img/H02.jpg",vid:"vid/V2-inschenken",kilo:"€ 4,72 per 100 g",
+   sizes:[["Proefzakje",1.29],["50 g",3.45],["100 g",6.30],["250 g",15.70],["1 kg",47.15,"€ 4,72 / 100 g"]],
+   pins:[["Rozenknopjes en druiven",34,68],["Venkel en kardemom",40,86],["Zacht roze",72,30]],
+   cap:["De laatste kop van de dag","Zacht, bloemig en licht kruidig"]}
+};
+let cur="gnk";
+function renderSizes(){
+  const t=TEA[cur];
+  $("#sizes").innerHTML=t.sizes.map((s,i)=>`<label${s[2]?' class="best"':''}><input type="radio" name="size" value="${s[1]}" data-name="${s[0]}"${i===2?" checked":""}${s[2]?' id="kilo"':''}>${s[2]?'<span class="tag">Favoriet</span>':''}<span class="w">${s[0]}</span><span class="p">${eur(s[1])}</span>${s[2]?`<span class="pp">${s[2]}</span>`:''}</label>`).join("");
+  $$('input[name="size"]').forEach(r=>r.addEventListener("change",refreshAmt));
+  $("#kiloPer").textContent=t.kilo;
+}
+function setTea(k){
+  cur=k; document.body.dataset.tea=k;
+  $("#h1").textContent=TEA[k].n;
+  $$('input[name="tea"]').forEach(r=>r.checked=r.value===k);
+  $$(".tt button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.tea===k));
+  $("#th0").src=TEA[k].hero; $("#th2").src=TEA[k].vid+".jpg";
+  $("#finalBtn").textContent=`In mijn mandje · 100 g · ${eur(TEA[k].sizes[2][1])}`;
+  renderSizes(); refreshAmt(); show(curSlide);
+}
+
+/* galerij met labels */
+let curSlide=0;
+function slide(i){
+  const t=TEA[cur];
+  return [
+   {img:t.hero,alt:t.n+" los en in de kop",pins:t.pins},
+   {img:"img/H05.jpg",alt:"Een theezakje uit de supermarkt naast Goede Nacht Kruiden",vs:true},
+   {video:t.vid+".mp4",poster:t.vid+".jpg",cap:t.cap},
+   {video:"vid/V3-bank.mp4",poster:"vid/V3-bank.jpg",cap:["Dit kwartier is van jou","Elke avond hetzelfde moment"]},
+   {img:"img/P4.jpg",alt:"Goede Nacht Kruiden en Mooie dromen naast elkaar",pins:[["Goudgeel",22,82],["Zacht roze",80,82]]}
+  ][i];
+}
+function show(i){
+  curSlide=i; const s=slide(i), st=$("#stage");
+  if(s.video){ st.classList.add("shade"); st.innerHTML=`<video src="${s.video}" poster="${s.poster}" autoplay muted loop playsinline></video>`+(s.cap?`<div class="cap"><b>${s.cap[0]}</b><span>${s.cap[1]}</span></div>`:""); return; }
+  st.classList.remove("shade");
+  st.innerHTML=`<img src="${s.img}" alt="${s.alt}">`+(s.pins||[]).map(p=>`<span class="pin" style="left:${p[1]}%;top:${p[2]}%">${p[0]}</span>`).join("")+
+    (s.vs?`<span class="vslabel no" style="left:12px">Slaapthee in een zakje</span><span class="vslabel yes" style="right:12px">Goede Nacht Kruiden</span><span class="pin no" style="left:25%;top:35%">Slap van kleur</span><span class="pin no" style="left:28%;top:64%">Fijngemalen<span class="dl">, in een papiertje</span></span><span class="pin yes" style="left:80%;top:30%">Goudgeel</span><span class="pin yes big" style="left:72%;top:50%">Zacht, bloemig en fris</span><span class="pin yes" style="left:74%;top:88%">Hele kamillebloemen</span>`:"");
+}
+$$(".thumbs button").forEach(b=>b.onclick=()=>{ $$(".thumbs button").forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); show(+b.dataset.i); });
+$$('input[name="tea"]').forEach(r=>r.addEventListener("change",()=>setTea(r.value)));
+$$(".tt button").forEach(b=>b.onclick=()=>setTea(b.dataset.tea));
+
+/* mix-grid (GA4: vaak samen gekocht met Goede Nacht Kruiden en Mooie dromen thee) */
+const P=(n,p,img,d,t,f)=>({n,p,img:"img/m-"+img+".jpg",d,t,f:f||[]});
+const MIX=[
+ P("Innerlijke rust",7.70,"innerlijke-rust","Hibiscus, gember, kaneel en kamille. Warm, kruidig en bloemig.",["Kruidig","Bloemig"],["top","bundel"]),
+ P("Kamillebloesem",5.99,"kamillebloesem","Hele kamillebloemen. Mild en zacht.",["Bloemig","Mild"],["top","bundel"]),
+ P("Stress Weg",7.20,"stress-weg","Fris en fruitig, met perzik, lemongrass en sinaasappelbloesem.",["Fris","Fruitig"],["top"]),
+ P("Winter Sfeer",5.70,"winter-sfeer","Appel, citrus en kaneel. Warm en kruidig.",["Warm","Kruidig"]),
+ P("Openhaard Romance",6.50,"openhaard-romance","Rooibos met appel, kaneel en cacao.",["Rooibos","Warm"]),
+ P("Vitamini",7.30,"vitamini-thee-kruiden-vruchtenthee","Hibiscus, granaatappel en citroengras. Fris en fruitig.",["Fris","Fruitig"]),
+ P("Rooibos Drakenvuur",8.85,"rooibos-drakenvuur","Rooibos met vijg en drakenvrucht. Zacht en fruitig.",["Rooibos","Fruitig"]),
+ P("Bij Weer en Wind thee",6.25,"door-weer-en-wind-thee","Zachte anijs en kruiden, vol van smaak.",["Kruidig","Anijs"]),
+ P("Sinaasappel Chai",5.95,"sinaasappel-chai","Rooibos met sinaasappel, gember en kardemom.",["Rooibos","Kruidig"]),
+ P("Kruiden Chai",5.70,"kruiden-chai","Koriander, kaneel, gember en pepermunt.",["Kruidig","Warm"])
+];
+const SETS={samen:MIX,
+zacht:[MIX[1],
+ P("Lavendel",9.45,"lavendel","Puur lavendelbloesem. Bloemig en zacht.",["Bloemig"]),
+ P("Verveine Fijn",9.80,"verbena","Hele verveinebladeren met een frisse citrustoets.",["Fris","Citrus"]),
+ P("Venkel",3.75,"venkel","Licht zoet en anijsachtig.",["Mild","Anijs"]),
+ P("Kruizemunt",5.05,"kruizemunt","Frisse, zachte munt.",["Fris","Munt"]),
+ P("Achterhoeks Kruidentuintje",8.10,"achterhoeks-kruidentuintje","Verbena, citroenmelisse en sinaasappel.",["Fris","Bloemig"]),
+ P("Citroengras Thee",3.60,"citroengras","Puur citroengras. Fris en zacht.",["Fris"]),
+ P("Tovenaarskruiden",5.65,"tovenaarskruiden","Venkel, kamille, citroengras en zoethout.",["Mild","Zoet"]),
+ MIX[2],MIX[5]],
+warm:[MIX[0],
+ P("Sterrenmix",7.80,"sterrenmix","Anijs, venkel en steranijs. Zacht en kruidig.",["Kruidig","Anijs"]),
+ MIX[9],MIX[7],
+ P("Rooibos Vanille",6.05,"rooibos-vanille","Rooibos met vanille. Zacht en romig.",["Rooibos","Zoet"]),
+ P("Rooibos Chai",5.05,"rooibos-chai","Rooibos met kaneel, kardemom en gember.",["Rooibos","Kruidig"]),
+ MIX[8],
+ P("Rooibos Natural Super Grade",4.55,"rooibos-puur","Pure rooibos. Zacht, vol en licht zoet.",["Rooibos"]),
+ MIX[4],MIX[3]]
+};
+let curSet="samen";
+const inCart=n=>lines.some(l=>l.label===n);
+const hasBundel=()=>lines.some(l=>l.label.startsWith(BUNDEL));
+function renderGrid(){
+  const list=SETS[curSet];
+  $("#mixGrid").innerHTML=list.map((m,i)=>{ const inB=hasBundel()&&m.f.includes("bundel"); const done=inB||inCart(m.n+" 100 g"); return `<article class="pc">
+  ${(curSet==="samen"&&m.f.includes("top"))?'<span class="kers">Top 3 samen gekocht</span>':''}
+  <img src="${m.img}" alt="${m.n}"><h3>${m.n}</h3><div class="chips2">${(m.t||[]).map(x=>`<i>${x}</i>`).join("")}</div><p>${m.d}</p>
+  <div class="foot"><span class="price">${eur(m.p)} · 100 g</span><button type="button" data-set="${curSet}" data-idx="${i}" class="${done?"added":""}">${inB?"✓ In bundel":done?"✓ Toegevoegd":"+ Voeg toe"}</button></div></article>`; }).join("");
+}
+function renderStrip(){
+  $("#strip").innerHTML=MIX.slice(0,6).map((m,i)=>{ const done=(hasBundel()&&m.f.includes("bundel"))||inCart(m.n+" 100 g"); return `<div class="mc" role="listitem">${m.f.includes("top")?'<span class="k">top 3</span>':''}<img src="${m.img}" alt=""><span class="nm">${m.n}</span><span class="pr">${eur(m.p)} · 100 g</span><button type="button" data-mix="${i}" class="${done?"added":""}" aria-label="${m.n} toevoegen">${done?"✓":"+"}</button></div>`; }).join("");
+}
+$$(".filters button").forEach(b=>b.onclick=()=>{ $$(".filters button").forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); curSet=b.dataset.f; renderGrid(); });
+$("#mixGrid").addEventListener("click",e=>{ const b=e.target.closest("[data-set]"); if(!b||b.classList.contains("added"))return; const m=SETS[b.dataset.set][+b.dataset.idx]; add(m.n+" 100 g",m.p); });
+
+/* mandje */
+const total=()=>lines.reduce((a,l)=>a+l.p,0);
+const TIERS=[25,35,50,75];
+function nextMsg(t){ let next=TIERS.find(x=>t<x); if(hasBundel()&&next===25) next=35; if(!next) return "Alles binnen: 5 proefzakjes, gratis verzending, theeblik en mok";
+  const left=next-t, what= next===25?"2 gratis proefzakjes": next===35?"5 proefzakjes en gratis verzending": next===50?"een gratis theeblik":"een gratis mok met zeefje"; return `Nog ${eur(left)} tot ${what}`; }
+const ACC=[{n:"Thee-ei",p:3.99,img:"img/thee-ei.jpg"},{n:"Maatlepel 1 kopje",p:4.99,img:"img/u-lepel.jpg"},{n:"Theefilterzakjes Tbar XS",p:3.25,img:"img/u-filters.jpg"},{n:"Bamboe theeplank met 6 theeblikjes",p:34.99,img:"img/u-plank.jpg"}];
+function render(){
+  const t=total(), count=lines.reduce((a,l)=>a+l.q,0);
+  $("#cartTotal").textContent=eur(t); $("#cartCount").textContent=count;
+  const msg=nextMsg(t);
+  ["#dealText","#drawerDeal"].forEach(s=>$(s).textContent=msg);
+  $("#dealFill").style.transform=`scaleX(${Math.min(1,t/75)})`;
+  $("#drawerBar").style.transform=`scaleX(${Math.min(1,t/75)})`;
+  TIERS.forEach(x=>$("#m"+x).classList.toggle("done",t>=x||(x===25&&hasBundel())));
+  const n= t>=35?5: (t>=25||hasBundel())?2:0;
+  const g= n? [`<li class="gift"><span>${n} proefzakjes cadeau</span><span>€ 0,00</span></li>`] : [];
+  if(t>=35) g.push('<li class="gift"><span>Verzending</span><span>gratis</span></li>');
+  if(t>=50) g.push('<li class="gift"><span>Theeblik cadeau (vanaf € 50)</span><span>€ 0,00</span></li>');
+  if(t>=75) g.push('<li class="gift"><span>Mok met zeefje cadeau (vanaf € 75)</span><span>€ 0,00</span></li>');
+  $("#lines").innerHTML = lines.length ? lines.map(l=>`<li><span>${l.label}</span><span>${eur(l.p)}</span></li>`).join("")+g.join("") : '<li class="empty">Je mandje is nog leeg.</li>';
+  $("#drawerTot").textContent=eur(t);
+  const other=cur==="gnk"?"md":"gnk", o=TEA[other];
+  const ups=[{n:o.n,p:o.sizes[2][1],img:other==="gnk"?"img/gnk-2.jpg":"img/md-2.jpg",d:"Ook proberen?"},...MIX.slice(0,3),...ACC].filter(u=>!inCart(u.n+" 100 g")&&!inCart(u.n)&&!(hasBundel()&&(u.f||[]).includes("bundel"))&&!(hasBundel()&&u.n===o.n));
+  $("#drawerUps").innerHTML = ups.slice(0,5).map(u=>{ const tea=!!u.t||u.d==="Ook proberen?"; return `<div class="u"><img src="${u.img}" alt=""><span><b>${u.n}</b><br>${u.d&&!u.t?u.d+" · ":""}${eur(u.p)}${tea?" · 100 g":""}</span><button type="button" data-up="${u.n}" data-p="${u.p}" data-tea="${tea?1:""}">+ Voeg toe</button></div>`; }).join("");
+  renderStrip(); renderGrid();
+  $$("#accRow [data-acc]").forEach(b=>{ const d=inCart(b.dataset.acc); b.classList.toggle("added",d); b.textContent=d?"✓":"+"; });
+}
+let tt; function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove("on"),2000); }
+function add(label,p,q=1){ lines.push({label,p,q}); render(); toast(label+" toegevoegd · "+nextMsg(total()).toLowerCase()); }
+const openCart=()=>setTimeout(()=>panel($("#drawer"),$("#cartBtn"),true),350);
+
+const sizeEl=()=>$('input[name="size"]:checked');
+const accSum=()=>$$(".acc input:checked").reduce((a,c)=>a+ +c.dataset.price,0);
+function refreshAmt(){ $("#addAmt").textContent=eur(+sizeEl().value*qty+accSum()); $("#nudge").hidden = sizeEl().id==="kilo"; }
+$$(".acc input").forEach(c=>c.addEventListener("change",refreshAmt));
+$("#toKilo").onclick=()=>{ $("#kilo").checked=true; refreshAmt(); };
+$("#plus").onclick=()=>{qty=Math.min(20,qty+1);$("#qty").textContent=qty;refreshAmt()};
+$("#minus").onclick=()=>{qty=Math.max(1,qty-1);$("#qty").textContent=qty;refreshAmt()};
+function addMain(){ const s=sizeEl(); add(qty+"× "+TEA[cur].n+" "+s.dataset.name,+s.value*qty,qty); $$(".acc input:checked").forEach(c=>{ add(c.dataset.name,+c.dataset.price); c.checked=false; }); refreshAmt(); openCart(); }
+const rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const toBuy=()=>document.querySelector(".buy").scrollIntoView({behavior:rm?"auto":"smooth",block:"start"});
+$("#addBtn").onclick=addMain; $("#stickyAdd").onclick=toBuy; $("#ritCta").onclick=toBuy;
+$("#eggInline").onclick=e=>{ if(inCart("Thee-ei"))return; add("Thee-ei",EGG); e.target.textContent="Toegevoegd"; e.target.classList.add("added"); };
+function addCombo(btn){ if(hasBundel()){ openCart(); return; } add(BUNDEL+" (4 × 100 g)",24.99,4); ["#comboBtn","#comboMix","#comboFinal"].forEach(s=>{ const b=$(s); b.textContent="✓ Avondbundel in je mandje"; b.classList.add("added"); }); openCart(); }
+$("#comboBtn").onclick=addCombo; $("#comboFinal").onclick=addCombo; $("#comboMix").onclick=addCombo;
+$("#toMix").onclick=()=>$("#mix").scrollIntoView({behavior:rm?"auto":"smooth"});
+$("#strip").addEventListener("click",e=>{ const b=e.target.closest("[data-mix]"); if(!b||b.classList.contains("added"))return; const m=MIX[+b.dataset.mix]; add(m.n+" 100 g",m.p); });
+$("#drawerUps").addEventListener("click",e=>{ const b=e.target.closest("[data-up]"); if(!b)return; add(b.dataset.up+(b.dataset.tea?" 100 g":""),+b.dataset.p); });
+$("#finalBtn").onclick=()=>{ add("1× "+TEA[cur].n+" 100 g",TEA[cur].sizes[2][1]); openCart(); };
+
+/* panelen */
+function panel(el,btn,open){ el.classList.toggle("open",open); btn&&btn.setAttribute("aria-expanded",open); }
+$("#cartBtn").onclick=()=>panel($("#drawer"),$("#cartBtn"),true);
+$("#accRow").innerHTML=ACC.map(a=>`<div class="ac"><img src="${a.img}" alt=""><span><b>${a.n}</b><br>${eur(a.p)}</span><button type="button" data-acc="${a.n}" data-p="${a.p}" aria-label="${a.n} toevoegen">+</button></div>`).join("");
+$("#accRow").addEventListener("click",e=>{ const b=e.target.closest("[data-acc]"); if(!b||b.classList.contains("added"))return; add(b.dataset.acc,+b.dataset.p); });
+$("#drawerClose").onclick=()=>panel($("#drawer"),$("#cartBtn"),false);
+$("#drawer").onclick=e=>{ if(e.target.id==="drawer") panel($("#drawer"),$("#cartBtn"),false); };
+$("#menuBtn").onclick=()=>panel($("#mnav"),$("#menuBtn"),true);
+$("#menuClose").onclick=()=>panel($("#mnav"),$("#menuBtn"),false);
+$("#mnav").onclick=e=>{ if(e.target.id==="mnav") panel($("#mnav"),$("#menuBtn"),false); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ panel($("#drawer"),$("#cartBtn"),false); panel($("#mnav"),$("#menuBtn"),false);} });
+
+/* landingsanker uit de ad: #md kiest Mooie dromen thee */
+const startTea=/(^|[#&?])md\b|tea=md/.test(location.hash+location.search)?"md":"gnk";
+
+/* sticky balk + video's alleen afspelen in beeld */
+const sticky=$("#sticky");
+new IntersectionObserver(([e])=>{ const show=!e.isIntersecting && e.boundingClientRect.top<0; sticky.classList.toggle("show",show); sticky.setAttribute("aria-hidden",!show); }).observe($("#addBtn"));
+const vo=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target; if(rm){v.pause();return} e.isIntersecting?v.play().catch(()=>{}):v.pause();}));
+function watchVideos(){ $$("video[autoplay]").forEach(v=>vo.observe(v)); }
+new MutationObserver(watchVideos).observe($("#stage"),{childList:true});
+setTea(startTea); render(); watchVideos();
+</script>
+<!--uitleg--><style>
+.ux-btn{position:absolute;top:12px;right:12px;z-index:30;display:inline-flex;align-items:center;gap:6px;font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.ux-btn:hover{background:#3a4a30}
+.ux-btn .i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#fff;color:#1f2a1a;font-size:11px;font-weight:700}
+.ux-panel{position:absolute;top:50px;right:12px;z-index:31;width:min(380px,calc(100% - 24px));background:#fff;color:#1f2a1a;border:1px solid #d9dccf;border-left:4px solid #a3263a;border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.18);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}
+.ux-panel[hidden]{display:none}
+.ux-panel h4{margin:0 0 8px;font-size:15px;font-weight:700}
+.ux-panel dl{margin:0;display:grid;gap:8px}
+.ux-panel dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#a3263a}
+.ux-panel dd{margin:2px 0 0}
+.ux-all{position:fixed;left:14px;bottom:14px;z-index:60;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:#1f2a1a;border:1px solid #1f2a1a;border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+body.ux-off .ux-btn,body.ux-off .ux-panel{display:none!important}
+</style><script>
+(function(){
+  var D = {"top": {"titel": "Cadeauladder in de bovenbalk", "waarom": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 vijf plus gratis verzending, € 50 theeblik, € 75 mok met zeefje.", "voorwie": "Iedereen die iets in het mandje legt", "oplevert": "De gemiddelde bestelling is € 42. De balk laat steeds zien hoeveel er nog nodig is voor het volgende cadeautje, zodat mensen net iets meer bijpakken. Goedgekeurd door de klant op 28-10."}, "hero": {"titel": "Productblok bovenaan", "waarom": "Eén pagina voor allebei de avondtheeën, met een keuzeknop tussen Goede Nacht Kruiden en Mooie dromen. \"Van nature cafeïnevrij\" staat bovenaan.", "voorwie": "Avond-Ontspanner (R1), Cafeïnevrije Avonddrinker (R3), Slaapzoeker (R2), Ontstresser (R7)", "oplevert": "Iedereen landt op dezelfde pagina; met ?tea=md opent hij direct op Mooie dromen. Zo hoeven we maar één pagina te onderhouden."}, "erin": {"titel": "Wat zit erin", "waarom": "Alle kruiden en bloemen los in beeld. Je ziet hele kamillebloemen in plaats van gruis.", "voorwie": "Slaapzoeker (R2): vond slaapthee uit de supermarkt slap", "oplevert": "Laat zien waarom dit anders smaakt dan een zakje."}, "smaak": {"titel": "Welke past bij jou?", "waarom": "Vergelijkt de twee theeën naast elkaar: bloemig en fris tegenover zacht en licht kruidig.", "voorwie": "Wie twijfelt tussen de twee", "oplevert": "50 klanten namen ze vorig jaar allebei. Dat duwt richting twee zakken of de Avondbundel."}, "ritueel": {"titel": "Jouw avondritueel", "waarom": "Laat het moment zien in vier stappen: laptop dicht, thee zetten, telefoon weg, laatste kop. Eerlijk: thee is geen wondermiddel.", "voorwie": "Ontstresser (R7) en Avond-Ontspanner (R1)", "oplevert": "We verkopen het ritueel en de rust van het moment, niet een slaapeffect. Zo blijft de pagina binnen de regels voor claims."}, "zakjes": {"titel": "Slaapthee in een zakje vs. Goede Nacht Kruiden", "waarom": "Zet de supermarktversie naast onze thee: slap en fijngemalen tegenover hele bloemen.", "voorwie": "Slaapzoeker (R2)", "oplevert": "Geeft een concrete reden om over te stappen."}, "zetten": {"titel": "Zo zet je hem", "waarom": "Simpele stappen: klaar terwijl je je tanden poetst.", "voorwie": "Wie nog nooit losse thee heeft gezet", "oplevert": "Neemt \"losse thee is gedoe\" weg. Thee-ei erbij als upsell."}, "reviews": {"titel": "Reviews", "waarom": "Echte reviews, ook over slapen, volledig getoond. Plus het cijfer van WebwinkelKeur.", "voorwie": "Twijfelaars", "oplevert": "Vertrouwen. De klant zegt hier wat wij zelf niet mogen beloven."}, "mix": {"titel": "Avondbundel en andere smaken", "waarom": "De Avondbundel van 4 cafeïnevrije theeën voor € 24,99, plus de smaken die klanten er echt bij kopen (GA4).", "voorwie": "Wie al besloten heeft", "oplevert": "Bestellingen met avondthee zijn gemiddeld € 53, tegen € 42 in de hele winkel. Deze blokken houden dat vast."}, "faq": {"titel": "Veelgestelde vragen", "waarom": "Met het eerlijke antwoord op \"Helpt slaapthee echt?\", plus cafeïne, valeriaan, zwangerschap of medicijnen, en verzending.", "voorwie": "Wie nog twijfelt, vooral de Slaapzoeker", "oplevert": "Eerlijkheid wekt vertrouwen en houdt ons uit de verboden gezondheidsclaims."}, "final": {"titel": "Laatste oproep", "waarom": "Kies je thee of neem de Avondbundel, met de cadeauladder erbij.", "voorwie": "Wie de hele pagina heeft gelezen", "oplevert": "Laatste duwtje naar het mandje, met de bundel als grotere keuze."}};
+  function el(key){
+    if(key==='top') return document.querySelector('section.gutter:not(.sec)');
+    if(key==='hero') return document.querySelector('section.gutter:not(.sec)');
+    if(key==='final') return document.querySelector('section.sec.final');
+    return document.getElementById(key);
+  }
+  Object.keys(D).forEach(function(key){
+    var host = el(key); if(!host) return;
+    var d = D[key];
+    if(getComputedStyle(host).position==='static') host.style.position='relative';
+    var b = document.createElement('button'); b.type='button'; b.className='ux-btn';
+    b.innerHTML='<span class="i">i</span>Uitleg';
+    var p = document.createElement('div'); p.className='ux-panel'; p.hidden=true;
+    p.innerHTML='<h4></h4><dl><div><dt>Waarom dit blok</dt><dd class="a"></dd></div><div><dt>Voor wie</dt><dd class="b"></dd></div><div><dt>Wat het oplevert</dt><dd class="c"></dd></div></dl>';
+    p.querySelector('h4').textContent=d.titel;
+    p.querySelector('.a').textContent=d.waarom;
+    p.querySelector('.b').textContent=d.voorwie;
+    p.querySelector('.c').textContent=d.oplevert;
+    if(key==='top'){ b.style.right='112px'; b.innerHTML='<span class="i">i</span>Uitleg rode balk'; }
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = p.hidden;
+      document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; });
+      p.hidden = !open;
+    });
+    p.addEventListener('click', function(e){ e.stopPropagation(); });
+    host.appendChild(b); host.appendChild(p);
+  });
+  document.addEventListener('click', function(){ document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; }); });
+  var t = document.createElement('button'); t.type='button'; t.className='ux-all'; t.textContent='Uitleg verbergen';
+  t.addEventListener('click', function(e){ e.stopPropagation(); var off=document.body.classList.toggle('ux-off'); t.textContent = off ? 'Uitleg tonen' : 'Uitleg verbergen'; });
+  document.body.appendChild(t);
+})();
+</script><!--/uitleg-->

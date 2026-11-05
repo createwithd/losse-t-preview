@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<title>Avondthee ads per type</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+:root{color-scheme:light;--room:#F6F1E7;--bos:#526344;--salie:#A7BD82;--antraciet:#505050;--kers:#5B7A42;--inkt:#2F3A27;--line:#e4dccd;--nacht:#1F2433}
+*{box-sizing:border-box}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--room);color:var(--antraciet);-webkit-font-smoothing:antialiased}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1240px;margin:0 auto}
+header{padding-block:36px 10px}
+header img{height:38px}
+h1{font-size:clamp(26px,4vw,40px);font-weight:700;color:var(--inkt);margin:20px 0 8px;line-height:1.15;text-wrap:balance}
+header p{max-width:780px;line-height:1.6;margin:0}
+.wat{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.wat span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--inkt)}
+.schakel{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--room);border-bottom:1px solid var(--line);padding-block:12px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--room)}
+.schakel .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.schakel button{font:inherit;font-weight:600;border:1.5px solid var(--bos);background:transparent;color:var(--bos);padding:8px 18px;border-radius:999px;cursor:pointer;min-height:42px}
+.schakel button[aria-pressed=true]{background:var(--bos);color:#fff}
+.schakel nav{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.schakel nav a{color:var(--kers);font-weight:600;text-decoration:none}
+section{padding-block:34px 8px}
+h2{font-size:24px;font-weight:700;color:var(--inkt);margin:0}
+.uitleg{margin:6px 0 20px;max-width:780px;line-height:1.55}
+.uitleg b{color:var(--inkt)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:26px}
+.post{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#1c1e21}
+.kp{display:flex;gap:10px;align-items:center;padding:12px}
+.av{width:36px;height:36px;border-radius:50%;background:var(--salie);color:#fff;display:grid;place-items:center;font:600 13px Poppins,sans-serif}
+.kp b{display:block;font-size:14px}.kp span{font-size:12px;color:#65676b}
+.prim{font-size:14px;line-height:1.45;padding:0 12px 12px;margin:0}
+.media{position:relative}
+.media img,.media video{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:#eee}
+body.story .media img,body.story .media video{aspect-ratio:9/16}
+html{overflow-anchor:none}
+.media .s{display:none}
+body.story .media .f{display:none}body.story .media .s{display:block}
+body.story .prim,body.story .cta{display:none}
+.vtag{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;background:#f0f2f5}
+.cta small{font-size:11px;color:#65676b;display:block}.cta b{font-size:15px;display:block}.cta span{font-size:13px;color:#65676b}
+.cta a{flex:none;background:#e4e6eb;border-radius:6px;padding:8px 14px;font-weight:600;font-size:14px}
+.meta{font-size:13px;margin:8px 0 0}.meta b{color:var(--kers)}
+footer{padding-block:40px 60px;font-size:13px;line-height:1.6}
+</style>
+<header class="gutter"><div class="wrap">
+<img src="logo.png" alt="Losse-T">
+<h1>Meta-advertenties Avondthee · per type</h1>
+<p>Bijlage bij de versie per avatar: dezelfde 28 ads, nu in funnelvolgorde. Gebouwd vanuit de salespagina: dezelfde beelden, ingrediënten, het avondritueel en de vergelijking met het zakje. Elke ad heeft een feedversie (4:5) en een versie voor Stories en Reels (9:16).</p>
+<div class="wat"><span>10 video-ads (8-10 s)</span><span>18 statische ads</span><span>Feed 1080×1350</span><span>Stories 1080×1920</span><span>Landt op de salespagina Avondthee</span></div>
+</div></header>
+<div class="schakel gutter"><div class="wrap">
+<button id="b-feed" aria-pressed="true">Feed (4:5)</button><button id="b-story" aria-pressed="false">Stories en Reels (9:16)</button>
+<nav><a href="#stoppers">Video</a><a href="#video">Video</a><a href="#product">Ingrediënten, smaak en het moment</a><a href="#prijs">Prijs en eerst proberen</a><a href="#vs">Vs. het zakje</a><a href="#orderwaarde">Reviews en meer per bestelling</a></nav>
+</div></div>
+<section class="gutter" id="stoppers"><div class="wrap"><h2>1. Video: scroll-stoppers</h2><p class="uitleg">Koude doelgroepen in Reels en Stories. Hook vanaf het eerste beeld, knop "Probeer vanaf € 1,29".</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Slaapthee uit de supermarkt geprobeerd en vond je hem niks? Proef Goede Nacht Kruiden: hele kamillebloemen, sinaasappelbloesem en rozenblaadjes die je gewoon ziet. Zacht, bloemig en fris.</p>
+ <div class="media"><video class="f" src="ads/sv3-schep-f.mp4" poster="ads/sv3-schep-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv3-schep-s.mp4" poster="ads/sv3-schep-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Slaapthee die je wél lekker vindt</b><span>Proefzakje € 1,29</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 1 · sv3-schep</b> · R2 · Slaapzoeker · landt op salespagina #zakjes</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Lig je 's avonds moe in bed, maar blijft je hoofd maar doorgaan? Maak er een vast ritueel van: telefoon weg, kopje Goede Nacht Kruiden erbij, lamp uit. Rustgevende avondthee met kamille en citroenmelisse.</p>
+ <div class="media"><video class="f" src="ads/sv4-lamp-f.mp4" poster="ads/sv4-lamp-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv4-lamp-s.mp4" poster="ads/sv4-lamp-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Maak er een avondritueel van</b><span>Goede Nacht Kruiden</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 2 · sv4-lamp</b> · R2 · Slaapzoeker · landt op salespagina #ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">'s Avonds zin in thee, maar geen cafeïne? Goede Nacht Kruiden is van nature cafeïnevrij. Kamille, munt en sinaasappelbloesem, goudgeel in je kop. 100 °C, 5 tot 10 minuten, klaar.</p>
+ <div class="media"><video class="f" src="ads/sv2-thee-ei-f.mp4" poster="ads/sv2-thee-ei-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv2-thee-ei-s.mp4" poster="ads/sv2-thee-ei-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Je avondthee zonder cafeïne</b><span>Van nature cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 3 · sv2-thee-ei</b> · R3 · Cafeïnevrije Avonddrinker · landt op salespagina #smaak</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Kinderen in bed, keuken aan kant… en nu? Nu is het jouw tijd. Goede Nacht Kruiden is een rustgevende avondthee met kamille, citroenmelisse en sinaasappelbloesem. Van nature cafeïnevrij, voor elke avond.</p>
+ <div class="media"><video class="f" src="ads/sv1-kamille-f.mp4" poster="ads/sv1-kamille-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv1-kamille-s.mp4" poster="ads/sv1-kamille-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Nu is het jouw tijd</b><span>Proefzakje € 1,29</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 4 · sv1-kamille</b> · R1 · Avond-Ontspanner · landt op salespagina #ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Voelt je hoofd 's avonds als een browser met 100 open tabbladen? Eén ding tegelijk: water koken, Mooie dromen thee zetten, even helemaal uit. Zacht, bloemig en licht kruidig.</p>
+ <div class="media"><video class="f" src="ads/sv5-theepot-f.mp4" poster="ads/sv5-theepot-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/sv5-theepot-s.mp4" poster="ads/sv5-theepot-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 8 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Even helemaal uit</b><span>Mooie dromen thee · cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 5 · sv5-theepot</b> · R7 · Ontstresser · landt op salespagina ?tea=md#ritueel</p></article></div></div></section><section class="gutter" id="video"><div class="wrap"><h2>2. Video: sfeer met tekst</h2><p class="uitleg">Eigen beelden met tekst die stap voor stap verschijnt: laptop dicht, de bank, inschenken, stoom bij de leeslamp en slapen.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Werkdag erop, maar je hoofd staat nog aan? Laptop dicht, pot Mooie dromen thee erbij. Zacht, bloemig en licht kruidig, met citroenmelisse, rozenbloesem en kardemom. Het moment waarop je werkdag stopt.</p>
+ <div class="media"><video class="f" src="ads/v01-laptop-f.mp4" poster="ads/v01-laptop-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v01-laptop-s.mp4" poster="ads/v01-laptop-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Laptop dicht. Pot Mooie dromen erbij.</b><span>Cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 6 · v01-laptop</b> · R7 · Ontstresser · landt op salespagina ?tea=md#ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">De dag zit erop. Water aan, Goede Nacht Kruiden in de pot, en dit kwartier is van jou. Rustgevende avondthee met kamille en citroenmelisse.</p>
+ <div class="media"><video class="f" src="ads/v02-bank-f.mp4" poster="ads/v02-bank-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v02-bank-s.mp4" poster="ads/v02-bank-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Dit kwartier is van jou</b><span>Gratis verzending vanaf € 35</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 7 · v02-bank</b> · R1 · Avond-Ontspanner · landt op salespagina #ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Van de meeste slaapthee word je niet blij? Proef Mooie dromen thee: rozenbloesem, jasmijn, kardemom en venkel. Zacht roze in je kop en zacht van smaak.</p>
+ <div class="media"><video class="f" src="ads/v03-inschenken-f.mp4" poster="ads/v03-inschenken-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v03-inschenken-s.mp4" poster="ads/v03-inschenken-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Proef Mooie dromen thee</b><span>Cafeïnevrij · vanaf € 1,29</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 8 · v03-inschenken</b> · R2 · Slaapzoeker · landt op salespagina ?tea=md#erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Overdag Earl Grey, 's avonds Goede Nacht Kruiden. Zelfde mok, geen cafeïne. Van nature cafeïnevrij en toch vol van smaak: zacht, bloemig en fris.</p>
+ <div class="media"><video class="f" src="ads/v04-stoom-f.mp4" poster="ads/v04-stoom-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v04-stoom-s.mp4" poster="ads/v04-stoom-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Overdag Earl Grey, 's avonds deze</b><span>Van nature cafeïnevrij</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 9 · v04-stoom</b> · R3 · Cafeïnevrije Avonddrinker · landt op salespagina #smaak</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Je slaapmutsje zit in een kopje. Goede Nacht Kruiden is jouw vaste kopje voor het slapengaan: rustgevend, zacht en bloemig, met kamille en citroenmelisse.</p>
+ <div class="media"><video class="f" src="ads/v05-slapen-f.mp4" poster="ads/v05-slapen-f.jpg" muted loop playsinline preload="none"></video><video class="s" src="ads/v05-slapen-s.mp4" poster="ads/v05-slapen-s.jpg" muted loop playsinline preload="none"></video><span class="vtag">▶ Video 10 s</span></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Jouw kopje voor het slapengaan</b><span>Van nature cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 10 · v05-slapen</b> · R2 · Slaapzoeker · landt op salespagina #ritueel</p></article></div></div></section><section class="gutter" id="product"><div class="wrap"><h2>3. Ingrediënten, smaak en het moment</h2><p class="uitleg">Wat erin zit, welke van de twee bij je past, en het avondmoment in beeld (met de zak altijd herkenbaar).</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wat zit er in Goede Nacht Kruiden? Kruizemunt, kamillebloesem, citroenmelisse, bramen- en aardbeiblad, rozenblaadjes en sinaasappelbloesem. Kamille en citroenmelisse zijn al generaties de klassiekers in avondthee.</p>
+ <div class="media"><img class="f" src="ads/st03-ingr-gnk-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st03-ingr-gnk-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>7 kruiden en bloemen, 1 avondthee</b><span>Bekijk de ingrediënten</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 11 · st03-ingr-gnk</b> · R1 · Avond-Ontspanner · landt op salespagina #erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Twaalf ingrediënten, één zachte kop: Mooie dromen thee. Citroenmelisse en kamille, rozenbloesem en jasmijn, en een vleugje kardemom en nootmuskaat. Voor na je werkdag.</p>
+ <div class="media"><img class="f" src="ads/st04-ingr-md-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st04-ingr-md-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>12 ingrediënten, één zachte kop</b><span>Cafeïnevrij</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 12 · st04-ingr-md</b> · R7 · Ontstresser · landt op salespagina ?tea=md#erin</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Welke wordt jouw avondthee? Goede Nacht Kruiden is bloemig en fris en zet goudgeel. Mooie dromen thee is zachter, licht kruidig en zet roze. Allebei cafeïnevrij.</p>
+ <div class="media"><img class="f" src="ads/st05-twee-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st05-twee-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Welke wordt jouw avondthee?</b><span>Bloemig of licht kruidig</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 13 · st05-twee</b> · R1 · Avond-Ontspanner · landt op salespagina #smaak</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Jij ook geen koffie meer na 18:00? Dan is dit je avondkopje: Goede Nacht Kruiden, van nature cafeïnevrij. Zacht en bloemig, met kamille en sinaasappelbloesem.</p>
+ <div class="media"><img class="f" src="ads/st06-cafeine-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st06-cafeine-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Je avondkopje zonder cafeïne</b><span>Goede Nacht Kruiden</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 14 · st06-cafeine</b> · R3 · Cafeïnevrije Avonddrinker · landt op salespagina #smaak</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Maak van Goede Nacht Kruiden je vaste laatste kop van de dag. Rustgevend, zacht en bloemig, met kamille en citroenmelisse. Boek erbij, leeslamp aan.</p>
+ <div class="media"><img class="f" src="ads/st07-nachtkastje-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st07-nachtkastje-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Jouw kopje voor het slapengaan</b><span>Van nature cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 15 · st07-nachtkastje</b> · R2 · Slaapzoeker · landt op salespagina #ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Kinderen in bed, keuken aan kant… en nu? Nu is het jouw tijd. Een kop Goede Nacht Kruiden op de bank, met kamille, citroenmelisse en rozenblaadjes.</p>
+ <div class="media"><img class="f" src="ads/st08-bank-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st08-bank-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Nu is het jouw tijd</b><span>Rustgevende avondthee</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 16 · st08-bank</b> · R1 · Avond-Ontspanner · landt op salespagina #ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wanneer stopt jouw werkdag? Bij de eerste slok Mooie dromen thee. Laptop dicht, waterkoker aan, en klaar voor vandaag.</p>
+ <div class="media"><img class="f" src="ads/st09-laptop-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st09-laptop-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Wanneer stopt jouw werkdag?</b><span>Zacht, bloemig en licht kruidig</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 17 · st09-laptop</b> · R7 · Ontstresser · landt op salespagina ?tea=md#ritueel</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Om 23:30 nog klaarwakker op je telefoon? Telefoon weg, kopje Goede Nacht Kruiden erbij. Jouw nieuwe avondritueel, met een rustgevende kruidenthee die je wél lekker vindt.</p>
+ <div class="media"><img class="f" src="ads/st10-telefoon-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st10-telefoon-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Telefoon weg, kopje erbij</b><span>Jouw nieuwe avondritueel</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 18 · st10-telefoon</b> · R2 · Slaapzoeker · landt op salespagina #ritueel</p></article></div></div></section><section class="gutter" id="prijs"><div class="wrap"><h2>4. Prijs en eerst proberen</h2><p class="uitleg">Drempel weg voor nieuwe klanten. Het proefzakje van € 1,29 staat in één ad; daarnaast prijs per kop en per maat.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Van de meeste slaapthee word je niet blij? Proef eerst. Een proefzakje Goede Nacht Kruiden of Mooie dromen thee kost € 1,29. Zo weet je welke jouw avondthee wordt.</p>
+ <div class="media"><img class="f" src="ads/st11-proefzakje-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st11-proefzakje-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Proef eerst. € 1,29 per proefzakje.</b><span>Goede Nacht Kruiden of Mooie dromen</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 19 · st11-proefzakje</b> · R2 · Slaapzoeker (eerst proberen) · landt op salespagina #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Goede Nacht Kruiden is van nature cafeïnevrij. 100 gram is goed voor ruim 25 koppen, voor € 7,50. Dat is minder dan 30 cent per kop.</p>
+ <div class="media"><img class="f" src="ads/st12-per-kop-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st12-per-kop-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Ruim 25 koppen voor € 7,50</b><span>Minder dan 30 cent per kop</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 20 · st12-per-kop</b> · R3 · Cafeïnevrije Avonddrinker · landt op salespagina #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Elke avond een kopje? 100 gram Goede Nacht Kruiden voor € 7,50 (ruim 25 koppen), 250 gram voor € 18,70 of de kilo voor € 56,15 (€ 5,62 per 100 g).</p>
+ <div class="media"><img class="f" src="ads/st13-prijzen-gnk-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st13-prijzen-gnk-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Elke avond een kopje</b><span>Goede Nacht Kruiden</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 21 · st13-prijzen-gnk</b> · R1 · Avond-Ontspanner · landt op salespagina #top</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Na je werkdag een pot Mooie dromen thee? 100 gram voor € 6,30 (ruim 25 koppen), 250 gram voor € 15,70 of de kilo voor € 47,15 (€ 4,72 per 100 g).</p>
+ <div class="media"><img class="f" src="ads/st14-prijzen-md-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st14-prijzen-md-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Mooie dromen thee vanaf € 6,30</b><span>Cafeïnevrij</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 22 · st14-prijzen-md</b> · R7 · Ontstresser · landt op salespagina ?tea=md#top</p></article></div></div></section><section class="gutter" id="vs"><div class="wrap"><h2>5. Vs. het zakje</h2><p class="uitleg">Het verschil met slaapthee en kruidenthee in een zakje, in beeld en in een tabel.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Slaapthee uit de supermarkt viel tegen? In een zakje zit fijngemalen thee. In Goede Nacht Kruiden zie je hele kamillebloemen, blaadjes en sinaasappelbloesem. Zacht, bloemig en fris.</p>
+ <div class="media"><img class="f" src="ads/st01-vs-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st01-vs-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Zakje vs. Goede Nacht Kruiden</b><span>Proef het verschil</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 23 · st01-vs</b> · R2 · Slaapzoeker · landt op salespagina #zakjes</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Kruidenthee is flauw? Deze niet. Goede Nacht Kruiden: zacht, bloemig en fris, met hele bloemetjes die je ziet. En jij bepaalt de sterkte: 1 of 2 theelepels.</p>
+ <div class="media"><img class="f" src="ads/st02-tabel-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st02-tabel-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Kruidenthee is flauw? Deze niet.</b><span>Van nature cafeïnevrij</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 24 · st02-tabel</b> · R3 · Cafeïnevrije Avonddrinker · landt op salespagina #zakjes</p></article></div></div></section><section class="gutter" id="orderwaarde"><div class="wrap"><h2>6. Reviews en meer per bestelling</h2><p class="uitleg">Vertrouwen en orderwaarde: reviews, Avondbundel, cadeauladder en vaak samen gekocht.</p><div class="grid"><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Klanten geven Losse-T een 9,6 uit 3.536 reviews bij WebwinkelKeur. Over Goede Nacht Kruiden: "heerlijke thee, vooral in de avond."</p>
+ <div class="media"><img class="f" src="ads/st15-reviews-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st15-reviews-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>9,6 uit 3.536 reviews</b><span>Losse thee bij Losse-T</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 25 · st15-reviews</b> · Retargeting · alle · landt op salespagina #reviews</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">De Avondbundel: Goede Nacht Kruiden, Mooie dromen thee, Innerlijke rust en Kamillebloesem. Vier cafeïnevrije avondtheeën van 100 g, samen € 24,99 in plaats van € 27,49, met 2 proefzakjes cadeau.</p>
+ <div class="media"><img class="f" src="ads/st16-bundel-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st16-bundel-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Avondbundel: 4 × 100 g voor € 24,99</b><span>+ 2 proefzakjes cadeau</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 26 · st16-bundel</b> · Retargeting · alle · landt op salespagina #mix</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Hoe meer avondthee, hoe meer cadeau. Vanaf € 25 krijg je 2 proefzakjes, vanaf € 35 5 proefzakjes en gratis verzending, vanaf € 50 een theeblik en vanaf € 75 een mok met zeefje.</p>
+ <div class="media"><img class="f" src="ads/st17-ladder-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st17-ladder-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Hoe meer avondthee, hoe meer cadeau</b><span>Maak je avondvoorraad</span></div><a>Nu kopen</a></div>
+</div><p class="meta"><b>Ad 27 · st17-ladder</b> · Retargeting · alle · landt op salespagina #mix</p></article><article class="ad"><div class="post">
+ <div class="kp"><span class="av">LT</span><div><b>Losse-T</b><span>Gesponsord</span></div></div>
+ <p class="prim">Wie avondthee bestelt, neemt er vaak iets bij. Favorieten naast Goede Nacht Kruiden en Mooie dromen thee: Innerlijke rust en Kamillebloesem. Vanaf € 25 krijg je 2 proefzakjes cadeau.</p>
+ <div class="media"><img class="f" src="ads/st18-samen-f.jpg" alt="" loading="lazy"><img class="s" src="ads/st18-samen-s.jpg" alt="" loading="lazy"></div>
+ <div class="cta"><div><small>LOSSE-T.NL</small><b>Vaak samen gekocht</b><span>Maak je avondvoorraad</span></div><a>Meer informatie</a></div>
+</div><p class="meta"><b>Ad 28 · st18-samen</b> · Retargeting · alle · landt op salespagina #mix</p></article></div></div></section><footer class="gutter"><div class="wrap">Preview van Create &amp; Convert, 28 oktober 2026. Alle beelden zijn eigen AI-beelden van de echte melanges en de Losse-T-zak (geen UGC, geen beelden van andere merken). Cadeauladder en Avondbundel zijn akkoord. Claims: "rustgevend", "cafeïnevrij" en het slaapprobleem als herkenbare situatie; nergens slaap als effect van de thee. Prijs per kop: ruim 25 koppen per 100 g (3 g per kop), nog te bevestigen door Losse-T.</div></footer><script>
+var bf=document.getElementById('b-feed'),bs=document.getElementById('b-story');
+function zet(st){document.body.classList.toggle('story',st);bf.setAttribute('aria-pressed',!st);bs.setAttribute('aria-pressed',st);document.querySelectorAll('video').forEach(function(v){v.pause();io.unobserve(v);io.observe(v);});}
+bf.onclick=function(){zet(false)};bs.onclick=function(){zet(true)};
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+if(!location.hash)window.scrollTo(0,0);
+var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting&&v.offsetParent){v.play().catch(function(){});}else{v.pause();}});},{rootMargin:'100px'});
+document.querySelectorAll('video').forEach(function(v){io.observe(v);});
+</script>
