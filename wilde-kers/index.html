@@ -827,51 +827,143 @@ $$("video[autoplay]").forEach(v=>vo.observe(v));
 refreshAmt(); render();
 </script>
 <!--uitleg--><style>
-.ux-btn{position:absolute;top:12px;right:12px;z-index:30;display:inline-flex;align-items:center;gap:6px;font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
-.ux-btn:hover{background:#3a4a30}
-.ux-btn .i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#fff;color:#1f2a1a;font-size:11px;font-weight:700}
-.ux-panel{position:absolute;top:50px;right:12px;z-index:31;width:min(380px,calc(100% - 24px));background:#fff;color:#1f2a1a;border:1px solid #d9dccf;border-left:4px solid #a3263a;border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.18);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}
-.ux-panel[hidden]{display:none}
-.ux-panel h4{margin:0 0 8px;font-size:15px;font-weight:700}
-.ux-panel dl{margin:0;display:grid;gap:8px}
-.ux-panel dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#a3263a}
-.ux-panel dd{margin:2px 0 0}
-.ux-all{position:fixed;left:14px;bottom:14px;z-index:60;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:#1f2a1a;border:1px solid #1f2a1a;border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-body.ux-off .ux-btn,body.ux-off .ux-panel{display:none!important}
+#ux-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
+#ux-layer *{box-sizing:border-box}
+.ux-hl{position:absolute;border:2px dashed #e0313f;border-radius:10px;background:rgba(224,49,63,.04);pointer-events:none;transition:border-color .15s,background .15s}
+.ux-hl.on{border-style:solid;border-width:3px;background:rgba(224,49,63,.08)}
+.ux-pin{position:absolute;width:30px;height:30px;margin:-12px 0 0 -12px;border-radius:50%;background:#e0313f;color:#fff;font:700 14px/30px system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:pointer;pointer-events:auto;padding:0}
+.ux-pin:hover,.ux-pin.on{background:#1f2a1a;transform:scale(1.12)}
+.ux-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.ux-card{position:absolute;width:340px;background:#fff;color:#1f2a1a;border:2px solid #e0313f;border-radius:12px;padding:14px 16px 12px;box-shadow:0 14px 40px rgba(0,0,0,.25);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;pointer-events:auto}
+.ux-card .nr{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#e0313f;color:#fff;font-weight:700;font-size:12px;margin-right:8px;vertical-align:1px}
+.ux-card h4{margin:0 0 6px;font-size:16px;font-weight:700}
+.ux-card p{margin:0 0 8px}
+.ux-card .wie{font-size:13px;color:#5a6452;border-top:1px solid #eee;padding-top:8px}
+.ux-card .wie b{color:#e0313f;font-size:11px;letter-spacing:.05em;text-transform:uppercase;display:block}
+.ux-card .nav{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.ux-card .nav button{font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;border:1px solid #1f2a1a;background:#fff;color:#1f2a1a;border-radius:999px;padding:6px 12px;cursor:pointer}
+.ux-card .nav button:hover{background:#f3f3ee}
+.ux-card .nav span{font-size:12px;color:#888}
+.ux-card .x{position:absolute;top:6px;right:8px;border:0;background:none;font-size:18px;color:#888;cursor:pointer;line-height:1}
+.ux-toggle{position:fixed;left:14px;bottom:14px;z-index:2147483001;font:700 14px system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:11px 18px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:8px}
+.ux-toggle .i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#e0313f;color:#fff;font-size:12px}
+.ux-toggle.on{background:#e0313f}
+.ux-toggle.on .i{background:#fff;color:#e0313f}
+@media (max-width:640px){.ux-card{width:calc(100vw - 24px)}}
 </style><script>
 (function(){
-  var D = {"top": {"titel": "Cadeauladder in de bovenbalk", "waarom": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 vijf plus gratis verzending, € 50 theeblik, € 75 mok met zeefje.", "voorwie": "Iedereen die iets in het mandje legt", "oplevert": "De gemiddelde bestelling is € 42. De balk laat steeds zien hoeveel er nog nodig is voor het volgende cadeautje, zodat mensen net iets meer bijpakken. Goedgekeurd door de klant op 28-10."}, "hero": {"titel": "Productblok bovenaan", "waarom": "Wie op een advertentie klikt, ziet meteen de thee zelf: zak, prijs, maten en de knop. Daarnaast het reviewcijfer (9,6 uit 3.536) en \"Onze bestseller\".", "voorwie": "Iedereen uit de advertenties: Smaakontdekker (S6), Supermarkt-Upgrader (S3) en Zoete-Trek-Vervanger (S2)", "oplevert": "Standaard staat 100 gram aan: nieuwe klanten kopen geen kilo. Direct onder de knop staat \"Vaak samen gekocht\" als upsell."}, "erin": {"titel": "Wat zit erin", "waarom": "Laat elk ingrediënt los zien, met de echte stukjes kers. Eerlijk dat er suiker in de kers zit, zodat niemand teleurgesteld raakt.", "voorwie": "Supermarkt-Upgrader (S3): wil zien dat dit geen gruis is", "oplevert": "Neemt het bezwaar \"is dit wel echt fruit?\" weg, en voorkomt klachten over de zoetheid."}, "smaak": {"titel": "Zo smaakt hij", "waarom": "Beschrijft de smaak in gewone woorden, met een klantcitaat (\"friszoet\"). Plus een tip als hij iemand te fris is.", "voorwie": "Smaakontdekker (S6): \"wat als ik hem niet lekker vind?\"", "oplevert": "Haalt de angst voor een miskoop weg. Het proefzakje van € 1,29 staat als vangnet."}, "toetje": {"titel": "Een beetje thee, een beetje toetje", "waarom": "Koppelt Wilde Kers aan het moment na het eten, als vervanging van iets zoets. Plus ijsthee voor de zomer.", "voorwie": "Zoete-Trek-Vervanger (S2)", "oplevert": "Geeft een vast moment om hem te drinken, en zo een reden om terug te komen."}, "zakjes": {"titel": "Supermarktzakje vs. Wilde Kers", "waarom": "Zet het zakje uit de supermarkt naast onze thee: fijngemalen tegenover hele stukjes. Feitelijk, zonder merken te noemen.", "voorwie": "Supermarkt-Upgrader (S3): drinkt nu kersenthee uit een zakje", "oplevert": "Maakt duidelijk waarom losse thee meer kost en waarom dat het waard is."}, "zetten": {"titel": "Zo zet je hem", "waarom": "Drie stappen, zodat losse thee geen gedoe lijkt. Met het thee-ei van € 3,99 er direct bij.", "voorwie": "Iedereen die nog nooit losse thee heeft gezet", "oplevert": "Neemt het bezwaar \"losse thee is gedoe\" weg, en verkoopt het thee-ei mee."}, "reviews": {"titel": "Reviews", "waarom": "Het echte cijfer van WebwinkelKeur: 9,6 uit 3.536 reviews, met de verdeling per ster en een link naar alle reviews.", "voorwie": "Twijfelaars die de winkel nog niet kennen", "oplevert": "Vertrouwen vlak voor het mandje. Alleen echte reviews, niets verzonnen."}, "mix": {"titel": "Andere smaken en Fruitbundel", "waarom": "Laat de smaken zien die klanten echt samen met Wilde Kers kopen (uit GA4), plus de Fruitbundel van 4 smaken voor € 24,99.", "voorwie": "Wie al besloten heeft te kopen", "oplevert": "Ruim de helft van de Wilde Kers-kopers neemt een andere smaak mee. De bundel tilt de bestelling over € 25 (proefzakjes) en richting € 35 (gratis verzending)."}, "faq": {"titel": "Veelgestelde vragen", "waarom": "Beantwoordt de laatste twijfels: is hij zoet of zuur, zit er cafeïne in, wat als ik hem niet lekker vind, en wat kost verzenden.", "voorwie": "Iedereen die nog twijfelt", "oplevert": "Minder vragen aan de klantenservice en minder afhakers vlak voor de koop."}, "final": {"titel": "Laatste oproep", "waarom": "Herhaalt het aanbod met de cadeauladder en een knop, zodat niemand terug hoeft te scrollen.", "voorwie": "Wie de hele pagina heeft gelezen", "oplevert": "Een laatste duwtje naar het mandje, met nog een keer de upsell."}};
-  function el(key){
-    if(key==='top') return document.querySelector('section.gutter:not(.sec)');
-    if(key==='hero') return document.querySelector('section.gutter:not(.sec)');
-    if(key==='final') return document.querySelector('section.sec.final');
-    return document.getElementById(key);
-  }
-  Object.keys(D).forEach(function(key){
-    var host = el(key); if(!host) return;
-    var d = D[key];
-    if(getComputedStyle(host).position==='static') host.style.position='relative';
-    var b = document.createElement('button'); b.type='button'; b.className='ux-btn';
-    b.innerHTML='<span class="i">i</span>Uitleg';
-    var p = document.createElement('div'); p.className='ux-panel'; p.hidden=true;
-    p.innerHTML='<h4></h4><dl><div><dt>Waarom dit blok</dt><dd class="a"></dd></div><div><dt>Voor wie</dt><dd class="b"></dd></div><div><dt>Wat het oplevert</dt><dd class="c"></dd></div></dl>';
-    p.querySelector('h4').textContent=d.titel;
-    p.querySelector('.a').textContent=d.waarom;
-    p.querySelector('.b').textContent=d.voorwie;
-    p.querySelector('.c').textContent=d.oplevert;
-    if(key==='top'){ b.style.right='112px'; b.innerHTML='<span class="i">i</span>Uitleg rode balk'; }
-    b.addEventListener('click', function(e){
-      e.stopPropagation();
-      var open = p.hidden;
-      document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; });
-      p.hidden = !open;
+  var D = [{"sel": ".deal", "titel": "Cadeauladder", "tekst": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 vijf plus gratis verzending, € 50 theeblik, € 75 mok met zeefje. Je ziet steeds hoeveel er nog nodig is.", "wie": "Iedereen. De gemiddelde bestelling is € 42: de balk trekt mensen net iets hoger."}, {"sel": "nav.menu", "titel": "Het echte Losse-T-menu", "tekst": "Bovenaan staat het menu van de winkel zelf. De pagina voelt als losse-t.nl, niet als een losse actiepagina.", "wie": "Vertrouwen voor wie via een advertentie binnenkomt."}, {"sel": "#stage", "titel": "Product groot in beeld", "tekst": "De thee zelf, groot, met labels op de foto: dieprood door hibiscus, echte stukjes kers, appel en rozenbottel. In 1 seconde zie je wat er verkocht wordt.", "wie": "Supermarkt-Upgrader (S3): wil zien dat dit geen gruis is."}, {"sel": ".thumbs", "titel": "Meer foto's en video", "tekst": "De zak, de losse thee, het toetje-moment, ijsthee en een video. Elke foto laat een ander voordeel zien.", "wie": "Iedereen die eerst wil kijken voordat hij koopt."}, {"sel": ".buy h1", "titel": "Naam en \"Onze bestseller\"", "tekst": "Producttitel met \"Onze bestseller\" erboven. Wilde Kers is nummer 1 in omzet (GA4).", "wie": "Smaakontdekker (S6): wil iets nieuws dat al bewezen lekker is."}, {"sel": ".buy .sub", "titel": "Smaak in één zin", "tekst": "Vruchtenthee met echte stukjes kers, appel en rozenbottel. Vol, fruitig en friszoet.", "wie": "Iedereen: je weet direct wat je krijgt."}, {"sel": ".rating", "titel": "Reviewcijfer en voorraad", "tekst": "9,6 uit 3.536 reviews en \"Op voorraad, direct leverbaar\", meteen onder de titel.", "wie": "Vertrouwen voordat iemand verder leest."}, {"sel": "#sizes", "titel": "Kies je formaat", "tekst": "Van proefzakje (€ 1,29) tot kilo. 100 gram staat standaard aan: nieuwe klanten kopen geen kilo. De kilo heet \"Favoriet\" omdat vaste klanten die nemen.", "wie": "Smaakontdekker (S6): het proefzakje haalt de angst voor een miskoop weg."}, {"sel": "#nudge", "titel": "Kilo voor vaste klanten", "tekst": "\"Vaste klanten nemen hem per kilo: € 5,07 per 100 g.\" 87% van de verkochte zakken Wilde Kers is 1 kg (GA4).", "wie": "Laat zien dat mensen terugkomen. Bewijs dat hij lekker is."}, {"sel": ".accs", "titel": "Maak het compleet", "tekst": "Thee-ei € 3,99, maatlepel € 4,99 en filterzakjes € 3,25. Alles wat je nodig hebt om losse thee te zetten.", "wie": "Wie nog nooit losse thee heeft gezet. Kleine upsell bij de knop."}, {"sel": "#addBtn", "titel": "Eén duidelijke knop", "tekst": "Aantal kiezen en \"In mijn mandje\" met de prijs erop. Na het klikken opent het mandje met \"Vaak samen gekocht\".", "wie": "Iedereen. Op mobiel moet het snel naar de koop."}, {"sel": ".combo", "titel": "Fruitbundel", "tekst": "Wilde Kers + Bosvruchten + Lovely Raspberry + Granaatappel: 4 × 100 g voor € 24,99 in plaats van € 26,90, plus 2 proefzakjes.", "wie": "Wie meer wil proberen. Tilt de bestelling van € 6,75 naar bijna € 25."}, {"sel": ".mini", "titel": "Andere smaken erbij", "tekst": "Een rij met smaken die klanten echt samen met Wilde Kers kopen (GA4), direct onder de knop.", "wie": "Ruim de helft van de Wilde Kers-kopers neemt een andere smaak mee."}, {"sel": ".trust", "titel": "Zekerheden", "tekst": "Gratis verzending vanaf € 35, 9,6 uit 3.536 reviews, proefzakjes vanaf € 25, afhalen in Deventer.", "wie": "Haalt de laatste twijfels weg vlak bij de knop."}, {"sel": ".chips", "titel": "Snelmenu", "tekst": "Knoppen naar de blokken: ingrediënten, smaak, zo zet je hem, reviews, andere smaken, vragen.", "wie": "Wie direct een antwoord zoekt in plaats van te scrollen."}, {"sel": "#erin .media", "titel": "Foto met ingrediënten", "tekst": "Losse thee met labels bij elk ingrediënt: hibiscus, appel, kers, rozijn, rozenbottel.", "wie": "Supermarkt-Upgrader (S3): je ziet elk stukje terug."}, {"sel": "#erin .copy", "titel": "Wat zit erin, eerlijk", "tekst": "De volledige ingrediëntenlijst, en eerlijk dat er suiker in de stukjes kers zit.", "wie": "Voorkomt teleurstelling en klachten over de zoetheid."}, {"sel": "#smaak .taste", "titel": "Smaakmeter", "tekst": "Zoet, fruitig en fris in balken. Plus de tip: te fris? Laat hem korter trekken.", "wie": "Smaakontdekker (S6): \"wat als ik hem niet lekker vind?\""}, {"sel": "#smaak .cap", "titel": "Klantcitaat op de foto", "tekst": "\"Deze is friszoet.\" Een echte klant beschrijft de smaak.", "wie": "Twijfelaars. Een klant zegt het, niet wij."}, {"sel": "#toetje .copy", "titel": "Een beetje thee, een beetje toetje", "tekst": "Wilde Kers als vervanging van iets zoets na het eten. Dieprood, vol van smaak.", "wie": "Zoete-Trek-Vervanger (S2). Geeft een vast moment, en zo een reden om terug te komen."}, {"sel": "#toetje .duo", "titel": "Ook als ijsthee", "tekst": "Dezelfde thee koud: zo is hij ook in de zomer te verkopen.", "wie": "Het hele jaar omzet in plaats van alleen in de winter."}, {"sel": "#zakjes .media", "titel": "Foto: zakje naast losse thee", "tekst": "Het zakje uit de supermarkt naast Wilde Kers, met labels: fijngemalen tegenover hele stukjes.", "wie": "Supermarkt-Upgrader (S3): in één beeld het verschil."}, {"sel": "#zakjes .vt", "titel": "Vergelijkingstabel", "tekst": "Smaak, thee, ingrediënten, het zakje, sterkte, proberen en keuze naast elkaar. Feitelijk, zonder merken te noemen.", "wie": "Supermarkt-Upgrader (S3). Laat zien waarom losse thee meer kost en waarom dat het waard is."}, {"sel": "#zakjes .vq", "titel": "Klantcitaten", "tekst": "\"Niet te vergelijken met thee uit de supermarkt.\" Echte reviews als bewijs onder de tabel.", "wie": "Twijfelaars."}, {"sel": "#zetten .steps", "titel": "Zo zet je hem", "tekst": "Drie stappen: 1 theelepel, water van 100 °C, 8 tot 10 minuten trekken.", "wie": "Neemt het bezwaar \"losse thee is gedoe\" weg."}, {"sel": "#zetten .eggcard", "titel": "Thee-ei erbij", "tekst": "Nog geen thee-ei? € 3,99, met één klik erbij.", "wie": "Kleine upsell op het moment dat iemand eraan denkt."}, {"sel": "#reviews .proof", "titel": "Het cijfer", "tekst": "9,6 uit 3.536 reviews bij WebwinkelKeur, 738 in het afgelopen jaar, met de verdeling per ster.", "wie": "Echte reviews, niets verzonnen."}, {"sel": "#reviews .reviews", "titel": "Wat klanten zeggen", "tekst": "Een review over Wilde Kers bovenaan, daarna reviews over de winkel (\"Hier komen geen theezakjes meer in huis\").", "wie": "Twijfelaars. Andere klanten zeggen het, niet wij."}, {"sel": "#mix .feat", "titel": "Fruitbundel", "tekst": "De bundel nog een keer, groot: 4 smaken voor € 24,99 plus 2 proefzakjes.", "wie": "Wie halverwege is overtuigd. Tilt de bestelling over € 25."}, {"sel": "#mix .filters", "titel": "Kies zelf je smaken", "tekst": "Filters: vaak samen gekocht, fris en fruitig, zoet en warm, handig erbij. Per filter de top 10.", "wie": "Smaakontdekker (S6): wil nieuwe smaken ontdekken."}, {"sel": "#mixGrid", "titel": "Smaken met één klik", "tekst": "De smaken die het vaakst samen met Wilde Kers worden gekocht (GA4), direct in het mandje te leggen.", "wie": "Richting € 35 voor gratis verzending."}, {"sel": "#faq .faq", "titel": "Veelgestelde vragen", "tekst": "Is hij zoet of zuur, zit er cafeïne in, ijsthee, hoeveel per kop, de cadeauladder, wat als ik hem niet lekker vind, en verzending.", "wie": "De laatste twijfels, zodat niemand afhaakt."}, {"sel": ".final .btns", "titel": "Laatste keuze", "tekst": "Twee knoppen: Wilde Kers in het mandje, of de Fruitbundel voor € 24,99.", "wie": "Wie de hele pagina heeft gelezen. Nog één keer de upsell."}];
+  var on = false, cur = -1, items = [];
+  var layer = document.createElement('div'); layer.id = 'ux-layer';
+  document.body.appendChild(layer);
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'ux-svg');
+  svg.innerHTML = '<defs><marker id="uxah" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,6 L0,12 z" fill="#e0313f"/></marker></defs><path id="uxline" fill="none" stroke="#e0313f" stroke-width="3" stroke-linecap="round" marker-end="url(#uxah)"/>';
+  var line = svg.querySelector('#uxline');
+  var card = document.createElement('div'); card.className = 'ux-card'; card.style.display = 'none';
+  card.innerHTML = '<button type="button" class="x" aria-label="Sluiten">×</button><h4><span class="nr"></span><span class="t"></span></h4><p class="tx"></p><div class="wie"><b>Voor wie / waarom</b><span></span></div><div class="nav"><button type="button" class="prev">← Vorige</button><span class="cnt"></span><button type="button" class="next">Volgende →</button></div>';
+  var tog = document.createElement('button'); tog.type = 'button'; tog.className = 'ux-toggle';
+  tog.innerHTML = '<span class="i">i</span><span class="l">Uitleg tonen</span>';
+  document.body.appendChild(tog);
+
+  function visible(el){ var r = el.getBoundingClientRect(); return r.width > 4 && r.height > 4 && getComputedStyle(el).visibility !== 'hidden'; }
+  function box(el){ var r = el.getBoundingClientRect(); return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height}; }
+
+  function build(){
+    layer.innerHTML = ''; items = [];
+    layer.appendChild(svg);
+    var num = 0;
+    D.forEach(function(d){
+      var el = document.querySelector(d.sel);
+      if(!el || !visible(el)) return;
+      num++;
+      var hl = document.createElement('div'); hl.className = 'ux-hl';
+      var pin = document.createElement('button'); pin.type = 'button'; pin.className = 'ux-pin'; pin.textContent = num;
+      var idx = items.length;
+      pin.addEventListener('click', function(e){ e.stopPropagation(); open(idx, false); });
+      layer.appendChild(hl); layer.appendChild(pin);
+      items.push({d: d, el: el, hl: hl, pin: pin, n: num});
     });
-    p.addEventListener('click', function(e){ e.stopPropagation(); });
-    host.appendChild(b); host.appendChild(p);
+    layer.appendChild(card);
+    place();
+  }
+  function place(){
+    items.forEach(function(it){
+      var b = box(it.el);
+      it.hl.style.left = (b.x - 4) + 'px'; it.hl.style.top = (b.y - 4) + 'px';
+      it.hl.style.width = (b.w + 8) + 'px'; it.hl.style.height = (b.h + 8) + 'px';
+      it.pin.style.left = Math.max(14, b.x) + 'px'; it.pin.style.top = Math.max(14, b.y) + 'px';
+    });
+    if(cur >= 0) drawCard();
+  }
+  function drawCard(){
+    var it = items[cur]; if(!it) return;
+    var b = box(it.el), vw = document.documentElement.clientWidth, cw = Math.min(340, vw - 24);
+    card.style.display = 'block';
+    var ch = card.offsetHeight, gap = 70, cx, cy, tx, ty, sx, sy;
+    var vy = scrollY, vh = innerHeight;
+    if(b.x + b.w + gap + cw < vw - 8){            // rechts van het onderdeel
+      cx = b.x + b.w + gap; cy = Math.min(Math.max(b.y, vy + 70), vy + vh - ch - 16);
+      sx = cx; sy = cy + 36; tx = b.x + b.w + 6; ty = Math.min(Math.max(sy, b.y + 12), b.y + b.h - 12);
+    } else if(b.x - gap - cw > 8){                // links
+      cx = b.x - gap - cw; cy = Math.min(Math.max(b.y, vy + 70), vy + vh - ch - 16);
+      sx = cx + cw; sy = cy + 36; tx = b.x - 6; ty = Math.min(Math.max(sy, b.y + 12), b.y + b.h - 12);
+    } else {                                      // eronder of erboven
+      cx = Math.min(Math.max(12, b.x + 20), vw - cw - 12);
+      var below = b.y + b.h + gap;
+      if(below + ch < vy + vh - 8 || b.y - gap - ch < vy + 60){ cy = below; sy = cy; ty = b.y + b.h + 6; }
+      else { cy = b.y - gap - ch; sy = cy + ch; ty = b.y - 6; }
+      sx = cx + 40; tx = Math.min(Math.max(sx + 30, b.x + 24), b.x + b.w - 24);
+    }
+    card.style.width = cw + 'px'; card.style.left = cx + 'px'; card.style.top = cy + 'px';
+    var mx = (sx + tx) / 2, my = (sy + ty) / 2;
+    var dx = tx - sx, dy = ty - sy, bend = 0.18;
+    line.setAttribute('d', 'M' + sx + ',' + sy + ' Q' + (mx - dy * bend) + ',' + (my + dx * bend) + ' ' + tx + ',' + ty);
+    line.style.display = '';
+  }
+  function open(i, scroll){
+    if(cur >= 0 && items[cur]){ items[cur].hl.classList.remove('on'); items[cur].pin.classList.remove('on'); }
+    cur = i; var it = items[i]; if(!it) return;
+    it.hl.classList.add('on'); it.pin.classList.add('on');
+    card.querySelector('.nr').textContent = it.n;
+    card.querySelector('.t').textContent = it.d.titel;
+    card.querySelector('.tx').textContent = it.d.tekst;
+    card.querySelector('.wie span').textContent = it.d.wie;
+    card.querySelector('.wie').style.display = it.d.wie ? '' : 'none';
+    card.querySelector('.cnt').textContent = it.n + ' / ' + items.length;
+    if(scroll){
+      var b = box(it.el);
+      var target = b.y - Math.max(90, (innerHeight - Math.min(b.h, innerHeight * .6)) / 3);
+      window.scrollTo({top: Math.max(0, target), behavior: 'smooth'});
+      setTimeout(drawCard, 450);
+    }
+    drawCard();
+  }
+  function close(){
+    if(cur >= 0 && items[cur]){ items[cur].hl.classList.remove('on'); items[cur].pin.classList.remove('on'); }
+    cur = -1; card.style.display = 'none'; line.style.display = 'none';
+  }
+  card.addEventListener('click', function(e){ e.stopPropagation(); });
+  card.querySelector('.x').addEventListener('click', close);
+  card.querySelector('.prev').addEventListener('click', function(){ open((cur - 1 + items.length) % items.length, true); });
+  card.querySelector('.next').addEventListener('click', function(){ open((cur + 1) % items.length, true); });
+  document.addEventListener('click', function(){ if(on) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!on) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowRight' && cur >= 0) open((cur + 1) % items.length, true);
+    if(e.key === 'ArrowLeft' && cur >= 0) open((cur - 1 + items.length) % items.length, true);
   });
-  document.addEventListener('click', function(){ document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; }); });
-  var t = document.createElement('button'); t.type='button'; t.className='ux-all'; t.textContent='Uitleg verbergen';
-  t.addEventListener('click', function(e){ e.stopPropagation(); var off=document.body.classList.toggle('ux-off'); t.textContent = off ? 'Uitleg tonen' : 'Uitleg verbergen'; });
-  document.body.appendChild(t);
+  tog.addEventListener('click', function(e){
+    e.stopPropagation();
+    on = !on;
+    tog.classList.toggle('on', on);
+    tog.querySelector('.l').textContent = on ? 'Uitleg uit' : 'Uitleg tonen';
+    if(on){ layer.style.display = ''; build(); } else { close(); layer.innerHTML = ''; layer.style.display = 'none'; }
+  });
+  var t; function re(){ if(!on) return; clearTimeout(t); t = setTimeout(place, 80); }
+  addEventListener('resize', re);
+  if(window.ResizeObserver){ new ResizeObserver(re).observe(document.body); }
+  layer.style.display = 'none';
 })();
 </script><!--/uitleg-->
