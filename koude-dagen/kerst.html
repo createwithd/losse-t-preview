@@ -866,51 +866,143 @@ new MutationObserver(()=>$$("#stage video").forEach(v=>vo.observe(v))).observe($
 refreshAmt(); render();
 </script>
 <!--uitleg--><style>
-.ux-btn{position:absolute;top:12px;right:12px;z-index:30;display:inline-flex;align-items:center;gap:6px;font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.18)}
-.ux-btn:hover{background:#3a4a30}
-.ux-btn .i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#fff;color:#1f2a1a;font-size:11px;font-weight:700}
-.ux-panel{position:absolute;top:50px;right:12px;z-index:31;width:min(380px,calc(100% - 24px));background:#fff;color:#1f2a1a;border:1px solid #d9dccf;border-left:4px solid #a3263a;border-radius:10px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.18);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}
-.ux-panel[hidden]{display:none}
-.ux-panel h4{margin:0 0 8px;font-size:15px;font-weight:700}
-.ux-panel dl{margin:0;display:grid;gap:8px}
-.ux-panel dt{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#a3263a}
-.ux-panel dd{margin:2px 0 0}
-.ux-all{position:fixed;left:14px;bottom:14px;z-index:60;font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:#1f2a1a;border:1px solid #1f2a1a;border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-body.ux-off .ux-btn,body.ux-off .ux-panel{display:none!important}
+#ux-layer{position:absolute;left:0;top:0;width:0;height:0;z-index:2147483000;pointer-events:none}
+#ux-layer *{box-sizing:border-box}
+.ux-hl{position:absolute;border:2px dashed #e0313f;border-radius:10px;background:rgba(224,49,63,.04);pointer-events:none;transition:border-color .15s,background .15s}
+.ux-hl.on{border-style:solid;border-width:3px;background:rgba(224,49,63,.08)}
+.ux-pin{position:absolute;width:30px;height:30px;margin:-12px 0 0 -12px;border-radius:50%;background:#e0313f;color:#fff;font:700 14px/30px system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:pointer;pointer-events:auto;padding:0}
+.ux-pin:hover,.ux-pin.on{background:#1f2a1a;transform:scale(1.12)}
+.ux-svg{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.ux-card{position:absolute;width:340px;background:#fff;color:#1f2a1a;border:2px solid #e0313f;border-radius:12px;padding:14px 16px 12px;box-shadow:0 14px 40px rgba(0,0,0,.25);font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;pointer-events:auto}
+.ux-card .nr{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#e0313f;color:#fff;font-weight:700;font-size:12px;margin-right:8px;vertical-align:1px}
+.ux-card h4{margin:0 0 6px;font-size:16px;font-weight:700}
+.ux-card p{margin:0 0 8px}
+.ux-card .wie{font-size:13px;color:#5a6452;border-top:1px solid #eee;padding-top:8px}
+.ux-card .wie b{color:#e0313f;font-size:11px;letter-spacing:.05em;text-transform:uppercase;display:block}
+.ux-card .nav{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
+.ux-card .nav button{font:600 13px system-ui,-apple-system,"Segoe UI",sans-serif;border:1px solid #1f2a1a;background:#fff;color:#1f2a1a;border-radius:999px;padding:6px 12px;cursor:pointer}
+.ux-card .nav button:hover{background:#f3f3ee}
+.ux-card .nav span{font-size:12px;color:#888}
+.ux-card .x{position:absolute;top:6px;right:8px;border:0;background:none;font-size:18px;color:#888;cursor:pointer;line-height:1}
+.ux-toggle{position:fixed;left:14px;bottom:14px;z-index:2147483001;font:700 14px system-ui,-apple-system,"Segoe UI",sans-serif;background:#1f2a1a;color:#fff;border:0;border-radius:999px;padding:11px 18px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:8px}
+.ux-toggle .i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#e0313f;color:#fff;font-size:12px}
+.ux-toggle.on{background:#e0313f}
+.ux-toggle.on .i{background:#fff;color:#e0313f}
+@media (max-width:640px){.ux-card{width:calc(100vw - 24px)}}
 </style><script>
 (function(){
-  var D = {"top": {"titel": "Cadeauladder in de bovenbalk", "waarom": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 vijf plus gratis verzending, € 50 theeblik, € 75 mok met zeefje.", "voorwie": "Iedereen die iets in het mandje legt", "oplevert": "De gemiddelde bestelling is € 42. De balk laat steeds zien hoeveel er nog nodig is voor het volgende cadeautje, zodat mensen net iets meer bijpakken. Goedgekeurd door de klant op 28-10."}, "hero": {"titel": "Productblok bovenaan", "waarom": "Het pakket groot in beeld, met prijs, staffel (1, 2 of 3 stuks) en de besteldata voor Sinterklaas en kerst.", "voorwie": "Kerstshopper (C3) en Bedankjesgever (C1)", "oplevert": "De staffel staat meteen bij de knop, zodat mensen er direct meer pakken. Het pakket kost € 15,99, ver onder de gemiddelde bestelling van € 42."}, "erin": {"titel": "Wat zit erin", "waarom": "Drie warme theeën: een kruidige, een fruitige en een volle smaak. Plus een rol theefilters.", "voorwie": "Wie niet weet wat de ander lekker vindt", "oplevert": "Neemt \"lust ze dit wel?\" weg: er zit altijd een smaak bij die past."}, "kerst": {"titel": "Op tijd in huis, kant-en-klaar ingepakt", "waarom": "Laat de doos zien zoals hij aankomt, met de laatste besteldata.", "voorwie": "Kerstshopper (C3): \"komt het op tijd?\" en \"ziet het er feestelijk uit?\"", "oplevert": "Haalt de twee grootste twijfels in december weg. De data moet de klant nog bevestigen."}, "voorwie": {"titel": "Voor wie", "waarom": "Juf, collega, moeder: één cadeau voor iedereen op het lijstje.", "voorwie": "Bedankjesgever (C1)", "oplevert": "Zet mensen aan het denken over wie ze nog meer kunnen bedanken. Dat leidt naar de staffel."}, "staffel": {"titel": "1 voor jou, 2 om weg te geven", "waarom": "Hoe meer pakketten, hoe lager de prijs per stuk: 2 voor € 29,99, 3 voor € 42,99 met gratis verzending.", "voorwie": "Bedankjesgever (C1)", "oplevert": "Het belangrijkste blok voor de orderwaarde: van € 15,99 naar € 42,99."}, "standaard": {"titel": "Bonbons of een mok vs. Koude Dagen", "waarom": "Zet het standaardcadeau naast ons pakket: belandt in de kast tegenover ± 75 kopjes die echt worden opgedronken.", "voorwie": "Wie twijfelt tussen thee en iets anders", "oplevert": "Maakt het pakket de makkelijke keuze tegenover bonbons, wijn of een mok."}, "moment": {"titel": "Kaneel, sinaasappel en gember", "waarom": "Laat het moment zien: bij de haard, op de kersttafel.", "voorwie": "Kerstshopper (C3)", "oplevert": "Je geeft geen thee maar een gezellig moment. Dat rechtvaardigt de prijs."}, "zetten": {"titel": "Zo makkelijk is losse thee", "waarom": "Filters zitten erbij, dus de ontvanger hoeft niets te kopen.", "voorwie": "Gevers die bang zijn dat losse thee gedoe is voor de ontvanger", "oplevert": "Haalt de drempel weg om losse thee cadeau te geven."}, "reviews": {"titel": "Reviews", "waarom": "Een echte review over dit pakket (\"Mooi ingepakt\") en het cijfer van de winkel.", "voorwie": "Twijfelaars", "oplevert": "Vertrouwen. Het is het best verkochte cadeaupakket."}, "cadeaus": {"titel": "Nog iemand op je lijstje?", "waarom": "De cadeaupakketten die het vaakst samen met Koude Dagen worden besteld, plus het duo-cadeau.", "voorwie": "Wie meerdere cadeaus zoekt", "oplevert": "Tweede cadeau in dezelfde doos: hogere bestelling, één keer verzenden."}, "faq": {"titel": "Veelgestelde vragen", "waarom": "Op tijd voor Sint en kerst, hoe het is ingepakt, of de ontvanger een thee-ei nodig heeft, en wat als die geen thee drinkt.", "voorwie": "Wie nog twijfelt", "oplevert": "Minder afhakers op het laatste moment."}, "final": {"titel": "Laatste oproep", "waarom": "Neem er drie: € 14,33 per stuk en gratis verzonden, met de besteldata.", "voorwie": "Wie de hele pagina heeft gelezen", "oplevert": "Stuurt op 3 stuks in plaats van 1."}};
-  function el(key){
-    if(key==='top') return document.querySelector('section.gutter:not(.sec)');
-    if(key==='hero') return document.querySelector('section.gutter:not(.sec)');
-    if(key==='final') return document.querySelector('section.sec.final');
-    return document.getElementById(key);
-  }
-  Object.keys(D).forEach(function(key){
-    var host = el(key); if(!host) return;
-    var d = D[key];
-    if(getComputedStyle(host).position==='static') host.style.position='relative';
-    var b = document.createElement('button'); b.type='button'; b.className='ux-btn';
-    b.innerHTML='<span class="i">i</span>Uitleg';
-    var p = document.createElement('div'); p.className='ux-panel'; p.hidden=true;
-    p.innerHTML='<h4></h4><dl><div><dt>Waarom dit blok</dt><dd class="a"></dd></div><div><dt>Voor wie</dt><dd class="b"></dd></div><div><dt>Wat het oplevert</dt><dd class="c"></dd></div></dl>';
-    p.querySelector('h4').textContent=d.titel;
-    p.querySelector('.a').textContent=d.waarom;
-    p.querySelector('.b').textContent=d.voorwie;
-    p.querySelector('.c').textContent=d.oplevert;
-    if(key==='top'){ b.style.right='112px'; b.innerHTML='<span class="i">i</span>Uitleg rode balk'; }
-    b.addEventListener('click', function(e){
-      e.stopPropagation();
-      var open = p.hidden;
-      document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; });
-      p.hidden = !open;
+  var D = [{"sel": ".deal", "titel": "Cadeauladder", "tekst": "De rode balk vult zich terwijl het mandje groeit: € 25 twee proefzakjes, € 35 gratis verzending, € 50 theeblik, € 75 mok. Zo zie je steeds hoeveel er nog nodig is voor het volgende cadeautje.", "wie": "Iedereen. Het pakket kost € 15,99, de gemiddelde bestelling is € 42: de balk trekt er meer bij."}, {"sel": "nav.menu", "titel": "Het echte Losse-T-menu", "tekst": "Bovenaan staat het menu van de winkel zelf. De pagina voelt zo als losse-t.nl, niet als een losse actiepagina.", "wie": "Vertrouwen voor wie via een advertentie binnenkomt."}, {"sel": "#stage", "titel": "Product groot in beeld", "tekst": "Het pakket zelf, groot, met labels op de foto: wat zit erin en hoe het eruitziet. In 1 seconde zie je wat er verkocht wordt.", "wie": "Kerstshopper (C3): \"ziet het er feestelijk uit?\""}, {"sel": ".thumbs", "titel": "Meer foto's", "tekst": "De doos, de inhoud, het uitpakken en een video. Je ziet precies wat de ontvanger krijgt.", "wie": "Wie wil weten wat er in de doos zit."}, {"sel": ".buy h1", "titel": "Naam en belofte", "tekst": "Producttitel met \"Ons best verkochte cadeaupakket\" erboven. Direct de reden om voor deze te kiezen.", "wie": "Twijfelaars tussen verschillende cadeaus."}, {"sel": ".rating", "titel": "Reviewcijfer en voorraad", "tekst": "9,6 uit 3.536 reviews en \"Op voorraad, direct leverbaar\", meteen onder de titel.", "wie": "Vertrouwen voordat iemand verder leest."}, {"sel": "#dlbox", "titel": "Besteldata en aftellen", "tekst": "Uiterste besteldata voor Sinterklaas en kerst, met hoeveel dagen er nog over zijn. De data moet Losse-T nog bevestigen.", "wie": "Kerstshopper (C3): \"komt het op tijd?\" Dat is in december de grootste twijfel."}, {"sel": "#sizes", "titel": "Staffel: 1, 2 of 3 pakketten", "tekst": "Hoe meer, hoe goedkoper per stuk: € 15,99, 2 voor € 29,99, 3 voor € 42,99. \"Favoriet\" staat bij 3.", "wie": "Bedankjesgever (C1). Het belangrijkste blok voor de orderwaarde: van € 15,99 naar € 42,99."}, {"sel": "#nudge", "titel": "Duwtje naar 3", "tekst": "\"Juf, collega en jezelf?\" Met 3 pakketten betaal je € 14,33 per stuk en is verzending gratis. Eén klik op \"Kies 3\".", "wie": "Wie er 1 of 2 heeft gekozen."}, {"sel": ".accs", "titel": "Maak het compleet", "tekst": "Kleine extra's bij het pakket: thee-ei € 2,99, mok met zeefje € 9,99, kerst cadeauzak € 14,49.", "wie": "Wie het cadeau nog wat groter wil maken. Hogere orderwaarde zonder gedoe."}, {"sel": "#addBtn", "titel": "Eén duidelijke knop", "tekst": "Eén grote knop \"In mijn mandje\". Na het klikken opent het mandje met nog een paar suggesties.", "wie": "Iedereen. Op mobiel moet het snel naar de koop."}, {"sel": ".combo", "titel": "Duo-cadeau", "tekst": "Koude Dagen + Voor de liefste = € 35,49. Net boven € 35, dus gratis verzonden en 5 proefzakjes erbij.", "wie": "Wie twee mensen een cadeau wil geven."}, {"sel": ".mini", "titel": "Andere cadeaus", "tekst": "Een rij met andere cadeaupakketten die vaak samen worden gekocht, direct onder de knop.", "wie": "Wie nog meer mensen op het lijstje heeft."}, {"sel": ".trust", "titel": "Zekerheden", "tekst": "Gratis verzending vanaf € 35, 9,6 uit 3.536 reviews, proefzakjes vanaf € 25, afhalen in Deventer.", "wie": "Haalt de laatste twijfels weg vlak bij de knop."}, {"sel": ".chips", "titel": "Snelmenu", "tekst": "Knoppen naar de blokken op de pagina: wat zit erin, Sinterklaas en kerst, voor wie, reviews, vragen.", "wie": "Wie direct een antwoord zoekt in plaats van te scrollen."}, {"sel": "#erin .teas", "titel": "Drie smaken", "tekst": "Koude Dagen, Herfst en Sinaasappel Chai: een kruidige, een fruitige en een volle smaak.", "wie": "Wie niet weet wat de ander lekker vindt: er zit altijd iets bij dat past."}, {"sel": "#kerst .two", "titel": "In de schoen of onder de boom", "tekst": "Twee beelden van het pakket op het moment zelf: bij de schoen en onder de kerstboom.", "wie": "Kerstshopper (C3). Zo zie je het cadeau al liggen."}, {"sel": "#kerst .fact", "titel": "Best verkocht", "tekst": "Vorig jaar het best verkochte cadeaupakket. Eén klant bestelde er 29 tegelijk (GA4).", "wie": "Bewijs voor twijfelaars, en een hint naar meerdere stuks."}, {"sel": "#voorwie .who", "titel": "Voor wie", "tekst": "Juf of meester, collega's, moeder of vriendin, en eentje voor jezelf. Elke kaart is een reden voor nog een pakket.", "wie": "Bedankjesgever (C1) en Verwenner (C2)."}, {"sel": "#staffel .stf", "titel": "Staffel nog een keer", "tekst": "Dezelfde 1-2-3 keuze, nu met de voordelen per stap: proefzakjes bij 2, gratis verzending bij 3.", "wie": "Wie halverwege de pagina is overtuigd. Hier kun je direct kiezen."}, {"sel": "#standaard .vt", "titel": "Bonbons of een mok vs. Koude Dagen", "tekst": "Vergelijkt het standaardcadeau met dit pakket: één smaak die in de kast belandt, tegenover ± 75 kopjes thee voor de hele winter.", "wie": "Wie twijfelt tussen thee en iets anders."}, {"sel": "#moment .duo", "titel": "Het moment", "tekst": "Sfeerbeelden bij de haard en op de kersttafel. Je geeft eigenlijk een gezellig moment.", "wie": "Kerstshopper (C3). Maakt het cadeau persoonlijker."}, {"sel": "#zetten .steps", "titel": "Zo zet je hem", "tekst": "Filters zitten erbij: 1 theelepel in een filter, water erop, klaar. De ontvanger hoeft niets te kopen.", "wie": "Wie bang is dat losse thee gedoe is voor de ontvanger."}, {"sel": "#zetten .eggcard", "titel": "Thee-ei erbij", "tekst": "Voor wie liever een thee-ei gebruikt: € 2,99, met één klik erbij.", "wie": "Kleine upsell op het juiste moment."}, {"sel": "#reviews .proof", "titel": "Het cijfer", "tekst": "9,6 uit 3.536 reviews bij WebwinkelKeur, met de verdeling per ster en een link naar alle reviews.", "wie": "Echte reviews, niets verzonnen."}, {"sel": "#reviews .reviews", "titel": "Wat klanten zeggen", "tekst": "Een review over dit pakket bovenaan (\"Mooi ingepakt\"), daarna reviews over de winkel.", "wie": "Twijfelaars. Andere klanten zeggen het, niet wij."}, {"sel": "#cadeaus .feat", "titel": "Duo-cadeau", "tekst": "Nog een keer het duo met Voor de liefste, nu met foto's van beide.", "wie": "Wie meerdere cadeaus zoekt. Tweede cadeau in dezelfde doos."}, {"sel": "#mixGrid", "titel": "Andere cadeaus", "tekst": "Cadeaupakketten die het vaakst samen met Koude Dagen worden besteld (GA4), met filters.", "wie": "Wie nog iemand op het lijstje heeft."}, {"sel": "#accRow", "titel": "Handig erbij", "tekst": "Accessoires voor bij de thee, zoals een thee-ei en een mok.", "wie": "Kleine extra's om over de € 35 te komen."}, {"sel": "#faq .faq", "titel": "Veelgestelde vragen", "tekst": "Op tijd voor Sint en kerst, hoe het is ingepakt, cafeïne, of de ontvanger een thee-ei nodig heeft, en wat als die geen thee drinkt.", "wie": "De laatste twijfels, zodat niemand afhaakt."}, {"sel": ".final .btns", "titel": "Laatste keuze", "tekst": "Twee knoppen: 3 pakketten voor € 42,99 als eerste en grootste, 1 pakket als tweede.", "wie": "Wie de hele pagina heeft gelezen. Stuurt op 3 stuks."}];
+  var on = false, cur = -1, items = [];
+  var layer = document.createElement('div'); layer.id = 'ux-layer';
+  document.body.appendChild(layer);
+  var NS = 'http://www.w3.org/2000/svg';
+  var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'ux-svg');
+  svg.innerHTML = '<defs><marker id="uxah" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L12,6 L0,12 z" fill="#e0313f"/></marker></defs><path id="uxline" fill="none" stroke="#e0313f" stroke-width="3" stroke-linecap="round" marker-end="url(#uxah)"/>';
+  var line = svg.querySelector('#uxline');
+  var card = document.createElement('div'); card.className = 'ux-card'; card.style.display = 'none';
+  card.innerHTML = '<button type="button" class="x" aria-label="Sluiten">×</button><h4><span class="nr"></span><span class="t"></span></h4><p class="tx"></p><div class="wie"><b>Voor wie / waarom</b><span></span></div><div class="nav"><button type="button" class="prev">← Vorige</button><span class="cnt"></span><button type="button" class="next">Volgende →</button></div>';
+  var tog = document.createElement('button'); tog.type = 'button'; tog.className = 'ux-toggle';
+  tog.innerHTML = '<span class="i">i</span><span class="l">Uitleg tonen</span>';
+  document.body.appendChild(tog);
+
+  function visible(el){ var r = el.getBoundingClientRect(); return r.width > 4 && r.height > 4 && getComputedStyle(el).visibility !== 'hidden'; }
+  function box(el){ var r = el.getBoundingClientRect(); return {x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height}; }
+
+  function build(){
+    layer.innerHTML = ''; items = [];
+    layer.appendChild(svg);
+    var num = 0;
+    D.forEach(function(d){
+      var el = document.querySelector(d.sel);
+      if(!el || !visible(el)) return;
+      num++;
+      var hl = document.createElement('div'); hl.className = 'ux-hl';
+      var pin = document.createElement('button'); pin.type = 'button'; pin.className = 'ux-pin'; pin.textContent = num;
+      var idx = items.length;
+      pin.addEventListener('click', function(e){ e.stopPropagation(); open(idx, false); });
+      layer.appendChild(hl); layer.appendChild(pin);
+      items.push({d: d, el: el, hl: hl, pin: pin, n: num});
     });
-    p.addEventListener('click', function(e){ e.stopPropagation(); });
-    host.appendChild(b); host.appendChild(p);
+    layer.appendChild(card);
+    place();
+  }
+  function place(){
+    items.forEach(function(it){
+      var b = box(it.el);
+      it.hl.style.left = (b.x - 4) + 'px'; it.hl.style.top = (b.y - 4) + 'px';
+      it.hl.style.width = (b.w + 8) + 'px'; it.hl.style.height = (b.h + 8) + 'px';
+      it.pin.style.left = Math.max(14, b.x) + 'px'; it.pin.style.top = Math.max(14, b.y) + 'px';
+    });
+    if(cur >= 0) drawCard();
+  }
+  function drawCard(){
+    var it = items[cur]; if(!it) return;
+    var b = box(it.el), vw = document.documentElement.clientWidth, cw = Math.min(340, vw - 24);
+    card.style.display = 'block';
+    var ch = card.offsetHeight, gap = 70, cx, cy, tx, ty, sx, sy;
+    var vy = scrollY, vh = innerHeight;
+    if(b.x + b.w + gap + cw < vw - 8){            // rechts van het onderdeel
+      cx = b.x + b.w + gap; cy = Math.min(Math.max(b.y, vy + 70), vy + vh - ch - 16);
+      sx = cx; sy = cy + 36; tx = b.x + b.w + 6; ty = Math.min(Math.max(sy, b.y + 12), b.y + b.h - 12);
+    } else if(b.x - gap - cw > 8){                // links
+      cx = b.x - gap - cw; cy = Math.min(Math.max(b.y, vy + 70), vy + vh - ch - 16);
+      sx = cx + cw; sy = cy + 36; tx = b.x - 6; ty = Math.min(Math.max(sy, b.y + 12), b.y + b.h - 12);
+    } else {                                      // eronder of erboven
+      cx = Math.min(Math.max(12, b.x + 20), vw - cw - 12);
+      var below = b.y + b.h + gap;
+      if(below + ch < vy + vh - 8 || b.y - gap - ch < vy + 60){ cy = below; sy = cy; ty = b.y + b.h + 6; }
+      else { cy = b.y - gap - ch; sy = cy + ch; ty = b.y - 6; }
+      sx = cx + 40; tx = Math.min(Math.max(sx + 30, b.x + 24), b.x + b.w - 24);
+    }
+    card.style.width = cw + 'px'; card.style.left = cx + 'px'; card.style.top = cy + 'px';
+    var mx = (sx + tx) / 2, my = (sy + ty) / 2;
+    var dx = tx - sx, dy = ty - sy, bend = 0.18;
+    line.setAttribute('d', 'M' + sx + ',' + sy + ' Q' + (mx - dy * bend) + ',' + (my + dx * bend) + ' ' + tx + ',' + ty);
+    line.style.display = '';
+  }
+  function open(i, scroll){
+    if(cur >= 0 && items[cur]){ items[cur].hl.classList.remove('on'); items[cur].pin.classList.remove('on'); }
+    cur = i; var it = items[i]; if(!it) return;
+    it.hl.classList.add('on'); it.pin.classList.add('on');
+    card.querySelector('.nr').textContent = it.n;
+    card.querySelector('.t').textContent = it.d.titel;
+    card.querySelector('.tx').textContent = it.d.tekst;
+    card.querySelector('.wie span').textContent = it.d.wie;
+    card.querySelector('.wie').style.display = it.d.wie ? '' : 'none';
+    card.querySelector('.cnt').textContent = it.n + ' / ' + items.length;
+    if(scroll){
+      var b = box(it.el);
+      var target = b.y - Math.max(90, (innerHeight - Math.min(b.h, innerHeight * .6)) / 3);
+      window.scrollTo({top: Math.max(0, target), behavior: 'smooth'});
+      setTimeout(drawCard, 450);
+    }
+    drawCard();
+  }
+  function close(){
+    if(cur >= 0 && items[cur]){ items[cur].hl.classList.remove('on'); items[cur].pin.classList.remove('on'); }
+    cur = -1; card.style.display = 'none'; line.style.display = 'none';
+  }
+  card.addEventListener('click', function(e){ e.stopPropagation(); });
+  card.querySelector('.x').addEventListener('click', close);
+  card.querySelector('.prev').addEventListener('click', function(){ open((cur - 1 + items.length) % items.length, true); });
+  card.querySelector('.next').addEventListener('click', function(){ open((cur + 1) % items.length, true); });
+  document.addEventListener('click', function(){ if(on) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!on) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowRight' && cur >= 0) open((cur + 1) % items.length, true);
+    if(e.key === 'ArrowLeft' && cur >= 0) open((cur - 1 + items.length) % items.length, true);
   });
-  document.addEventListener('click', function(){ document.querySelectorAll('.ux-panel').forEach(function(x){ x.hidden=true; }); });
-  var t = document.createElement('button'); t.type='button'; t.className='ux-all'; t.textContent='Uitleg verbergen';
-  t.addEventListener('click', function(e){ e.stopPropagation(); var off=document.body.classList.toggle('ux-off'); t.textContent = off ? 'Uitleg tonen' : 'Uitleg verbergen'; });
-  document.body.appendChild(t);
+  tog.addEventListener('click', function(e){
+    e.stopPropagation();
+    on = !on;
+    tog.classList.toggle('on', on);
+    tog.querySelector('.l').textContent = on ? 'Uitleg uit' : 'Uitleg tonen';
+    if(on){ layer.style.display = ''; build(); } else { close(); layer.innerHTML = ''; layer.style.display = 'none'; }
+  });
+  var t; function re(){ if(!on) return; clearTimeout(t); t = setTimeout(place, 80); }
+  addEventListener('resize', re);
+  if(window.ResizeObserver){ new ResizeObserver(re).observe(document.body); }
+  layer.style.display = 'none';
 })();
 </script><!--/uitleg-->
